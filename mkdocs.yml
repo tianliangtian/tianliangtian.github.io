@@ -7,3 +7,5 @@ theme:
 
 nav:
   - Home: index.md
+  - Learning: 
+    - Git: Learning/Git.md
