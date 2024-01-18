@@ -1,6 +1,9 @@
-site_name: My Docs
+site_name: tianliangtian's personal website
 site_url: https://tianliangtian.github.io
 site_author: tianliangtian
 
 theme:
   name: material
+
+nav:
+  - Home: index.md
