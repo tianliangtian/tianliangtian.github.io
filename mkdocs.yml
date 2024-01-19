@@ -47,5 +47,8 @@ plugins:
 
 extra:
   social:
+    - icon: fontawesome/brands/bilibili
+      link: https://github.com/tianliangtian
     - icon: fontawesome/brands/github
-    - link: https://github.com/tianliangtian
+      link: https://github.com/tianliangtian
+  homepage: https://tianliangtian.github.io
