@@ -4,8 +4,52 @@ site_author: tianliangtian
 
 theme:
   name: material
+  
+  icon: 
+    logo: material/library
+
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - header.autohide
+
+  palette:
+
+    # Palette toggle for light mode
+    - scheme: default
+      toggle:
+      icon: material/brightness-7
+      name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      toggle:
+      icon: material/brightness-4
+      name: Switch to light mode
+
+    primary:  pink
+    accent: teal
+
 
 nav:
   - Home: index.md
   - Learning: 
+    - Learning/index.md
     - Git: Learning/Git.md
+    - Website building: Learning/'Website building.md'
+
+plugins:
+  - search
+  - tags
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+    - link: https://github.com/tianliangtian

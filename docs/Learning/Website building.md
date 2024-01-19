@@ -38,9 +38,25 @@ The following commands generate static site files.
 ```
 mkdocs build
 ```
+The following command helps you deploy your pages. It will create a new branch called `gh-pages` in your Github project, execute `mkdocs build` and push the content in `site` to that branch.
+```
+mkdocs gh-deploy
+```
 ## Material for MkDocs
+Material for MkDocs is a powerful documentation framework on top of MkDocs, a static site generator for project documentation.
+Install with pip
+```
+pip install mkdocs-material
+```
+You can customize your pages in `mkdocs.yml`. Configuration of my pages is shown below
+```yml
+
+```
+Please  check <a herf="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs<a> for more details.
 ## Github Pages
 ## Critical Steps
 ## Warning
 ## Referance
 * https://www.mkdocs.org/
+* https://squidfunk.github.io/mkdocs-material/
+
