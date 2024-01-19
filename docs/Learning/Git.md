@@ -4,13 +4,13 @@
 * staging area：暂存区，一般存放在 `.git` 目录下的 index 文件（.git/index）中，所以有时也叫作索引（index）
 * local repository：版本库或本地仓库，工作区有一个隐藏目录 .git，这个不算工作区，而是 Git 的版本库
 * remote repository：远程仓库
-![workspace and local repo](images/workspace_and_localrepo.png)
+![workspace and local repo](../img/Learning/Git/workspace_and_localrepo.png)
 * 图中的 objects 标识的区域为 Git 的对象库，实际位于 ".git/objects" 目录下，里面包含了创建的各种对象及内容。
 * 当对工作区修改（或新增）的文件执行 `git add` 命令时，暂存区的目录树被更新，同时工作区修改（或新增）的文件内容被写入到对象库中的一个新的对象中，而该对象的ID被记录在暂存区的文件索引中。
 * 当执行提交操作 `git commit`时，暂存区的目录树写到版本库（对象库）中，master 分支会做相应的更新。即 master 指向的目录树就是提交时暂存区的目录树。
 * 当执行 `git reset HEAD` 命令时，暂存区的目录树会被重写，被 master 分支指向的目录树所替换，但是工作区不受影响。
 ## 基本操作
-![basic operation](images/basic_op.png)
+![basic operation](../img/Learning/Git/basic_op.png)
 ### 创建仓库
 `git init` 在当前目录新建Git仓库
 `git clone` 将一个远程仓库clone到本地。其复制远程仓库的所有代码和历史记录，并在本地创建一个与远程仓库相同的仓库副本。
