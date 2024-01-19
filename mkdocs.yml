@@ -39,7 +39,7 @@ nav:
   - Learning: 
     - Learning/index.md
     - Git: Learning/Git.md
-    - Website building: Learning/'Website building.md'
+    - Website building: Learning/Website-building.md
 
 plugins:
   - search
