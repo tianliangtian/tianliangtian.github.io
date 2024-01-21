@@ -14,7 +14,7 @@ This will create a new folder in your current directory with basic files to buil
 mkdocs new .
 ```
 `mkdocs.yml` specifies basic site configurations. A simple demo is showing below.
-```yml
+``` yaml
 site_name: tianliangtian's personal website
 site_url: https://tianliangtian.github.io
 site_author: tianliangtian
@@ -49,7 +49,7 @@ Install with pip
 pip install mkdocs-material
 ```
 You can customize your pages in `mkdocs.yml`. Configuration of my pages is shown below
-```yaml
+``` yaml
 site_name: tianliangtian's pages
 site_url: https://tianliangtian.github.io
 site_author: tianliangtian
