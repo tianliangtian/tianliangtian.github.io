@@ -49,7 +49,80 @@ Install with pip
 pip install mkdocs-material
 ```
 You can customize your pages in `mkdocs.yml`. Configuration of my pages is shown below
-```yml
+```yaml
+site_name: tianliangtian's pages
+site_url: https://tianliangtian.github.io
+site_author: tianliangtian
+
+theme:
+  name: material
+  icon: 
+    logo: material/library
+  features:
+    - navigation.tracking
+    - navigation.tabs
+    - navigation.expand
+    - navigation.indexes
+    - navigation.top
+    - navigation.footer
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - header.autohide
+    - content.code.copy
+    - content.code.select
+    - content.code.annotate
+  palette:
+    # Palette toggle for light mode
+    - scheme: default
+      primary: pink
+      accent: teal
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    # Palette toggle for dark mode
+    - scheme: slate
+      primary: pink
+      accent: teal
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+nav:
+  - Home: index.md
+  - Learning: 
+    - Learning/index.md
+    - Git: Learning/Git.md
+    - Website building: Learning/Website-building.md
+
+plugins:
+  - search
+  - tags
+
+extra:
+  social:
+    - icon: fontawesome/brands/bilibili
+      link: https://github.com/tianliangtian
+    - icon: fontawesome/brands/github
+      link: https://github.com/tianliangtian
+  homepage: https://tianliangtian.github.io
+
+markdown_extensions:
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
+
+extra_javascript:
+  - javascripts/mathjax.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
 
 ```
 Please  check <a herf="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a> for more details.
@@ -85,7 +158,7 @@ mkdocs build
 ```
 ### Publishing your site
 Using GitHub Actions you can automate the deployment of your project documentation. At the root of your repository, create a new GitHub Actions workflow, e.g. .github/workflows/ci.yml, and copy and paste the following contents:
-``` yml
+``` yaml
 name: ci 
 on:
   push:

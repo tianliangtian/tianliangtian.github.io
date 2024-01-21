@@ -13,11 +13,6 @@
 ![basic operation](../img/Learning/Git/basic_op.png)
 ### 创建仓库
 `git init` 在当前目录新建Git仓库
-
-``` py
-import tensorflow as tf
-```
-
 `git clone` 将一个远程仓库clone到本地。其复制远程仓库的所有代码和历史记录，并在本地创建一个与远程仓库相同的仓库副本。
 ``` git
 $ git clone [url]
