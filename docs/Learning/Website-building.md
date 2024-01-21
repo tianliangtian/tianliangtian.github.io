@@ -85,7 +85,7 @@ mkdocs build
 ```
 ### Publishing your site
 Using GitHub Actions you can automate the deployment of your project documentation. At the root of your repository, create a new GitHub Actions workflow, e.g. .github/workflows/ci.yml, and copy and paste the following contents:
-```yml
+``` yml
 name: ci 
 on:
   push:
