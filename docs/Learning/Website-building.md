@@ -52,11 +52,82 @@ You can customize your pages in `mkdocs.yml`. Configuration of my pages is shown
 ```yml
 
 ```
-Please  check <a herf="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs<a> for more details.
+Please  check <a herf="https://squidfunk.github.io/mkdocs-material/">Material for MkDocs</a> for more details.
 ## Github Pages
+If you're already hosting your code on GitHub, GitHub Pages is certainly the most convenient way to publish your project documentation. It's free of charge and pretty easy to set up.
+There are two types of site. You can choose one of them to cater for your demand according to their different property, but remember that the two types can't exist simultaneously.
+* User or organization site: Head over to GitHub and create a new public repository named `<username>.github.io`, where username is your username (or organization name) on GitHub. If the first part of the repository doesn’t exactly match your username, it won’t work, so make sure to get it right. This is the only site you can use if you choose this type. The corresponding url is `http(s)://<username>.github.io`
+* Project site: You can have many repositories for different sites as long as the name of it isn't `<username>.github.io`. The corresponding url is `http(s)://<username>.github.io/<repository>`
+
 ## Critical Steps
-## Warning
+### Installation
+Install MkDocs and Material for Mkdocs as mentioned before
+### Create new repo
+Create a new repo in Github with name `<username>.github.io` if you want to establish
+User or organization site.
+Clone the repo into a subfolder of your project root with git
+```git
+git clone https://github.com/tianliangtian/tianliangtian.github.io.git
+```
+### Create your site
+Go to the directory where you want your project to be located and enter:
+```
+mkdocs new .
+```
+Setting your configuration in `mkdocs.yml` and add corresponding files in `docs`
+Use the following command to preview
+```
+mkdocs serve
+```
+Build your site with:
+```
+mkdocs build
+```
+### Publishing your site
+Using GitHub Actions you can automate the deployment of your project documentation. At the root of your repository, create a new GitHub Actions workflow, e.g. .github/workflows/ci.yml, and copy and paste the following contents:
+```yml
+name: ci 
+on:
+  push:
+    branches:
+      - master 
+      - main
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Configure Git Credentials
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+      - uses: actions/setup-python@v4
+        with:
+          python-version: 3.x
+      - run: echo "cache_id=$(date --utc '+%V')" >> $GITHUB_ENV 
+      - uses: actions/cache@v3
+        with:
+          key: mkdocs-material-${{ env.cache_id }}
+          path: .cache
+          restore-keys: |
+            mkdocs-material-
+      - run: pip install mkdocs-material 
+      - run: mkdocs gh-deploy --force
+```
+Now, when a new commit is pushed to either the master or main branches, the static site is automatically built and deployed. Push your changes to see the workflow in action.
+## Other
+### Workflow permission
+Revise your Actions permission and Workflow permissions in your Github repo setting so that the workflow will work.
+Go to `Settings` in your repo, find `Actions` in your left bar and click `General`
+* Actions permissions: Allow all actions and reusable workflows
+* Workflow permissions: Read and write permissions
+### Choose the right branch
+The documentation is deployed in branch `gh-pages` so don't forget to choose it as the branch where your GitHub Pages built from.
+Go to `Settings` in your repo, click `Pages` in your left bar. In `Build and deployment`, choose `gh-pages` as the branch.
+![gh-pages](../img/Learning/Website-building/gh-pages.png)
 ## Referance
 * https://www.mkdocs.org/
 * https://squidfunk.github.io/mkdocs-material/
-
+* https://yang-xijie.github.io/BLOG/Markdown/mkdocs-site/
