@@ -21,6 +21,8 @@ y = input("y: ")
 
 print(x + y)        # str can be connected with a single '+'
 ```
+> you can even use '*' to str like `print("?" * 4)`
+
 Run the code and we get following result. The variable type that `input` returns is `str` explains the reason why output is 12, i.e. '1' + '2'
 ```
 python .\calculator.py
@@ -36,8 +38,10 @@ y = int(input("y: "))
 print(x + y)
 ```
 A traceback will appear if the input isn't number.
+
 ## Conditions
 * Indentation is important in python
+
 ```py
 if x < y:
     print("x is less than y")
@@ -72,7 +76,8 @@ Click <a herf="docs.python.org">here</a> for official documentation
 
 === "for loop"
     ```py
-    # on every iteration of this loop, Python is assigning `i` to the next value in the list behind `in`
+    # on every iteration of this loop, 
+    # Python is assigning `i` to the next value in the list behind `in`
     for i in range(3):          # range(3) returns a list of integers from 0 to 2
         print("hello, world")
     ```
@@ -100,6 +105,32 @@ before = input("Before: ")
 after = before.upper()
 print(f"After: {after}")
 ```
+When you want to implement a `do-while` loop, just put the loop body into a forever loop and jump out when something happens.
+In Python, even a for loop can have a `else` clause.
+```py
+names = ["Cat", "Dog", "Bird"]
+
+name = input("Name: ")
+
+for n in names:
+    if name == n:
+        print("Found")
+        break
+else:
+    print("Not Found")
+```
+If the for loop terminates without calling `break`, then the code in `else` will execute.
+This is just an example to explain `for-else`. Actually it can be solved below
+```py
+names = ["Cat", "Dog", "Bird"]
+
+name = input("Name: ")
+
+if name in names:
+    print("Found")
+else:
+    print("Not Found")
+```
 ## Function
 Practically, we want the main part of a program at the top of the file so that we can dive right in and know what the file is doing. Let's look at the following way.
 ```py
@@ -118,3 +149,155 @@ Traceback (most recent call last):
 NameError: name 'meow' is not defined
 ```
 This could happen because the interpreter read the file from top to down and `meow()` is called before its defination.
+To solve this problem, we need to define a function called `main` and takes no arguments.
+```py
+def main():
+    for i in range(3):
+        meow()
+
+def meow():
+    print("meow")
+
+main()
+```
+Note that the last line is necessary since the beginning only define the `main` function and it will be executed only when we call it.
+Now, let's add some parameter so that we can control the times the loop will run.
+```py
+def main():
+    meow(5)
+
+def meow(n):
+    for i in range(n):
+        print("meow")
+
+main()
+```
+## truncation, imprecision and overflow
+Python won't truncate the result if it has fractional component. It will convert type automatically.
+```py title="calculator.py"
+x = int(input("x: "))
+y = int(input("y: "))
+z = x / y
+print(z)
+```
+Run the code
+```
+python .\calculator.py
+x: 1
+y: 3
+0.3333333333333333
+```
+We can use f string to show more digits after the decimal point
+```py
+x = int(input("x: "))
+y = int(input("y: "))
+z = x / y
+print(f"{z:.50f}")
+```
+The result below shows that the floating point imprecision problem remains in Python
+```
+python .\calculator.py
+x: 1
+y: 3
+0.33333333333333331482961625624739099293947219848633
+```
+In Python, integer won't overflow no matter how big it is because Python will reserve more and more memeory for that integer to fit it.
+## Exceptions
+In C, we often return some distinct value to signifies the function failed to achieve its goal. In Python, we can use `exception` to handle it.
+```py
+def main():
+    x = get_int("x: ")
+    y = get_int("y: ")
+
+    print(x + y)
+
+def get_int(prompt):
+    return int(input(prompt))
+
+main()
+```
+In the above program, the `get_int()` function works well when we input some numbers. But a exception happens when we input other things.
+```
+python .\calculator.py
+x: cat
+Traceback (most recent call last):
+  File "C:\Users\86156\desktop\calculator.py", line 10, in <module>
+    main()
+  File "C:\Users\86156\desktop\calculator.py", line 2, in main
+    x = get_int("x: ")
+        ^^^^^^^^^^^^^^
+  File "C:\Users\86156\desktop\calculator.py", line 8, in get_int
+    return int(input(prompt))
+           ^^^^^^^^^^^^^^^^^^
+ValueError: invalid literal for int() with base 10: 'cat'
+```
+The `ValueError` tells us what kind of exception we have. We can revise it in this way:
+```py title="get_int()"
+def get_int(prompt):
+    try:
+        return int(input(prompt))
+    except ValueError:
+        print("Not an interger")
+```
+In this program, we use `try` and `except` to tell the interpreter we try to do something and if `ValueError` exception happens, we will see "Not an integer" instead of traceback.
+Only `try` and `except` are not enough. We need to add a loop so that the function will loop again and again until get a valid input.
+```py title="get_int()"
+def get_int(prompt):
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Not an interger")
+```
+## list
+List is something like array but their memory is automatically handled for you.
+An array is about having contiguously in memory. In Python, a list is more like a linked list. It will allocate memory for you and you don't have to know about pointers and nodes. 
+```py 
+scores = [72, 73, 33]           # List using square brackets
+# use the bulid-in functions to get the sum and length of the list
+average = sum(scores) / len(scores)
+```
+`append()` method helps to add sth. into a list. Or you can use `+`
+```py
+scores = []
+for i in range(3):
+    score = get_int("Score: ")
+    scores = scores + [score]           # Or 'scores.append(score)'
+
+Average = sum(scores) / len(scores)
+```
+## dist
+Dictionary is essentially a hash tabel, a collection of key-value pairs.
+```py
+people = [
+    {"name": "Carter", "number": "12345"},     # dist uses curly brace
+    {"name": "David", "number": "12335"},
+    {"name": "John", "number": "16345"},
+]
+
+name = input("Name: ")
+
+for person in people:
+    if person["name"] == name:
+        number = person["number"]
+        print(f"Found {number}")
+        break
+else:
+    print("Not Found")
+```
+A big dist can be used, which is tidier in this case:
+```py
+people = {
+    "Carter": "12345",
+    "David": "12335",
+    "John": "16345",
+}
+
+name = input("Name: ")
+
+if name in people:
+    number = people[name]
+    print("Found")
+else:
+    print("Not Found")
+``` 
