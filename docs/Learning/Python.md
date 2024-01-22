@@ -172,36 +172,6 @@ def meow(n):
 
 main()
 ```
-## truncation, imprecision and overflow
-Python won't truncate the result if it has fractional component. It will convert type automatically.
-```py title="calculator.py"
-x = int(input("x: "))
-y = int(input("y: "))
-z = x / y
-print(z)
-```
-Run the code
-```
-python .\calculator.py
-x: 1
-y: 3
-0.3333333333333333
-```
-We can use f string to show more digits after the decimal point
-```py
-x = int(input("x: "))
-y = int(input("y: "))
-z = x / y
-print(f"{z:.50f}")
-```
-The result below shows that the floating point imprecision problem remains in Python
-```
-python .\calculator.py
-x: 1
-y: 3
-0.33333333333333331482961625624739099293947219848633
-```
-In Python, integer won't overflow no matter how big it is because Python will reserve more and more memeory for that integer to fit it.
 ## Exceptions
 In C, we often return some distinct value to signifies the function failed to achieve its goal. In Python, we can use `exception` to handle it.
 ```py
@@ -302,6 +272,36 @@ else:
     print("Not Found")
 ``` 
 ## Other
+### truncation, imprecision and overflow
+Python won't truncate the result if it has fractional component. It will convert type automatically.
+```py title="calculator.py"
+x = int(input("x: "))
+y = int(input("y: "))
+z = x / y
+print(z)
+```
+Run the code
+```
+python .\calculator.py
+x: 1
+y: 3
+0.3333333333333333
+```
+We can use f string to show more digits after the decimal point
+```py
+x = int(input("x: "))
+y = int(input("y: "))
+z = x / y
+print(f"{z:.50f}")
+```
+The result below shows that the floating point imprecision problem remains in Python
+```
+python .\calculator.py
+x: 1
+y: 3
+0.33333333333333331482961625624739099293947219848633
+```
+In Python, integer won't overflow no matter how big it is because Python will reserve more and more memeory for that integer to fit it.
 ### sys
 The sys library has system-related functionality. 
 In C, we got access to command-line arguments with `main()`, `argc` and `argv`.
