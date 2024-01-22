@@ -295,9 +295,43 @@ people = {
 
 name = input("Name: ")
 
-if name in people:
+if name in people:              # Python will look for the name among the keys in the dist
     number = people[name]
-    print("Found")
+    print(f"Found {number}")
 else:
     print("Not Found")
 ``` 
+## Other
+### sys
+The sys library has system-related functionality. 
+In C, we got access to command-line arguments with `main()`, `argc` and `argv`.
+You can do command-line arguments in Python with the help of `sys`
+```py
+from sys import argv
+
+if len(argv) == 2:
+    print(f"hello, {argv[1]}")
+else:
+    print("hello, world")
+```
+If you give one argument, the output is `hello, world`. If two, then different. 
+Note that the command `python` is ignored from `argv`
+```
+$ python greet.py
+hello, world
+$ python greet.py David
+hello, David
+```
+You can also exit the program with `sys`
+```py
+import sys
+
+if len(sys.argv) != 2:
+    print("Missing command-line argument")
+    sys.exit(1)
+
+print(f"hello, {sys.argv[1]}")
+sys.exit(0)
+```
+### pip
+Using `pip` to install third-party libraries.
