@@ -42,7 +42,7 @@ nav:
     - Learning/index.md
     - Git: Learning/Git.md
     - Website building: Learning/Website-building.md
-
+    - Python: Learning/Python.md
 plugins:
   - search
   - tags

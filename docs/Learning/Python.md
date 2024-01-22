@@ -60,3 +60,61 @@ elif s in ["n", "no"]:
 ```
 
 Click <a herf="docs.python.org">here</a> for official documentation
+
+## Loop
+=== "while loop"
+    ```py
+    i = 0
+    while i < 3:
+        print("meow")
+        i += 1
+    ```
+
+=== "for loop"
+    ```py
+    # on every iteration of this loop, Python is assigning `i` to the next value in the list behind `in`
+    for i in range(3):          # range(3) returns a list of integers from 0 to 2
+        print("hello, world")
+    ```
+
+A forever loop
+```py
+while True:
+    print("meow")
+```
+> True and False are capitalized in Python
+
+You can loop over almost anything that is iterable in Python, such as string.
+```py title="uppercase.py"
+before = input("Before: ")
+print("After: ", end="")
+for c in before:
+    print(c.upper(), end="")    
+    # end is a second parameter here telling print to insert nothing instead of a new line after every output
+    # otherwise each letter will be outputed in seperate lines
+print()     # move cursor to next line
+```
+Actually if you want to convert a string to uppercase, you just need to call the method
+```py
+before = input("Before: ")
+after = before.upper()
+print(f"After: {after}")
+```
+## Function
+Practically, we want the main part of a program at the top of the file so that we can dive right in and know what the file is doing. Let's look at the following way.
+```py
+for i in range(3):
+    meow()
+
+def meow():
+    print("meow")
+```
+If we run the code, we will find a traceback.
+```
+Traceback (most recent call last):
+  File "C:\Users\86156\desktop\meow.py", line 2, in <module>
+    meow()
+    ^^^^
+NameError: name 'meow' is not defined
+```
+This could happen because the interpreter read the file from top to down and `meow()` is called before its defination.
