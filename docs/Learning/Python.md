@@ -19,9 +19,9 @@ Use `input` to get ***str*** from your keyboard
 x = input("x: ")
 y = input("y: ")
 
-print(x + y)        # str can be connected with a single '+'
+print(x + y)
 ```
-> you can even use '*' to str like `print("?" * 4)`
+> Note that you can perform `str` by `+` and `*`. `+` performs string concatenation and `*` performs repetition.
 
 Run the code and we get following result. The variable type that `input` returns is `str` explains the reason why output is 12, i.e. '1' + '2'
 ```
@@ -38,6 +38,30 @@ y = int(input("y: "))
 print(x + y)
 ```
 A traceback will appear if the input isn't number.
+`type()` can be used to tell you the type of a value.
+```py
+>>> type(1.2)
+<class 'float'>
+```
+In these results, the word “class” is used in the sense of a category; a type is a category of values.
+### String
+Use `index` to choose the char you want in the sequence.
+Use `slice` to select a segment of a string.
+```py
+>>> s = "hello, world"
+>>> s[1]
+'e'
+>>> s[0:5]
+'hello'
+>>> s[:7]
+'hello, '
+>>> s[7:]
+'world'
+>>> s[:]
+'hello, world'
+```
+The operator `[n:m]` returns the part of the string from the “n-eth” character to the “m-eth” character, including the first but excluding the last.
+> `str` is immutable.
 
 ## Conditions
 * Indentation is important in python
@@ -172,6 +196,105 @@ def meow(n):
 
 main()
 ```
+### Flow of execution
+The order statements run in is called **flow of execution**. Execution always begin at the first statement of the program. Statements are run one at a time from top to bottom. Function definition don't alter the flow of execution of the program, but remember that statements inside the function don’t run until the function is called. A function call is like a detour in the flow of execution. Instead of going to the next statement, the flow jumps to the body of the function, runs the statements there, and then comes back to pick up where it left off.
+### Higher-Order Functions
+#### Functions as Arguments
+Consider you want to compute the sum of a series. Here are two examples:
+```py
+def sum_naturals(n):
+    total, k = 0, 1
+    while k <= n:
+        total, k = total + k, k + 1
+    return total
+
+def sum_cubes(n):
+    total, k = 0, 1
+    while k <= n:
+        total, k = total + k*k*k, k + 1
+    return total
+``` 
+The upper one returns the sum of natural numbers up to n, while the other returns the sum of the cubes of natural numbers.
+These two functions share a common pattern as following:
+```py
+def <name>(n):
+    total, k = 0, 1
+    while k <= n:
+        total, k = total + <term>(k), k + 1
+    return total
+```
+This remind us that we can pass another parameter `term`, which is a function, into the sum function so that we don't need to write a paricular function for every series.
+Let's define our function in the following way:
+```py
+def summation(n, term):
+    total, k = 0, 1
+    while k <= n:
+        total, k = total + term(k), k + 1
+    return total
+
+def cube(x):
+    return x*x*x
+
+def identity(x):
+    return x
+
+sum_cube = summation(n, cube)
+sum_natural = summation(n, identity)
+```
+The last two rows compute the two series. We can pass more `term` function to get the sum of more series.
+#### Functions as General Methods
+Consider the following function to compute the golden ratio.
+```py
+def improve(update, close, guess = 1):
+    while not close(guess):
+        guess = update(guess)
+    return guess
+
+def golden_update(guess):
+    return 1 / guess + 1
+
+def square_close_to_successor(guess):
+    return approx_eq(guess * guess, guess + 1)
+
+def approx_eq(x, y, tolerance = 1e-3):
+    return abs(x - y) < tolerance
+
+phi = improve(golden_update, square_close_to_successor)
+```
+The `improve` function is asgeneral expression of repetitive refinement. It doesn't specify what problem is being solved: those details are left to the `update` and `close` functions passed in as arguments. `approx_eq` returns True when its arguments are close to each other. 
+This example illustrates two related big ideas in computer science. First, naming and functions allow us to abstract away a vast amount of complexity. While each function definition has been trivial, the computational process set in motion by our evaluation procedure is quite intricate. Second, it is only by virtue of the fact that we have an extremely general evaluation procedure for the Python language that small components can be composed into complex processes. Understanding the procedure of interpreting programs allows us to validate and inspect the process we have created.
+#### Nested Definitions
+The above examples demonstrate how the ability to pass functions as arguments significantly enhances the expressive power of our programming language. Each general concept or equation maps onto its own short function. One negative consequence of this approach is that the global frame becomes cluttered with names of small functions, which must all be unique. Another problem is that we are constrained by particular function signatures: the `update` argument to `improve` must take exactly one argument. Nested function definitions address both of these problems, but require us to enrich our environment model.
+The following program compute a square root of a number.
+```py
+def sqrt(a):
+    def sqrt_update(x):
+        return average(x, a/x)
+    def sqrt_close(x):
+        return approx_eq(x * x, a)
+    return improve(sqrt_update, sqrt_close)
+```
+Like local assignment, local `def` statements only affect the current local frame. These functions are only in scope while `sqrt` is being evaluated. Consistent with our evaluation procedure, these local `def` statements don't even get evaluated until `sqrt` is called.
+* The names of a local function do not interfere with names external to the function in which it is defined, because the local function name will be bound in the current local environment in which it was defined, rather than the global environment.
+* A local function can access the environment of the enclosing function, because the body of the local function is evaluated in an environment that extends the evaluation environment in which it was defined.
+The `sqrt_update` function carries with it some data: the value for a referenced in the environment in which it was defined. Because they "enclose" information in this way, locally defined functions are often called ***closures***.
+#### Functions as Returned Values
+We can define function composition like $h(x)=f(g(x))$ using our existing tools:
+```py
+def square(x):
+    return x * x
+
+def successor(x):
+    return x + 1 
+
+def composel(f, g):
+    def h(x):
+        return f(g(x))
+    return h
+
+square_successor = composel(square, successor)
+result = square_successor(12)
+```
 ## Exceptions
 In C, we often return some distinct value to signifies the function failed to achieve its goal. In Python, we can use `exception` to handle it.
 ```py
@@ -272,6 +395,19 @@ else:
     print("Not Found")
 ``` 
 ## Other
+### Some operators
+#### Floor division and modulus
+The division sign `/` divides two numbers to a float, while floor division `//` returns an integer rounded down by that float. The modulus operator `%` divides two numbers and return s the remainder.
+```py
+>>> 32 / 10
+3.2
+>>> 32 // 10
+3
+>>> 32 % 10
+2
+``` 
+#### Logical operator
+Python use `and`, `or` and `not` these three keywords to do logical operation.
 ### truncation, imprecision and overflow
 Python won't truncate the result if it has fractional component. It will convert type automatically.
 ```py title="calculator.py"
