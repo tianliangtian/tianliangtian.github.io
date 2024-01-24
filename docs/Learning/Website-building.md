@@ -1,6 +1,7 @@
-# How to build personal website using MkDocs
+# How to build personal website with MkDocs
 ## MkDocs
 MkDocs is a **fast**, **simple** and **downright gorgeous** static site generator that's geared towards building project documentation. Documentation source files are written in Markdown, and configured with a single YAML configuration file. You can easily customize your webpages, preview your site and host it in almost anywhere.
+
 Run the following command to install mkdocs
 ```
 pip install mkdocs
@@ -28,8 +29,11 @@ nav:
     - Git: Learning/Git.md
 ```
 `site_name` is the name of the site. `site_url` is the place where you deploy your site.
+
 You can customize your site in the `theme` block
+
 `nav` block helps you to arrange the order, title, and nesting of each page in the navigation header. Remember to relate your source files in `docs` to those pages.
+
 You can use the following command to preview your site in the given url.
 ```
 mkdocs serve
@@ -129,7 +133,9 @@ Please  check <a herf="https://squidfunk.github.io/mkdocs-material/">Material fo
 ## Github Pages
 If you're already hosting your code on GitHub, GitHub Pages is certainly the most convenient way to publish your project documentation. It's free of charge and pretty easy to set up.
 There are two types of site. You can choose one of them to cater for your demand according to their different property, but remember that the two types can't exist simultaneously.
+
 * User or organization site: Head over to GitHub and create a new public repository named `<username>.github.io`, where username is your username (or organization name) on GitHub. If the first part of the repository doesn’t exactly match your username, it won’t work, so make sure to get it right. This is the only site you can use if you choose this type. The corresponding url is `http(s)://<username>.github.io`
+
 * Project site: You can have many repositories for different sites as long as the name of it isn't `<username>.github.io`. The corresponding url is `http(s)://<username>.github.io/<repository>`
 
 ## Critical Steps
