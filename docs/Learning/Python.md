@@ -303,6 +303,15 @@ def composel(f, g):
 square_successor = composel(square, successor)
 result = square_successor(12)
 ```
+#### Lambda Expressions
+`lambda` expression is an unnamed function, reture a single expression as its body.
+```py
+s = lambda x, y : x * y             # input x and y, return x*y
+t = lambda : None                   # no input and always output None
+u = lambda *args: sum(args)         # input arbitary arguments, reutrn their sum
+v = lambda **kwargs: 1              # input arbitary key-value arguments, return 1
+```
+`s`, `t`, `u` and `v` are all functions
 ## Exceptions
 In C, we often return some distinct value to signifies the function failed to achieve its goal. In Python, we can use `exception` to handle it.
 ```py
@@ -358,14 +367,59 @@ scores = [72, 73, 33]           # List using square brackets
 # use the bulid-in functions to get the sum and length of the list
 average = sum(scores) / len(scores)
 ```
-`append()` method helps to add sth. into a list. Or you can use `+`
+### Traverse
+You can use following ways to traverse a list
 ```py
-scores = []
-for i in range(3):
-    score = get_int("Score: ")
-    scores = scores + [score]           # Or 'scores.append(score)'
+names = ['adam', 'bob', 'tony']
 
-Average = sum(scores) / len(scores)
+for name in names:
+    print(name)
+
+for i in range(len(names)):
+    print(names[i])
+```
+### Opeartions
+You can use `+` and `*` to manipulate lists
+```py
+>>> a = [1, 2, 3]
+>>> b = [4, 5, 6]
+>>> a + b
+[1, 2, 3, 4, 5, 6]
+>>> a * 3
+[1, 2, 3, 1, 2, 3, 1, 2, 3]
+```
+### Method
+`append` add a element to the end of a list
+`extend` takes a list as an argument and append its element to the end of the origin list
+`sort` sort the elements from low to high
+```py
+>>> a = [1, 2, 3]
+>>> a.append(6)
+>>> a
+[1, 2, 3, 6]
+>>> b = [5, 7]
+>>> b.extend(a)
+>>> b
+[5, 7, 1, 2, 3, 6]
+>>> b.sort()
+>>> b
+[1, 2, 3, 5, 6, 7]
+```
+`pop` delete the element with given index in the list and return that element. If no index is provided, delete the last one.
+`remove` delete the element with given value and return nothing
+`del` operator can remove more than one element with slice
+```py
+>>> x = b.pop(2)
+>>> x
+3
+>>> b
+[1, 2, 5, 6, 7]
+>>> b.remove(7)
+>>> b
+[1, 2, 5, 6]
+>>> del b[1:3]
+>>> b
+[1, 6]
 ```
 ## dist
 Dictionary is essentially a hash tabel, a collection of key-value pairs.
