@@ -43,6 +43,8 @@ nav:
     - Git: Learning/Git.md
     - Website building: Learning/Website-building.md
     - Python: Learning/Python.md
+    - Deep Learning:
+      - Neural Network and Deep Learning: Learning/DeepLearning/NNandDL.md
 plugins:
   - search
   - tags
