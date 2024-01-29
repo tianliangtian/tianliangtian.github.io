@@ -390,7 +390,9 @@ You can use `+` and `*` to manipulate lists
 ```
 ### Method
 `append` add a element to the end of a list
+
 `extend` takes a list as an argument and append its element to the end of the origin list
+
 `sort` sort the elements from low to high
 ```py
 >>> a = [1, 2, 3]
@@ -406,7 +408,9 @@ You can use `+` and `*` to manipulate lists
 [1, 2, 3, 5, 6, 7]
 ```
 `pop` delete the element with given index in the list and return that element. If no index is provided, delete the last one.
+
 `remove` delete the element with given value and return nothing
+
 `del` operator can remove more than one element with slice
 ```py
 >>> x = b.pop(2)
@@ -440,7 +444,7 @@ for person in people:
 else:
     print("Not Found")
 ```
-A big dist can be used, which is tidier in this case:
+A big dist can be used, which is tidier in the following case. Note that Python will traverse the ***keys*** of the dirtionary.
 ```py
 people = {
     "Carter": "12345",
@@ -456,6 +460,23 @@ if name in people:              # Python will look for the name among the keys i
 else:
     print("Not Found")
 ``` 
+`len` function returns the number of key-value pairs.
+
+`in` operator tells whether something appears as a ***key*** in the dist.
+
+`values` method returns a collection of values.
+```py
+>>> dist = {"apple":"red", "banana":"yellow", "potato":"brown"}
+>>> len(dist)
+3
+>>> "apple" in dist
+True
+>>> "red" in dist
+False
+>>> value = dist.values()
+>>> "red" in value
+True
+```
 ## Other
 ### Some operators
 #### Floor division and modulus
