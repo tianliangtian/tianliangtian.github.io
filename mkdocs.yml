@@ -48,7 +48,7 @@ nav:
 plugins:
   - search
   - tags
-
+  - glightbox
 extra:
   social:
     - icon: fontawesome/brands/bilibili

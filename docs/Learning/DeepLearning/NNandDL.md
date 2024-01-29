@@ -53,7 +53,9 @@ $$
 $$
 
 $\sigma(z)=\frac{1}{1+e^{-z}}$, the sigmoid function, is used to map the result in the parenthesis to $[0,1]$ for $\hat{y}$ is the probability.
-![sigmoid-function](../../img/Learning/Deep-Learning/sigmoid-function.png){width = "50%"}
+
+![sigmoid-function](../../img/Learning/Deep-Learning/sigmoid-function.png){width="50%"}
+
 
 #### Logistic Regression cost function
 * Denote $z^{(i)}=w^{T}x^{(i)}+b$ and $\hat{y}^{(i)}=\sigma(z^{(i)})$
