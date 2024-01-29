@@ -53,7 +53,8 @@ $$
 $$
 
 $\sigma(z)=\frac{1}{1+e^{-z}}$, the sigmoid function, is used to map the result in the parenthesis to $[0,1]$ for $\hat{y}$ is the probability.
-![sigmoid-function](../../img/Learning/Deep-Learning/sigmoid-function.png)
+<img src="../../img/Learning/Deep-Learning/sigmoid-function.png" width="75%" alt="sigmoid-function">
+
 #### Logistic Regression cost function
 * Denote $z^{(i)}=w^{T}x^{(i)}+b$ and $\hat{y}^{(i)}=\sigma(z^{(i)})$
 
@@ -82,7 +83,7 @@ Repeat\{
 \}
 $$
 
-    * $\alpha$: Learning rate, controls how big a step we take on each iteration.
+* $\alpha$: Learning rate, controls how big a step we take on each iteration.
 
 #### Derivatives with a Computation Graph
 * Computation Graph: Assume wew want to compute $J=3(a+bc)$
@@ -123,3 +124,30 @@ J/=m;d&w1/=m;dw2/=m;db/=m;
 \nonumber
 \end{aligned}
 $$
+
+### Python and Vectorization
+#### Vectorization
+Vectorization can significantly speed up calculation compared to using explicit `for` loops.
+
+=== "Vectorization"
+    ```py
+    import numpy as np
+    a = np.random.rand(1000000)
+    b = np.random.rand(1000000)
+    c = np.dot(a, b)
+    ```
+=== "For Loop"
+    ```py
+    import numpy as np
+    a = np.random.rand(1000000)
+    b = np.random.rand(1000000)
+    c = 0
+    for i in range(1000000):
+        c += a[i] * b[i]
+    ```
+
+If we use `time()` function in `time` library to check the time comsuming, we will find that the Vectorization is hundreds of times faster than for loop.
+
+One criterian is that always using built-in functions in Python or Numpy instead of explicit for loop.
+
+Now we can apply vectorization to logistic regression derivatives.
