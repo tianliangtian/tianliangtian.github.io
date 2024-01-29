@@ -22,6 +22,7 @@ Learn a classifier that can input a feature vector x and predict the correspondi
 * $m$: Number of training examples. Training examples are denoted from $(x^{(1)},y^{(1)})$ to $(x^{(m)},y^{(m)})$
 
 * matrix $X$ represents training examples in a compact way.
+
 $$
 X=
 \begin{bmatrix}
@@ -30,22 +31,27 @@ x^{(1)} & x^{(2)} & \dots & x^{(m)} \\
 \vdots & \vdots & \cdots & \vdots
 \end{bmatrix}
 $$
+
 The width and height of the matrix are $m$ and $n_{x}$ respectively.
 
 * Label $y$ can also be denoted by stacking $y$ in columns.
+
 $$
 Y=
 \begin{bmatrix}
 y^{(1)} & y^{(2)} & \dots & y^{(m)}
 \end{bmatrix}
 $$
+
 #### Logistic Regression
 Given an input feature vector $x \in R^{n_{x}}$, we want to get $\hat{y}=P(y=1|x)$ as the probability of the chance that $y$ is equal to 1.
 
 When  implementing logistic regression, our job is to learn the parameters $w \in R^{n_{x}}$ and $b \in R$, so that $\hat{y}$ can be got by the following way:
+
 $$
 \hat{y}=\sigma (w^{T}x+b)
 $$
+
 $\sigma(z)=\frac{1}{1+e^{-z}}$, the sigmoid function, is used to map the result in the parenthesis to $[0,1]$ for $\hat{y}$ is the probability.
 ![sigmoid-function](../../img/Learning/Deep-Learning/sigmoid-function.png)
 #### Logistic Regression cost function
@@ -58,15 +64,18 @@ $\sigma(z)=\frac{1}{1+e^{-z}}$, the sigmoid function, is used to map the result 
     * $\mathcal L(\hat{y},y)=-(ylog\hat{y}+(1-y)log(1-\hat{y}))$
 
 * Cost function: measures how well you are doing on the entire training set.
+
 $$
 J(w, b)=\frac{1}{m}\sum^{m}_{i=1}\mathcal L(\hat{y}^{(i)},y^{(i)})
 $$
+
 The function here is a convex function with global optimal.
 #### Gradient Descent
 * Goal: Find $w,b$ that minimize $J(w,b)$.
 ![cost-function](../../img/Learning/Deep-Learning/cost-function.png)
 
 * Gradient Descent: initialize parameters with some values and repeatedly update them in the opposite gradient direction. Take $w$ for example:
+
 $$
 Repeat\{
     w:=w-\alpha\frac{dJ(w)}{dw}
@@ -87,8 +96,9 @@ $$
     * `dw1`$=\frac{dL}{dw_{1}}=$`dz`$\frac{dz}{dw_{1}}=x_{1}$`dz`
     * `db`$=$`dz`
 
-#### Logistic regression on $m$ examples
+#### Logistic regression on m examples
 We know that 
+
 $$
 J(w, b)=\frac{1}{m}\sum^{m}_{i=1}\mathcal L(\hat{y}^{(i)},y^{(i)})
 $$
@@ -97,6 +107,7 @@ So when computing derivatives on $J$, we just need to take the average of deriva
 i.e. `dw1`$=\frac{1}{m}\sum_{i=1}^{m}$`dw1`$^{(i)}$, `db`$=\frac{1}{m}\sum_{i=1}^{m}$`db`$^{(i)}$
 
 The algorithm is shown below:
+
 $$
 \begin{aligned}
 J=0;dw&1=0;dw2=0;db=0; \\
