@@ -119,9 +119,9 @@ for \ \ i=1& \ \ to \ \ m: \\
 &a^{i}=\sigma(z^{(i)})\\
 &J+=-[y^{(i)}loga^{(i)}+(1-y^{(i)})log(1-a^{(i)})]\\
 &dz^{(i)}=a^{(i)}-y^{(i)}\\
-&dw1^{(i)}+=x_{1}^{(i)}dz^{(i)}\\
-&dw2^{(i)}+=x_{2}^{(i)}dz^{(i)}\\
-&db^{(i)}=dz^{(i)}\\
+&dw1+=x_{1}^{(i)}dz^{(i)}\\
+&dw2+=x_{2}^{(i)}dz^{(i)}\\
+&db+=dz^{(i)}\\
 J/=m;d&w1/=m;dw2/=m;db/=m;
 \nonumber
 \end{aligned}
@@ -152,4 +152,38 @@ If we use `time()` function in `time` library to check the time comsuming, we wi
 
 One criterian is that always using built-in functions in Python or Numpy instead of explicit for loop.
 
-Now we can apply vectorization to logistic regression derivatives.
+Now we can apply vectorization to logistic regression.
+
+When it comes to compute the prediction, recap the defination of matrix $X$.
+
+Here we define matrix $Z$ and $A$. Note that $z^{(i)}=w^{T}x^{(i)}+b$ and $a^{(i)}=\sigma(z^{(i)})$
+
+$$
+Z=
+\begin{bmatrix}
+z^{(1)} & z^{(2)} & \dots & z^{(m)} 
+\end{bmatrix}
+\\
+=w^{T}X+
+\begin{bmatrix}
+b & b & \dots & b 
+\end{bmatrix}
+\\
+A=\begin{bmatrix}
+a^{(1)} & a^{(2)} & \dots & a^{(m)} 
+\end{bmatrix}
+$$
+
+If writen in Python:
+```py
+Z = np.dot(w.T, X) + b
+A = sigmoid(Z)
+dZ = A - Y
+dw = np.dot(X, dZ.T) / m
+db = np.sum(dZ) / m
+w = w - alpha * dw
+b = b - alpha * db
+```
+A for loop is still needed to control the iteration times.
+
+## Shallow Neural Networks
