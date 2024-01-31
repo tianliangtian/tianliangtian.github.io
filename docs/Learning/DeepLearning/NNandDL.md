@@ -210,17 +210,22 @@ a_{3}^{[1]} \\
 a_{4}^{[1]} \\
 \end{bmatrix}
 \quad
-a^{[2]}
+a^{[2]}=\hat{y}
 $$
 * $a$ means *activate* here. This example is a two layer NN since we don't count input layer.
 
 ### Computation
 In each node in hidden layer, we repeat the same computing way.
+
 ![node](../../img/Learning/Deep-Learning/node.png)
+
 For the entire network,
+
 ![entire](../../img/Learning/Deep-Learning/node_2.png)
+
 We can also vectorize it
-![Vectorization](../../img/Learning/Deep-Learning/node_3.png){align=left}
+
+![Vectorization](../../img/Learning/Deep-Learning/node_3.png){align=left, width="300"}
 
 $$
 W^{[1]}=
@@ -232,3 +237,53 @@ w_{4}^{[1]T} \\
 \end{bmatrix}
 ,a \ 4\times3 \ matrix
 $$
+
+We can extend vectorization to multiple examples
+
+![multiple ex](../../img/Learning/Deep-Learning/multiple.png)
+
+Note that actually $X=A^{[0]}$
+
+### Activation functions
+There are different activation functions you can use in NN and different layers may have different activation functions. Now we can redefine that $a^{[i]}=g^{[i]}(z^{[i]})$. $g^{[i]}$ represents the activation function in the ith layer.
+* sigmoid function: $a=\sigma(z)$. Mostly used in the output layer in binary classification.
+![sigmoid](../../img/Learning/Deep-Learning/sigmoid.png)
+
+* tanh function: $a=\frac{e^{z}-e^{-z}}{e^{z}+e^{-z}}$. Always behaving better than sigmoid. A problem is when $|z|$ is too large, the gradient of both sigmoid and tanh goes to 0
+![tanh](../../img/Learning/Deep-Learning/tanh.png)
+
+* ReLU function: $a=max(0, z)$. When z is negative, the gradient is 0. The gradient is 1 otherwise. Widely used.
+![ReLU](../../img/Learning/Deep-Learning/ReLU.png)
+
+* Leaky ReLU: $a=max(0.01z, z)$.
+![Leaky ReLU](../../img/Learning/Deep-Learning/leakyReLU.png)
+
+#### Why a Non-Linear Activation Function needed?
+If we use Linear function as activation function or simply don't use activation function, the output $y$ is just the linear combination of input $X$. That means the result won't be better with more hidden layers.
+
+#### Derivatives
+* sigmoid: $g'(z)=g(z)(1-g(z))$
+* tanh: $g'(z)=1-g(z)^{2}$
+* ReLU: $g'(z)=0, z<0 \ ; \ g'(z)=1,z\geq 0$
+
+### Neural network gradients
+Similar to logistic regression. Assume all activation function we use are sigmoid here.
+![formula](../../img/Learning/Deep-Learning/NNG.png)
+
+The left one is formula for single trainging example and the right one is for the entire training set. Note the $*$ in the forth line means element-wise product.
+
+### Random initialization
+Take the following NN for example:
+![random initialization](../../img/Learning/Deep-Learning/random%20I.png)
+
+If we initialize $W^{[1]}$ as all zero matrix, then $a^{[1]}_{1}$ and $a^{[1]}_{2}$ are same. The back propagation will also be the same, which turns out the hidden units in that layer are same. 
+
+We can initializate randomly.
+```py
+W1 = np.random.rand((2, 2)) * 0.01
+b1 = np.zero((2, 1))
+W2 = np.random.rand((2, 2)) * 0.01
+b2 = np.zero((2, 1))
+```
+
+$b$ is ok to initialize to zero. We also times a $0.01$ to make the initial value small for bigger gradient if we use sigmoid or tanh.
