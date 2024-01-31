@@ -54,7 +54,7 @@ $$
 
 $\sigma(z)=\frac{1}{1+e^{-z}}$, the sigmoid function, is used to map the result in the parenthesis to $[0,1]$ for $\hat{y}$ is the probability.
 
-![sigmoid-function](../../img/Learning/Deep-Learning/sigmoid-function.png){width="300"}
+![sigmoid-function](../../img/Learning/Deep-Learning/sigmoid-function.png){width="400"}
 
 #### Logistic Regression cost function
 * Denote $z^{(i)}=w^{T}x^{(i)}+b$ and $\hat{y}^{(i)}=\sigma(z^{(i)})$
@@ -186,3 +186,49 @@ b = b - alpha * db
 A for loop is still needed to control the iteration times.
 
 ## Shallow Neural Networks
+### Neural Network Representation
+![Neural Network](../../img/Learning/Deep-Learning/NN_1.png)
+* Each column is call a layer. There are three layers here
+    * Input layer with $x_{1},x_{2},x_{3}$
+    * Hidden layer is the second column with 4 circles. The "hidden" means the value in this layer is invisible in the training set.
+    * Output layer, which output the final result.
+* Layers are denoted by $a^{[i]}$.
+
+$$
+a^{[0]}=
+\begin{bmatrix}
+x_{1} \\
+x_{2} \\
+x_{3} \\
+\end{bmatrix}
+\quad
+a^{[1]}=
+\begin{bmatrix}
+a_{1}^{[1]} \\
+a_{2}^{[1]} \\
+a_{3}^{[1]} \\
+a_{4}^{[1]} \\
+\end{bmatrix}
+\quad
+a^{[2]}
+$$
+* $a$ means *activate* here. This example is a two layer NN since we don't count input layer.
+
+### Computation
+In each node in hidden layer, we repeat the same computing way.
+![node](../../img/Learning/Deep-Learning/node.png)
+For the entire network,
+![entire](../../img/Learning/Deep-Learning/node_2.png)
+We can also vectorize it
+![Vectorization](../../img/Learning/Deep-Learning/node_3.png){align=left}
+
+$$
+W^{[1]}=
+\begin{bmatrix}
+w_{1}^{[1]T} \\
+w_{2}^{[1]T} \\
+w_{3}^{[1]T} \\
+w_{4}^{[1]T} \\
+\end{bmatrix}
+,a \ 4\times3 \ matrix
+$$
