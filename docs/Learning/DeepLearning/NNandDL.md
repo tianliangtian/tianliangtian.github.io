@@ -253,9 +253,11 @@ There are different activation functions you can use in NN and different layers 
 ![tanh](../../img/Learning/Deep-Learning/tanh.png)
 
 * ReLU function: $a=max(0, z)$. When z is negative, the gradient is 0. The gradient is 1 otherwise. Widely used.
+
 ![ReLU](../../img/Learning/Deep-Learning/ReLU.png)
 
 * Leaky ReLU: $a=max(0.01z, z)$.
+
 ![Leaky ReLU](../../img/Learning/Deep-Learning/leakyReLU.png)
 
 #### Why a Non-Linear Activation Function needed?
@@ -267,7 +269,7 @@ If we use Linear function as activation function or simply don't use activation 
 * ReLU: $g'(z)=0, z<0 \ ; \ g'(z)=1,z\geq 0$
 
 ### Neural network gradients
-Similar to logistic regression. Assume all activation function we use are sigmoid here.
+Similar to logistic regression. 
 ![formula](../../img/Learning/Deep-Learning/NNG.png)
 
 The left one is formula for single trainging example and the right one is for the entire training set. Note the $*$ in the forth line means element-wise product.
@@ -287,3 +289,48 @@ b2 = np.zero((2, 1))
 ```
 
 $b$ is ok to initialize to zero. We also times a $0.01$ to make the initial value small for bigger gradient if we use sigmoid or tanh.
+
+## Deep neural network
+Deep neural network has more hidden layers. 
+
+* $L$ denotes the number of layers. 
+
+* $n^{[l]}$ denotes the numbers of unit in layer $l$.
+
+### Forward propagation
+
+$$
+\begin{aligned}
+Z^{[l]}&=W^{[l]}A^{[l-1]}+b^{[l]} \\
+A^{[l]}&=g^{[l]}(Z^{[l]}) \\
+ca&che \ Z^{[l]}
+\end{aligned}
+$$
+
+Here we store $Z^{[l]}$ for computing backward propagation.
+
+The dimension of $W^{[l]}$ is $(n^{[l]},n^{[l-1]})$. The dimension of $b^{[l]}$ is $(n^{[l]},1)$.
+
+Although we always try to get rid of explicit for loop, a for loop is still necessary to traverse the $L$ layers.
+
+### Backward propagation
+
+$$
+\begin{aligned}
+dZ^{[l]}&=dA^{[l]}*g^{[l]'}(Z^{[l]}) \\
+dW^{[l]}&=\frac{1}{m}dZ^{[l]}\cdot A^{[l-1]T} \\
+db^{[l]}&=\frac{1}{m}np.sum(dZ^{[l]},axis=1,keepdims=True) \\
+dA^{[l-1]}&=W^{[l]T}\cdot dZ^{[l]}
+\end{aligned}
+$$
+
+In an iteration, we first use forward propagation to get $\hat{y}$, compute $\mathcal L(\hat{y},y)$ and then use back propagation to get those gradients.
+
+### Hyperparameters
+* Parameters: $W^{[1]},b^{[1]},W^{[2]},b^{[2]}\dots$
+* Hyperparameters: parameters that control the above ultimate parameters
+    * learning rate $\alpha$
+    * iteration times
+    * number of hidden layers $L$
+    * number of hidden units $n^{[1]},n^{[2]}\dots$
+    * choice of activation functions
