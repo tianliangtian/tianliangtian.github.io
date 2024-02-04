@@ -45,7 +45,7 @@ nav:
     - Python: Learning/Python.md
     - Deep Learning:
       - Neural Network and Deep Learning: Learning/DeepLearning/NNandDL.md
-    - Computer vision:
+    - Computer vision - ML4360:
       - Direct Linear Transform: Learning/CV/DLT.md
 plugins:
   - search

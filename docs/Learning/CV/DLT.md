@@ -8,7 +8,7 @@ $$
 
 ![](../../img/Learning/CV/2.png)
 
-Comcatenate $A_{i}$ into single $2n\times 9$ matrix $A$ leads to the following ***constrained least squares problem***
+Concatenate $A_{i}$ into single $2n\times 9$ matrix $A$ leads to the following ***constrained least squares problem***
 
 $$
 \begin{aligned}
@@ -26,6 +26,9 @@ The solution to the above optimization problem is the ***singular vector*** corr
 The SVD of $m \times n$ matrix $A$ is given by $A=U\Sigma V^{T}=\sum_{i=1}^{r}u_{i}\sigma _{i}v_{i}^{T}$
 
 where:
+
 * $U$: $m\times m$ orthogonal  matrix of the orthonormal eigenvectors of $AA^{T}$
+
 * $V^{T}$: transpose of a $n\times n$ orthogonal matrix containing the orthonormal eigenvectors of $A^{T}A$
+
 * $\Sigma$: a $m\times n$ matrix, actually a diagonal matrix with $r$ elements equal to the root of the positive eigenvalues of $AA^{T}$ or $A^{T}A$ (both matrics have the same positive eigenvalues anyway) and $m-r$ extra zero rows and $n-r$ new zero columns.

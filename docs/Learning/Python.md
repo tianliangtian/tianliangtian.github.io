@@ -477,6 +477,121 @@ False
 >>> "red" in value
 True
 ```
+
+## tuple
+Tuples are immutable, you can't modify the elements. But you can replace one tuple with another.
+
+```py
+>>> t = ('a', 'b', 'c', 'd', 'e')
+>>> t = ('A', ) + t[1:]
+>>> t
+('A', 'b', 'c', 'd', 'e')
+```
+
+Note that one value in parentheses without a comma is not a tuple
+```py
+>>> t = ('A')
+>>> type(t)
+<class 'str'>
+>>> t = ('A', )
+>>> type(t)
+<class 'tuple'>
+```
+
+### Assignment
+tuple assignment is more elegant for you can implement in the following way.
+
+```py
+a, b = b, a
+```
+
+The left side is a tuple of variables; the right side is a tuple of expressions. Each value is assigned to its respective variable. All the expressions on the right side are evaluated before any of the assignments.
+
+### Tuples as return values
+Actually a tuple is a list of value separated by comma and we can omit the parentheses although not recommand. 
+
+In some functions, return values are often separated by comma, which are actually tuples.
+
+```py
+def min_max(t):
+    return min(t), max(t)
+```
+
+### Variable-length argument tuples
+Functions can take a variable number of arguments. A parameter name that begins with a ***\**** gathers arguments into a tuple. For example, the following print out arguments as a tuple.
+
+```py
+def print(*args):
+    print(args)
+```
+
+The complement of gather is scatter. If you have a sequence of values and you want to pass it to a function as multiple arguments, you can use the ***\**** operator. For example:
+
+```py
+>>> t = (1, 2)
+>>> divmod(t)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: divmod expected 2 arguments, got 1
+>>> divmod(*t)
+(0, 1)
+```
+
+### Lists and tuples
+`zip()` is a built-in function that takes two or more sequences and interleaves them.
+
+The result is a zip object that knows how to iterate through the pairs. The most common use of `zip` is in a for loop:
+
+```py
+>>> l = 'abc'
+>>> n = [1, 2, 3]
+>>> z = zip(l ,n)
+>>> for pair in z:
+...     print(pair)
+...
+('a', 1)
+('b', 2)
+('c', 3)
+```
+
+A zip object is a kind of iterator, which is any object that iterates through a sequence. Iterators are similar to lists in some ways, but unlike lists, you can’t use an index to select an element from an iterator.
+
+If you want to use list operators and methods, you can use a zip object to make a list:
+
+```py
+>>> list(zip(l, n))
+[('a', 1), ('b', 2), ('c', 3)]
+```
+
+If you need to traverse the elements of a sequence and their indices, you can use the built-in function `enumerate`:
+```py
+>>> list(zip(l, n))
+[('a', 1), ('b', 2), ('c', 3)]
+>>> for index, element in enumerate('abc'):
+...     print(index, element)
+...
+0 a
+1 b
+2 c
+```
+
+### Dicts and tuples
+Dictionary have a method called `items` returns a sequence of tuples with key-value pairs. The result is a `dist_items` object, which is also an iterator.
+
+```py
+>>> d = {'a':1, 'b':2, 'c':3}
+>>> t = d.items()
+>>> t
+dict_items([('a', 1), ('b', 2), ('c', 3)])
+```
+
+Combining `dict` with `zip` yields a concise way to create a dictionary
+
+```py
+>>> d = dict(zip('abc', range(3)))
+>>> d
+{'a': 0, 'b': 1, 'c': 2}
+```
 ## Other
 ### Some operators
 #### Floor division and modulus
