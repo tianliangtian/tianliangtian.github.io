@@ -89,6 +89,67 @@ elif s in ["n", "no"]:
 
 Click <a herf="docs.python.org">here</a> for official documentation
 
+### Programmer-defined types
+
+A programmer-defined type is also called a ***class***. We can define a class like this:
+
+```py
+class Point:
+     """Represents a point in 2-D space"""
+```
+
+To create a Point class, you can call `Point` as if it were a function. Creating a new object is called ***instantiation***, and the object is an ***instance*** of the class.
+
+```py
+>>> black = Point()
+>>> black
+<__main__.Point object at 0x000002595BC5D890>
+```
+
+### Attributes
+You can assign values to named elements of an object using dot notation. These elements are called ***attributes***
+
+```py
+>>> black.x = 3.0
+>>> black.y = 4.0
+```
+
+You can pass an instance as an argument.
+
+```py
+def print_point(p):
+    print('(%g, %g)' % (p.x, p.y))
+
+>>> print_point(black)
+(3, 4)
+```
+
+An object that is an attribute of another object is ***embedded***
+
+```py
+class Rectangle:
+    """Represents a rectangle. 
+
+    attributes: width, height, corner.
+    """
+
+box = Rectangle()
+box.width = 100.0
+box.height = 200.0
+box.corner = Point()
+box.corner.x = 0.0
+box.corner.y = 0.0
+```
+
+Instances can also be return values. 
+
+Objects are mutable.
+
+Copying an object is often used. You can use `copy` module to do that. There are two types of copy
+
+* Shallow copy: `copy.copy()` copies the object and any references it contains, but not the embedded objects.
+
+* Deep copy: `copy.deepcopy()` copies not only the object but also the objects it refers to, and the objects they refer to, and so on.
 ## Loop
 === "while loop"
     ```py
@@ -359,9 +420,112 @@ def get_int(prompt):
         except ValueError:
             print("Not an interger")
 ```
+You can also use `else` as part of try-except block. The statement in `else` execute when the `except` not happened.
+```py
+while True:
+    try:
+        x = int(input("What's x? "))
+    except ValueError:
+        print("x is not an integer")
+    else:
+        break
+
+print(f"x is {x}")
+```
+## Unit Tests
+Assume we have a program `calculator.py` to calculate the square of the input. We want to write a program to automaticaly test whether our program is right. We can use `assert` to assert the boolean expression following it is True. If True, nothing will happen. But if not, `AssertionError` will appear on screen
+
+=== "calculator.py"
+    ```py
+    def main():
+        x = int(input("What's x? "))
+        print("x squared is", square(x))
+
+
+    def square(n):
+        return n * n
+    
+    if __name__ == "__main__":
+        main()
+    ```
+=== "test_calculator.py"
+    ```py
+    from calculator import square
+
+    def main():
+        test_square()
+
+    def test_square():
+        try:
+            assert square(2) == 4
+        except AssertionError:
+            print("2 squared was not 4")
+        try:
+            assert square(3) == 9
+        except AssertionError:
+            print("3 squared was not 9")
+        try:
+            assert square(0) == 0
+        except AssertionError:
+            print("0 squared was not 0")
+        try:
+            assert square(-2) == 4
+        except AssertionError:
+            print("-2 squared was not 4")
+
+    if __name__ == "__main__":
+        main()
+    ```
+
+### pytest
+You can also use `pytest`, is a third-party library that allows you to unit test your program.
+
+Run `pytest test_calculator.py` in your command line, which is shown below, pytest will automatically test it for you.
+
+```py title="test_calculator.py"
+from calculator import square
+
+
+def test_positive():
+    assert square(2) == 4
+    assert square(3) == 9
+
+
+def test_negative():
+    assert square(-2) == 4
+    assert square(-3) == 9
+
+
+def test_positive():
+    assert square(0) == 0
+```
+
+![pytest](../img/Learning/Py/pytest.png)
+
+Let's add some bug in `calculator.py`, rerun the command and see what will happen.
+```py title="calculator.py"
+def main():
+    x = int(input("What's x? "))
+    print("x squared is", square(x))
+
+
+def square(n):
+    return n + n
+
+if __name__ == "__main__":
+    main()
+```
+
+![pytest](../img/Learning/Py/pytest_1.png)
+
+* Unit testing code using multiple tests is so common that you have the ability to run a whole folder of tests with a single command.
+* Add a folder called `test` with test programs in it. An additional file `__init__.py` is necessary. Leave it empty and `pytest` is informed that the whole folder containing `__init__.py` has tests that can be run.
+* Run `pytest test` for testing.
+
 ## list
 List is something like array but their memory is automatically handled for you.
 An array is about having contiguously in memory. In Python, a list is more like a linked list. It will allocate memory for you and you don't have to know about pointers and nodes. 
+
 ```py 
 scores = [72, 73, 33]           # List using square brackets
 # use the bulid-in functions to get the sum and length of the list
@@ -592,6 +756,158 @@ Combining `dict` with `zip` yields a concise way to create a dictionary
 >>> d
 {'a': 0, 'b': 1, 'c': 2}
 ```
+## Files
+
+* transient program: data disappears when programs end
+* persistent program: some of their data is kept in permanent storage.
+* reading and writing text files or store the state of program in a database are basic way to maintain data.
+
+### Reading and writing
+
+The built-in function `open` takes the name of the file as a parameter and returns a ***file object***. 
+
+`readline` reads a line each time and returns the result as a string.
+
+```py
+>>> fin = open('demo.txt')
+>>> line = fin.readline()
+>>> line
+'This is a title.\n'
+```
+
+You can also use a file object as part of a for loop
+
+```py
+fin = open('demo.txt')
+for line in fin:
+    print(line.strip())     # strip() removes '\n' in the end of a str
+```
+
+Open a file with mode `w` as a second parameter to write a file. If the file already exists, opening it in write mode clears out the old data and starts fresh. 
+
+`write` write ***str*** into the file. Return value is the number of characters that were written.
+
+```py
+>>> fout = open('demo.txt', 'w')
+>>> line1 = "This is a title.\n"
+>>> fout.write(line1)
+17
+>>> line2 = "this is a p"
+>>> fout.write(line2)
+11
+```
+
+### Filenames and paths
+`os` module provides functions for working with files and directories.
+
+`os.getcwd` returns the name of the current directory
+```py
+>>> import os
+>>> os.getcwd()
+'C:\\Users\\86156\\Desktop'
+```
+
+`os.path` provides other functions for working with filenames and paths.
+```py
+>>> os.path.abspath('demo.txt')         # find absolute path
+'C:\\Users\\86156\\Desktop\\demo.txt'
+>>> os.path.exists('demo.txt')          # check is the file exist
+True
+>>> os.path.isdir('demo.txt')           # check is it a directory
+False
+```
+
+Close the file when operating is completed
+```py
+>>> fout.close()
+```
+### Database
+A ***database*** is a file that is organized for storing data. Many databases are organized like a dictionary in the sense that they map from keys to values, and it is on disk.
+
+The module `dbm` provides an interface for creating and updating database files.
+
+```py
+>>> import dbm
+>>> db = dbm.open('MyGO', 'c')
+```
+
+Mode `c` means that database should be created if it doesn’t already exist. The result is a database object that can be used (for most operations) like a dictionary.
+
+```py
+>>> db['vocal'] = 'tomori'      # create a new item
+>>> db['vocal']                 # access the item
+b'tomori'
+```
+
+The result of access is ***bytes object***.
+
+You can iterate it with a for loop
+
+```py
+for key in db.keys():
+    print(key, db[key])
+```
+
+Close it when you are done
+```py
+>>> db.close()
+```
+
+A limitation of `dbm` is that the keys and values have to be strings or bytes.
+
+You can use `pickle` module to transilate any type of object into a string, and then translate the string back into objects.
+
+* `pickle.dumps` takes an object and returns a string representation.
+* `pickle.loads` reconstitues the object.
+
+```py
+>>> import pickle
+>>> t = [1, 2 ,3]
+>>> t1 = pickle.dumps(t)
+>>> t1
+b'\x80\x04\x95\x0b\x00\x00\x00\x00\x00\x00\x00]\x94(K\x01K\x02K\x03e.'
+>>> t2 = pickle.loads(t1)
+>>> t2
+[1, 2, 3]
+```
+
+### Writing modules
+Any file that contains Python code can be imported as a module.
+
+Suppose you have a file like this
+
+```py title="demo.py"
+def add(a, b):
+    return a+b
+
+print("This is a add function")
+```
+
+You can import it like this. 
+
+```
+>>> import demo
+This is a add function
+```
+
+Now you have a module object `demo` and you can use function in it.
+
+```py
+>>> demo
+<module 'demo' from 'C:\\Users\\86156\\Desktop\\demo.py'>
+>>> demo.add(3, 4)
+7
+```
+
+The test code in the module will run when you import it, but normally we only want the defination of functions. We can add the following idiom:
+
+```py
+if __name__ == '__main__':
+    print("This is a add function")
+```
+
+`__name__` is a built-in variable that is set when the program starts. If the program is running as a script, `__name__` has the value `'__main__'`; in that case, the test code runs. Otherwise, if the module is being imported, the test code is skipped.
+
 ## Other
 ### Some operators
 #### Floor division and modulus
