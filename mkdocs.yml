@@ -45,9 +45,9 @@ nav:
     - Python: Learning/Python.md
     - Deep Learning:
       - Neural Network and Deep Learning: Learning/DeepLearning/NNandDL.md
-    - ML4360 - Computer vision:
-      - Direct Linear Transform: Learning/CV/DLT.md
-    - EECS 498.008 / 598.008 - Deep Learning for Computer Vision: Learning/DLCV/note.md
+    - Computer Vision:
+      - ML4360 - Computer vision: Learning/CV/DLT.md
+      - EECS 498.008 / 598.008 - DL4CV: Learning/DLCV/note.md
 plugins:
   - search
   - tags

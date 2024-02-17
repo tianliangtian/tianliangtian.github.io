@@ -766,7 +766,8 @@ Combining `dict` with `zip` yields a concise way to create a dictionary
 
 The built-in function `open` takes the name of the file as a parameter and returns a ***file object***. 
 
-`readline` reads a line each time and returns the result as a string.
+`readline` reads a line each time and returns the result as a string. Or you can use `readlines` to return all lines in a list
+
 
 ```py
 >>> fin = open('demo.txt')
@@ -777,13 +778,13 @@ The built-in function `open` takes the name of the file as a parameter and retur
 
 You can also use a file object as part of a for loop
 
-```py
+```py 
 fin = open('demo.txt')
 for line in fin:
     print(line.strip())     # strip() removes '\n' in the end of a str
 ```
 
-Open a file with mode `w` as a second parameter to write a file. If the file already exists, opening it in write mode clears out the old data and starts fresh. 
+Open a file with mode `w` as a second parameter to write a file. If the file already exists, opening it in write mode clears out the old data and starts fresh. You can use mode `a` if you don't want to erase old thing and just append.
 
 `write` write ***str*** into the file. Return value is the number of characters that were written.
 
@@ -796,6 +797,94 @@ Open a file with mode `w` as a second parameter to write a file. If the file alr
 >>> fout.write(line2)
 11
 ```
+
+Close the file when operating is completed
+```py
+>>> fout.close()
+```
+
+To avoid forgetting to close the file, you can use the keyword `with` to do that for you. The following code assign `open("names.txt", "a")` to `file` and close it when the statement in with is done.
+```py
+with open("names.txt", "a") as file:
+    file.write(f"{name}\n")
+```
+### csv
+`csv` stands for Comma-Separated Values. It's a very common convention to store multiple pieces of information that are related in the same file. See the following example.
+
+=== "mygo.csv"
+    ``` csv
+    tomori,vocal
+    anon,guitar
+    rana,guitar
+    rikki,drum
+    soyo,bass
+    ```
+=== "band.py"
+    ```py
+    with open("mygo.csv") as file:
+        for line in file:
+            name, pos = line.rstrip().split(",")
+            print(f"{name} is {pos}")
+    ```
+
+We can use functions in `csv` module to handle this case. `csv.reader` act similar to above.
+
+```py
+import csv
+
+with open("mygo.csv") as file:
+    reader = csv.reader(file)
+    for row in reader:
+        print(f"{row[0]} is {row[1]}")
+```
+
+Now we insert some hints as to what these columns are in the first row and use `csv.DistReader` to handle it.
+
+=== "mygo.csv"
+    ``` csv
+    name,position
+    tomori,vocal
+    anon,guitar
+    rana,guitar
+    rikki,drum
+    soyo,bass
+    ```
+=== "band.py"
+    ```py
+    import csv
+
+    with open("mygo.csv") as file:
+        reader = csv.DictReader(file)
+        for row in reader:
+            print(f"{row['name']} is {row['position']}")
+    ```
+It makes our code more robust by associating our data with its column title
+
+We can also write to `csv`.
+=== "writer"
+    ```py
+    import csv
+
+    name = input("What's your name? ")
+    home = input("Where's your home? ")
+
+    with open("student.csv", "a") as file:
+        writer = csv.writer(file)
+        writer.writerow([name, home])
+    ```
+=== "DictWriter"
+    ```py
+    import csv
+
+    name = input("What's your name? ")
+    home = input("Where's your home? ")
+
+    with open("student.csv", "a") as file:
+        writer = csv.DictWriter(file, fieldnames=["name", "home"])
+        writer.writerow({"name": name, "home": home})
+    ```
+
+`DictWriter` takes two parameters: the `file` being written to and the `fieldnames` to write. Further, notice how the `writerow` function takes a dictionary as its parameter. Quite literally, we are telling the compiler to write a row with two fields called name and home.
 
 ### Filenames and paths
 `os` module provides functions for working with files and directories.
@@ -817,10 +906,7 @@ True
 False
 ```
 
-Close the file when operating is completed
-```py
->>> fout.close()
-```
+
 ### Database
 A ***database*** is a file that is organized for storing data. Many databases are organized like a dictionary in the sense that they map from keys to values, and it is on disk.
 

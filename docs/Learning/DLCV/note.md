@@ -1,6 +1,5 @@
 # Deep Learning for Computer Vision
-## Image Classifier
-### Nearest Neighbor Classifier
+## Image Classifier - Nearest Neighbor Classifier
 Compare a new image with each image in training set using some similarity function. Assign the new image a label as same as the most similar image in training set.
 
 ![](../../img/Learning/DLCV/NNC_1.png)
@@ -12,6 +11,8 @@ Compare a new image with each image in training set using some similarity functi
 ![](../../img/Learning/DLCV/NNC_4.png)
 
 ![](../../img/Learning/DLCV/NNC_5.png)
+
+![](../../img/Learning/DLCV/NNC_c1.png)
 
 * Using more neighbors helps reduce the effect of outliers.
 * When $K > 1$ there can be ties between classes, which needed to be break somehow.
@@ -41,7 +42,7 @@ If we want to have a good prediction on a new image, we need a large amount of e
 
 ![](../../img/Learning/DLCV/NNC_15.png)
 
-### Linear Classifier
+## Linear Classifier
 
 ![](../../img/Learning/DLCV/LC_1.png)
 
@@ -103,7 +104,7 @@ It's important to notice the loss function on random values, if your model get a
 
 SVM Loss is easy to get to zero point while Cross-Entropy nearly impossible to get to zero.
 
-### Optimization
+## Optimization
 
 * goal: find $w^{*}=argmin_{w}L(w)$
 
@@ -127,11 +128,11 @@ How to evaluate gradient?
 
 * In practice, always use analytic gradient, but check implementation with numerical gradienet. This is called a ***gradient check***
 
-#### Gradient Descent
+### Gradient Descent
 
 ![](../../img/Learning/DLCV/Op_5.png)
 
-#### Stochastic Gradient Descend
+### Stochastic Gradient Descend
 
 * We don't use the full training data but some small subsamples of it  to approximate loss function and gradient, for computing on the whole set is expansive. These small subsamples are called ***minibatches***
 
@@ -174,3 +175,41 @@ How to evaluate gradient?
 * Second-order optimization is better to use in low dimension. 
 
 ![](../../img/Learning/DLCV/Op_20.png)
+
+## Neural Network
+To solve the limitation of linear classifier, we can apply feature transformation.
+
+![](../../img/Learning/DLCV/NN_1.png)
+
+![](../../img/Learning/DLCV/NN_2.png)
+
+![](../../img/Learning/DLCV/NN_3.png)
+### Activation function
+
+![](../../img/Learning/DLCV/NN_4.png)
+
+![](../../img/Learning/DLCV/NN_5.png)
+
+### Neuron
+![](../../img/Learning/DLCV/NN_6.png)
+
+### Space Warping
+
+![](../../img/Learning/DLCV/NN_SW.png)
+
+The more the layer, the more complex the model is. Try to adjust regularization parameter to solve it.
+
+![](../../img/Learning/DLCV/NN_size_reg.png)
+
+### Universal Approximation
+A two layer neural network can approximate any function. But it may need a large size to get high fidelity.
+
+![](../../img/Learning/DLCV/NN_UA.png)
+
+
+### Convex Functions
+Taking any two points in the input, the secant line will always lie above the function between that two points.
+
+![](../../img/Learning/DLCV/NN_convex.png)
+
+However, most neural networks need **nonconvex optimization**
