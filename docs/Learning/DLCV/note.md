@@ -14,27 +14,14 @@ Compare a new image with each image in training set using some similarity functi
 
 ![](../../img/Learning/DLCV/NNC_c3.png)
 
-![](../../img/Learning/DLCV/NNC_10.png)
-
-![](../../img/Learning/DLCV/NNC_11.png)
 
 If we want to have a good prediction on a new image, we need a large amount of examples on training set, which grows exponentially with dimension.
 
 ![](../../img/Learning/DLCV/NNC_c4.png)
 
-![](../../img/Learning/DLCV/NNC_13.png)
-
-![](../../img/Learning/DLCV/NNC_14.png)
-
-![](../../img/Learning/DLCV/NNC_15.png)
-
 ## Linear Classifier
 
 ![](../../img/Learning/DLCV/LC_c1.png)
-
-![](../../img/Learning/DLCV/LC_2.png)
-
-![](../../img/Learning/DLCV/LC_3.png)
 
 Bias Trick is less common to use in practice because when we separate the weight and the bias into separate parameters, we can treat them differently on how they are initialized or regularized.
 
@@ -62,25 +49,13 @@ Now we can compute class scores for an image with given $W$. To get a good $W$, 
 
 * Find a $W$ that minimizes the loss function.
 
-![](../../img/Learning/DLCV/LC_10.png) 
-
-![](../../img/Learning/DLCV/LC_11.png) 
-
-![](../../img/Learning/DLCV/LC_12.png) 
-
-![](../../img/Learning/DLCV/LC_13.png) 
-
-![](../../img/Learning/DLCV/LC_14.png) 
+![](../../img/Learning/DLCV/LC_c2.png) 
 
 Different regularization functions give the model extra hints about what types of classifier we'd like them to learn.
 
 For example, L2 regularization likes to spread out the weight while L1 regularization does in the opposite way.
 
-![](../../img/Learning/DLCV/LC_15.png) 
-
-![](../../img/Learning/DLCV/LC_16.png) 
-
-![](../../img/Learning/DLCV/LC_17.png) 
+![](../../img/Learning/DLCV/LC_c3.png) 
 
 It's important to notice the loss function on random values, if your model get a worse loss value after training, there must be sth bad.
 
@@ -122,19 +97,7 @@ How to evaluate gradient?
 
 * We don't use the full training data but some small subsamples of it  to approximate loss function and gradient, for computing on the whole set is expansive. These small subsamples are called ***minibatches***
 
-![](../../img/Learning/DLCV/Op_6.png)
-
-![](../../img/Learning/DLCV/Op_7.png)
-
-![](../../img/Learning/DLCV/Op_8.png)
-
-![](../../img/Learning/DLCV/Op_9.png)
-
-![](../../img/Learning/DLCV/Op_10.png)
-
-![](../../img/Learning/DLCV/Op_11.png)
-
-![](../../img/Learning/DLCV/Op_12.png)
+![](../../img/Learning/DLCV/Op_c1.png)
 
 * SGD + Momentum may overshoot in the bottom for its historical speed and will come back.
 
@@ -150,13 +113,7 @@ How to evaluate gradient?
 
 * We initialize `moment2` as 0 and if we take `beta2` closely to 0, the `moment2` will also close to 0, which may make our first gradient step very large. This could cause bad results.
 
-![](../../img/Learning/DLCV/Op_16.png)
-
-![](../../img/Learning/DLCV/Op_17.png)
-
-![](../../img/Learning/DLCV/Op_18.png)
-
-![](../../img/Learning/DLCV/Op_19.png)
+![](../../img/Learning/DLCV/Op_c2.png)
 
 * Second-order optimization is better to use in low dimension. 
 
@@ -165,11 +122,8 @@ How to evaluate gradient?
 ## Neural Network
 To solve the limitation of linear classifier, we can apply feature transformation.
 
-![](../../img/Learning/DLCV/NN_1.png)
+![](../../img/Learning/DLCV/NN_c1.png)
 
-![](../../img/Learning/DLCV/NN_2.png)
-
-![](../../img/Learning/DLCV/NN_3.png)
 ### Activation function
 
 ![](../../img/Learning/DLCV/NN_4.png)
