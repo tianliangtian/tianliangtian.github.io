@@ -2,31 +2,17 @@
 ## Image Classifier - Nearest Neighbor Classifier
 Compare a new image with each image in training set using some similarity function. Assign the new image a label as same as the most similar image in training set.
 
-![](../../img/Learning/DLCV/NNC_1.png)
-
-![](../../img/Learning/DLCV/NNC_2.png)
-
-![](../../img/Learning/DLCV/NNC_3.png)
-
-![](../../img/Learning/DLCV/NNC_4.png)
-
-![](../../img/Learning/DLCV/NNC_5.png)
-
 ![](../../img/Learning/DLCV/NNC_c1.png)
 
 * Using more neighbors helps reduce the effect of outliers.
 * When $K > 1$ there can be ties between classes, which needed to be break somehow.
 
-![](../../img/Learning/DLCV/NNC_6.png)
-
-![](../../img/Learning/DLCV/NNC_7.png)
-
-![](../../img/Learning/DLCV/NNC_8.png)
+![](../../img/Learning/DLCV/NNC_c2.png)
 
 * The idea #2 is bad because when we adjust the hyperparameters according to the test set, we pollute it and it has little differences with training set.
 * Remember that test set can be used only once in the final test.
 
-![](../../img/Learning/DLCV/NNC_9.png)
+![](../../img/Learning/DLCV/NNC_c3.png)
 
 ![](../../img/Learning/DLCV/NNC_10.png)
 
@@ -34,7 +20,7 @@ Compare a new image with each image in training set using some similarity functi
 
 If we want to have a good prediction on a new image, we need a large amount of examples on training set, which grows exponentially with dimension.
 
-![](../../img/Learning/DLCV/NNC_12.png)
+![](../../img/Learning/DLCV/NNC_c4.png)
 
 ![](../../img/Learning/DLCV/NNC_13.png)
 
@@ -44,7 +30,7 @@ If we want to have a good prediction on a new image, we need a large amount of e
 
 ## Linear Classifier
 
-![](../../img/Learning/DLCV/LC_1.png)
+![](../../img/Learning/DLCV/LC_c1.png)
 
 ![](../../img/Learning/DLCV/LC_2.png)
 
