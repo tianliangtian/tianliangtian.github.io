@@ -189,3 +189,53 @@ Assume we want to derive $dL/dx_{i,j}$
 $\frac{\partial ^{2}L}{\partial x_{0}^{2}}$ is $D_{0} \times D_{0}$ dimension for it's the derivative of $\frac{\partial L}{\partial x_{0}}$, which is a $D_{0}$ dimension vector.
 
 ![](../img/Learning/DLCV/BP_c7.png)
+
+## Convolutional Network
+* **Problem**: So far our classifiers don't respect the spatial structure of images!
+
+* **Solution**: Define new computational nodes that operate on images!
+
+
+![](../img/Learning/DLCV/CN_1.png)
+
+### Convolutional Layer
+![](../img/Learning/DLCV/CN_c1.png)
+
+* There can be many filters generating many activation maps.
+* Each filter must have same depth as the input image.
+* Each filter also has a bias.
+* Activation map can be considered as a feature vector, telling us the structure of the input.
+
+![](../img/Learning/DLCV/CN_7.png)
+
+* The input is often a batch of images
+* The output channel $C_{out}$ is usually different from input channel $C_{in}$
+
+![](../img/Learning/DLCV/CN_c2.png)
+
+### Pooling Layer
+* Compute one unique number to represent the region to downsampling.
+
+![](../img/Learning/DLCV/CN_c3.png)
+
+### Convolutional Network Architecture
+
+![](../img/Learning/DLCV/CN_c4.png)
+
+### Normalization
+
+* **Problem**: Deep network is hard to train
+* Normalization is introduced to accelerate optimization.
+
+![](../img/Learning/DLCV/CN_c5.png)
+
+* The batch normalization get its name for it doing normalization in batch dimension $N$. 
+* It's a stiff constraint for those layers to exactly fit zero mean and unit variance. So in practice, we introduce learnable scale and shift $\gamma,\beta$ to make our network able to learn mean and variance.
+
+![](../img/Learning/DLCV/CN_c6.png)
+
+* It is wired that the result of one image is influenced by other images, so the model process differently in training time and test time
+    * **Training Time**: empirically compute mean and variance.
+    * **Test Time**: use the average of historical mean and variance computed during training to compute.
+
+![](../img/Learning/DLCV/CN_c7.png)
