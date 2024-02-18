@@ -47,7 +47,7 @@ nav:
       - Neural Network and Deep Learning: Learning/DeepLearning/NNandDL.md
     - Computer Vision:
       - ML4360 - Computer vision: Learning/CV/DLT.md
-      - EECS 498.008 / 598.008 - DL4CV: Learning/DLCV/note.md
+      - EECS 498.008 / 598.008 - DL4CV: Learning/DL4CV.md
 plugins:
   - search
   - tags
