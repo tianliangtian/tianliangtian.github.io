@@ -89,7 +89,7 @@ elif s in ["n", "no"]:
 
 Click <a herf="docs.python.org">here</a> for official documentation
 
-### Programmer-defined types
+### Class
 
 A programmer-defined type is also called a ***class***. We can define a class like this:
 
@@ -106,7 +106,6 @@ To create a Point class, you can call `Point` as if it were a function. Creating
 <__main__.Point object at 0x000002595BC5D890>
 ```
 
-### Attributes
 You can assign values to named elements of an object using dot notation. These elements are called ***attributes***
 
 ```py
@@ -114,34 +113,130 @@ You can assign values to named elements of an object using dot notation. These e
 >>> black.y = 4.0
 ```
 
-You can pass an instance as an argument.
+Actually, when creating an object or instance of a class, the built-in method `__init__` will initialize the content of the object for us. We have an additional parameter in the defination of `__init__` called `self`. It refers to the object itself and provides us a way to store values in the object.
 
 ```py
-def print_point(p):
-    print('(%g, %g)' % (p.x, p.y))
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
 
->>> print_point(black)
-(3, 4)
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    student = Student(name, house)
+    return student
 ```
 
-An object that is an attribute of another object is ***embedded***
+`__str__` is also a function called when the object needed to be treated as a `str`, such as `print(student)`. When we define `__str__`, the string ver of the object is just the return value of `__str__`.
+```py
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
+
+    def __str__(self):
+        return f"{self.name} from {self.house}"
+```
+### Decorator
+`@` is called a decorator to decorate functions in class.
+
+For example, a **getter** function is a function called when we want to get the attribute of an object, a **setter** function is a function called when we want to set the attribute of an object.
+
+We can define getter function with `@property` and setter function with `@[attribute_name].setter`.
 
 ```py
-class Rectangle:
-    """Represents a rectangle. 
+class Student:
+    def __init__(self, name, house):
+        self.name = name
+        self.house = house
 
-    attributes: width, height, corner.
-    """
+    def __str__(self):
+        return f"{self.name} from {self.house}"
 
-box = Rectangle()
-box.width = 100.0
-box.height = 200.0
-box.corner = Point()
-box.corner.x = 0.0
-box.corner.y = 0.0
+    @property
+    def name(self):
+        return self._name
+
+    @name.setter
+    def name(self, name):
+        if not name:
+            raise ValueError("Missing name")
+        self._name = name
+
+    @property
+    def house(self):
+        return self._house
+
+    @house.setter
+    def house(self, house):
+        if house not in ["A", "B", "C", "D"]:
+            raise ValueError("Invalid house")
+        self._house = house
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    student = Student(name, house)
+    return student
+
+```
+Now, each time we try to set the attributes of objects, the setter function will be called to check whether the assignment is valid. Note that in our setter or getter function, we store the value in `self._house` or `self._name`. That's because our attibutes can't have the same name with functions. So we add a underscore to distinguish them. In `__init__` function, we call those setter functions so we don't use underscore.
+
+Tragically, you can still set the attribute invalidly without raising error by assigning `self._house` directly. So the convention is don't change attributes begin with `_`.
+
+### Classmethod
+The function decorated by `@Classmethod` can't access attributes of `self`. But it can access class variables. A classmethod can be directly called without creating an instance.
+### Inheritance
+When we want to define two classes that shares some same attributes or method, we can define a third class and pass that class to other two classes as a super class, which is called inheritance.
+
+In the following example, `Wizard` is a `parent`, or `super` class of `Student` and `Professor`. `super().[function_name]` means calling the function of its super class.
+```py
+class Wizard:
+    def __init__(self, name):
+        if not name:
+            raise ValueError("Missing name")
+        self.name = name
+
+
+class Student(Wizard):
+    def __init__(self, name, house):
+        super().__init__(name)
+        self.house = house
+
+
+class Professor(Wizard):
+    def __init__(self, name, subject):
+        super().__init__(name)
+        self.subject = subject
 ```
 
-Instances can also be return values. 
+### Oprator Overloading
+
+You can define the distinct usage of specific operator which concatenates the class.
+For example, if you want to use `+` to operate your class, you can define `__add__` function.
+
+```py
+class Vault:
+    def __init__(self, galleons=0, sickles=0, knuts=0):
+        self.galleons = galleons
+        self.sickles = sickles
+        self.knuts = knuts
+
+    def __str__(self):
+        return f"{self.galleons} Galleons, {self.sickles} Sickles, {self.knuts} Knuts"
+    
+    def __add__(self, other):
+        galleons = self.galleons + other.galleons
+        sickles = self.sickles + other.sickles
+        knuts = self.knuts + other.knuts
+        return Vault(galleons, sickles, knuts)
+
+potter = Vault(100, 50, 25)
+harry = Vault(25, 50, 100)
+total = potter + harry
+```
 
 Objects are mutable.
 
@@ -431,6 +526,31 @@ while True:
         break
 
 print(f"x is {x}")
+```
+
+You can also use `raise` to raise an exception. Combine it with `try-except` can catch the error.
+
+```py
+class Student:
+    def __init__(self, name, house):
+        if not name:
+            raise ValueError("Missing name")
+        if house not in ["G", "H", "R", "S"]
+            raise ValueError("Invalid house")
+        self.name = name
+        self.house = house
+
+
+def get_student():
+    name = input("Name: ")
+    house = input("House: ")
+    try:
+        student = Student(name, house)
+    except ValueError:
+        print("Please input the correct name and house")
+        return None
+    else:
+        return student
 ```
 ## Unit Tests
 Assume we have a program `calculator.py` to calculate the square of the input. We want to write a program to automaticaly test whether our program is right. We can use `assert` to assert the boolean expression following it is True. If True, nothing will happen. But if not, `AssertionError` will appear on screen

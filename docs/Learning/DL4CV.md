@@ -239,3 +239,51 @@ $\frac{\partial ^{2}L}{\partial x_{0}^{2}}$ is $D_{0} \times D_{0}$ dimension fo
     * **Test Time**: use the average of historical mean and variance computed during training to compute.
 
 ![](../img/Learning/DLCV/CN_c7.png)
+
+## CNN Architecture
+### AlexNet
+
+![](../img/Learning/DLCV/CA_c1.png)
+
+* Output channels $=$ number of filters $=$ 64
+* Output size $W_{out}=(W_{in}-K+2P)/S+1=56$
+* Memory that output feature consume
+    * Number of output elements $=C_{out}\times H_{out}\times W_{out}=200704$
+    * Bytes per element $=4$ (for 32-bit floating point)
+    * KB $=$ (number of elements)$\times$ (bytes per element)/1024=784 
+* Number of learnable parameters
+    * Weight shape $=C_{out}\times C_{in}\times K \times K$
+    * Bias shape $=C_{out}=64$
+    * Number of parameter $=$ weight $+$ bias $=$ 23296
+
+![](../img/Learning/DLCV/CA_3.png)
+
+* Flatten output size $=C_{in}\times H\times W$
+* FCparams $=C_{in}\times C_{out}+C_{out}$
+* FC flops $=C_{in}\times C_{out}$
+
+![](../img/Learning/DLCV/CA_c2.png)
+
+### VGG
+
+![](../img/Learning/DLCV/CA_c3.png)
+
+* By stacking 3 by 3 conv, we throw away kernal size as a hyperparam and only need to thing about how many 3x3 conv do we need.
+* We can also arbitaryly insert ReLU between these 3x3 conv, allowing more nonlinear computation.
+
+![](../img/Learning/DLCV/CA_c4.png)
+
+### GoogLeNet
+* Many innovation for efficiency: reduce parameter count, memory usage, and computation.
+
+![](../img/Learning/DLCV/CA_c5.png)
+
+### Residual Network
+
+When training deeper model, we found that deeper model does worse than shallow model. The initial guess is that Deep model is **overfitting** since it is much bigger than the other model. 
+
+![](../img/Learning/DLCV/CA_c6.png)
+
+### Other
+
+![](../img/Learning/DLCV/CA_c7.png)
