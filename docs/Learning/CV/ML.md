@@ -1,4 +1,4 @@
-# Direct Linear Transform
+## Direct Linear Transform
 
 $$
 Let \ \mathcal X =\{\tilde{x}_{i},\tilde{x}^{'}_{i}\} \ denote \ a \ set \ of \ 2D-2D \ correspondences. \\
@@ -22,7 +22,7 @@ where we have fixed $||\tilde{h}||_{2}^{2}=1$ as $\tilde{H}$ is is homogeneous (
 The solution to the above optimization problem is the ***singular vector*** corresponding to the smallest singular value of A. The resulting algorithm is called ***Direct Linear Transformation***.
 
 
-## Singular Value Decomposition
+### Singular Value Decomposition
 The SVD of $m \times n$ matrix $A$ is given by $A=U\Sigma V^{T}=\sum_{i=1}^{r}u_{i}\sigma _{i}v_{i}^{T}$
 
 where:
@@ -33,8 +33,8 @@ where:
 
 * $\Sigma$: a $m\times n$ matrix, actually a diagonal matrix with $r$ elements equal to the root of the positive eigenvalues of $AA^{T}$ or $A^{T}A$ (both matrics have the same positive eigenvalues anyway) and $m-r$ extra zero rows and $n-r$ new zero columns.
 
-# Pseudoinverse Matrix
-## Definition
+## Pseudoinverse Matrix
+### Definition
 
 For $A \in \mathbb{K}^{m\times n}$, a pseudoinverse of $A$ is defined as a matrix 
 ${\displaystyle A^{+}\in \mathbb {K} ^{n\times m}}$ satisfying all of the following four criteria, known as the Moore–Penrose conditions:
@@ -59,7 +59,7 @@ $$
 
 * ${\displaystyle A^{+}A}$ is also Hermitian.
 
-## Linear least-squares
+### Linear least-squares
 The pseudoinverse provides a least squares solution to a system of linear equations.For ${\displaystyle A\in \mathbb {K} ^{m\times n}}$, given a system of linear equations $Ax=b$, in general, a vector ${\displaystyle x}$ that solves the system may not exist, or if one does exist, it may not be unique. More specifically, a solution exists if and only if ${\displaystyle b}$ is in the image of ${\displaystyle A}$, and is unique if and only if ${\displaystyle A}$ is injective. The pseudoinverse solves the "least-squares" problem as follows:
 
 * $\forall x \in \mathbb{K}^{n}$, we want to find a $z$ satisfying $\Vert{Az-b}\Vert_{2}\leq \Vert{Ax-b}\Vert_{2}$, where $z=A^{+}b$ and $\Vert \cdot \Vert_{2}$ denotes the Euclidean norm.
@@ -76,7 +76,7 @@ $$
 $(S^{T}S)^{-1}S^{T}$ here is pesudoinverse.
 * Reference: <a herf="https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse#">wikipedia</a>
 
-# Chamfer Distance
+## Chamfer Distance
 Chamfer Distance is widely used in 3D reconstruction to judge how close one point cloud is on average to the other.
 
 
