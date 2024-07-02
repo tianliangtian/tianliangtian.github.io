@@ -1,0 +1,2139 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="tianliangtian">
+      
+      
+        <link rel="canonical" href="https://tianliangtian.github.io/Learning/CV/DL4CV/">
+      
+      
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.0, mkdocs-material-9.5.27">
+    
+    
+      
+        <title>Deep Learning for Computer Vision - tianliangtian's pages</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.6543a935.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#deep-learning-for-computer-vision" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://tianliangtian.github.io" title="tianliangtian&#39;s pages" class="md-header__button md-logo" aria-label="tianliangtian's pages" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tianliangtian's pages
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Deep Learning for Computer Vision
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var media,input,key,value,palette=__md_get("__palette");if(palette&&palette.color){"(prefers-color-scheme)"===palette.color.media&&(media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']"),palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent"));for([key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7 0-.24-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91 1.61 0 2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08Z"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../" class="md-tabs__link">
+          
+  
+    
+  
+  Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://tianliangtian.github.io" title="tianliangtian&#39;s pages" class="md-nav__button md-logo" aria-label="tianliangtian's pages" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54Z"/></svg>
+
+    </a>
+    tianliangtian's pages
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Home
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2" >
+        
+          
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  <span class="md-ellipsis">
+    Learning
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Git/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Git
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Website-building/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Website building
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Python
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Deep Learning
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DeepLearning/NNandDL/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neural Network and Deep Learning
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Computer Vision
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Vision
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    ML4360 - Computer vision
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    DL4CV
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            DL4CV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/Classifier/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Classifier
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/NN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Neural Network
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/CNN/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    CNN
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/Training/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Training
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/OD/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Object Detection
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/SS/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Semantic Segmentation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#image-classifier-nearest-neighbor-classifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Image Classifier - Nearest Neighbor Classifier
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#linear-classifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      Linear Classifier
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Optimization
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Optimization">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#gradient-descent" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gradient Descent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#stochastic-gradient-descend" class="md-nav__link">
+    <span class="md-ellipsis">
+      Stochastic Gradient Descend
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neural Network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Neural Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activation-function" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activation function
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#neuron" class="md-nav__link">
+    <span class="md-ellipsis">
+      Neuron
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#space-warping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Space Warping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#universal-approximation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Universal Approximation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convex-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convex Functions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#backpropagation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backpropagation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Backpropagation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#computation-graph" class="md-nav__link">
+    <span class="md-ellipsis">
+      Computation Graph
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backprop-implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backprop Implementation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backprop-with-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backprop with Vectors
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#backprop-with-matrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Backprop with Matrics
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#high-order-derivatives" class="md-nav__link">
+    <span class="md-ellipsis">
+      High-Order Derivatives
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#convolutional-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convolutional Network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Convolutional Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#convolutional-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convolutional Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#pooling-layer" class="md-nav__link">
+    <span class="md-ellipsis">
+      Pooling Layer
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#convolutional-network-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      Convolutional Network Architecture
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#normalization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Normalization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#cnn-architecture" class="md-nav__link">
+    <span class="md-ellipsis">
+      CNN Architecture
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CNN Architecture">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#alexnet" class="md-nav__link">
+    <span class="md-ellipsis">
+      AlexNet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vgg" class="md-nav__link">
+    <span class="md-ellipsis">
+      VGG
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#googlenet" class="md-nav__link">
+    <span class="md-ellipsis">
+      GoogLeNet
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#residual-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Residual Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#train-neural-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Train Neural Network
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Train Neural Network">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#one-time-setup" class="md-nav__link">
+    <span class="md-ellipsis">
+      One time setup
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="One time setup">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#activation-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Activation functions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-preprocessing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Preprocessing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#weight-initialization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Weight Initialization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#regularization" class="md-nav__link">
+    <span class="md-ellipsis">
+      Regularization
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-augmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Augmentation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#training-dynamics" class="md-nav__link">
+    <span class="md-ellipsis">
+      Training Dynamics
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Training Dynamics">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#learning-rate-schedules" class="md-nav__link">
+    <span class="md-ellipsis">
+      Learning rate schedules
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#hyperparameter-optimization" class="md-nav__link">
+    <span class="md-ellipsis">
+      hyperparameter optimization
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#after-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      After training
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="After training">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#model-ensembles" class="md-nav__link">
+    <span class="md-ellipsis">
+      Model ensembles
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfer-learning" class="md-nav__link">
+    <span class="md-ellipsis">
+      Transfer learning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#large-batch-training" class="md-nav__link">
+    <span class="md-ellipsis">
+      Large-batch training
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#object-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object Detection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Object Detection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#detecting-a-single-object" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detecting a single object
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#detecting-multiple-objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      Detecting Multiple Objects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Detecting Multiple Objects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sliding-wingdow" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sliding Wingdow
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Region Proposals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#r-cnn-region-based-cnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      R-CNN: Region-Based CNN
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#comparing-boxes-intersection-over-unioniou" class="md-nav__link">
+    <span class="md-ellipsis">
+      Comparing Boxes: Intersection over Union(IoU)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#overlapping-boxes-non-max-supperssionnms" class="md-nav__link">
+    <span class="md-ellipsis">
+      Overlapping Boxes: Non-Max Supperssion(NMS)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#evaluating-object-detectors-mean-average-precisionmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Evaluating Object Detectors: Mean Average Precision(mAP)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fast-r-cnn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fast R-CNN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropping-features-rol-pool" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cropping Features: Rol Pool
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cropping-features-rol-align" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cropping Features: Rol Align
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#faster-r-cnn-learnable-region-proposals" class="md-nav__link">
+    <span class="md-ellipsis">
+      Faster R-CNN: Learnable Region Proposals
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#region-proposal-networkrpn" class="md-nav__link">
+    <span class="md-ellipsis">
+      Region Proposal Network(RPN)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#single-stage-object-detection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single-Stage Object Detection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#semantic-segmentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Semantic Segmentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Semantic Segmentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#sliding-window" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sliding Window
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fully-convolutional-network" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fully Convolutional Network
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#in-network-upsampleing-unpooling" class="md-nav__link">
+    <span class="md-ellipsis">
+      In-Network Upsampleing: "Unpooling"
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="deep-learning-for-computer-vision">Deep Learning for Computer Vision</h1>
+<h2 id="image-classifier-nearest-neighbor-classifier">Image Classifier - Nearest Neighbor Classifier</h2>
+<p>Compare a new image with each image in training set using some similarity function. Assign the new image a label as same as the most similar image in training set.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/NNC_c1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NNC_c1.png" /></a></p>
+<ul>
+<li>Using more neighbors helps reduce the effect of outliers.</li>
+<li>When <span class="arithmatex">\(K &gt; 1\)</span> there can be ties between classes, which needed to be break somehow.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/NNC_c2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NNC_c2.png" /></a></p>
+<ul>
+<li>The idea #2 is bad because when we adjust the hyperparameters according to the test set, we pollute it and it has little differences with training set.</li>
+<li>Remember that test set can be used only once in the final test.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/NNC_c3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NNC_c3.png" /></a></p>
+<p>If we want to have a good prediction on a new image, we need a large amount of examples on training set, which grows exponentially with dimension.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/NNC_c4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NNC_c4.png" /></a></p>
+<h2 id="linear-classifier">Linear Classifier</h2>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_c1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_c1.png" /></a></p>
+<p>Bias Trick is less common to use in practice because when we separate the weight and the bias into separate parameters, we can treat them differently on how they are initialized or regularized.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_4.png" /></a></p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_5.png" /></a> </p>
+<p>We can visualize the "template" for each category</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_6.png" /></a> </p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_7.png" /></a> </p>
+<p>The score goes linearly with respect to the change of pixels. We can extend this to high dimensions. The changes of scores are consistent with those hyperplanes. </p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_8.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_8.png" /></a> </p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_9.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_9.png" /></a> </p>
+<p>This also account for why perceptron, actually a linear classifier, couldn't learn XOR.</p>
+<p>Now we can compute class scores for an image with given <span class="arithmatex">\(W\)</span>. To get a good <span class="arithmatex">\(W\)</span>, we need to do:</p>
+<ul>
+<li>
+<p>Use a <strong>loss function</strong> to quantiy how good a value of <span class="arithmatex">\(W\)</span> is.</p>
+</li>
+<li>
+<p>Find a <span class="arithmatex">\(W\)</span> that minimizes the loss function.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_c2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_c2.png" /></a> </p>
+<p>Different regularization functions give the model extra hints about what types of classifier we'd like them to learn.</p>
+<p>For example, L2 regularization likes to spread out the weight while L1 regularization does in the opposite way.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_c3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_c3.png" /></a> </p>
+<p>It's important to notice the loss function on random values, if your model get a worse loss value after training, there must be sth bad.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_18.png" /></a> </p>
+<p><a class="glightbox" href="../img/Learning/DLCV/LC_19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/LC_19.png" /></a> </p>
+<p>SVM Loss is easy to get to zero point while Cross-Entropy nearly impossible to get to zero.</p>
+<h2 id="optimization">Optimization</h2>
+<ul>
+<li>goal: find <span class="arithmatex">\(w^{*}=argmin_{w}L(w)\)</span></li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_1.png" /></a></p>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_2.png" /></a></p>
+<p>How to evaluate gradient?</p>
+<ul>
+<li>Numeric gradient<ul>
+<li>We can approximate the gradient by defination. Increasing one slot of the weight matrix by a small step and recompute loss function. Use the defination of derivative to get a approximation of gradient.</li>
+<li>Takes lots of time and not accurate.</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_3.png" /></a></p>
+<ul>
+<li>Analytic gradient<ul>
+<li>exact, fast, error-prone</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_4.png" /></a></p>
+<ul>
+<li>In practice, always use analytic gradient, but check implementation with numerical gradienet. This is called a <strong><em>gradient check</em></strong></li>
+</ul>
+<h3 id="gradient-descent">Gradient Descent</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_5.png" /></a></p>
+<h3 id="stochastic-gradient-descend">Stochastic Gradient Descend</h3>
+<ul>
+<li>We don't use the full training data but some small subsamples of it  to approximate loss function and gradient, for computing on the whole set is expansive. These small subsamples are called <strong><em>minibatches</em></strong></li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_c1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_c1.png" /></a></p>
+<ul>
+<li>SGD + Momentum may overshoot in the bottom for its historical speed and will come back.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_13.png" /></a></p>
+<ul>
+<li>
+<p>Progress along "steep" direction is damped. Progress along "flat" directions is accelerated.</p>
+</li>
+<li>
+<p>The learning rate will continuely decay since <code>grad_squared</code> gets larger and larger.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_14.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_14.png" /></a></p>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_15.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_15.png" /></a></p>
+<ul>
+<li>We initialize <code>moment2</code> as 0 and if we take <code>beta2</code> closely to 0, the <code>moment2</code> will also close to 0, which may make our first gradient step very large. This could cause bad results.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_c2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_c2.png" /></a></p>
+<ul>
+<li>Second-order optimization is better to use in low dimension. </li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/Op_20.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/Op_20.png" /></a></p>
+<h2 id="neural-network">Neural Network</h2>
+<p>To solve the limitation of linear classifier, we can apply feature transformation.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/NN_c1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NN_c1.png" /></a></p>
+<h3 id="activation-function">Activation function</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/NN_4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NN_4.png" /></a></p>
+<p><a class="glightbox" href="../img/Learning/DLCV/NN_5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NN_5.png" /></a></p>
+<h3 id="neuron">Neuron</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/NN_6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NN_6.png" /></a></p>
+<h3 id="space-warping">Space Warping</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/NN_SW.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NN_SW.png" /></a></p>
+<p>The more the layer, the more complex the model is. Try to adjust regularization parameter to solve it.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/NN_size_reg.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NN_size_reg.png" /></a></p>
+<h3 id="universal-approximation">Universal Approximation</h3>
+<p>A two layer neural network can approximate any function. But it may need a large size to get high fidelity.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/NN_UA.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NN_UA.png" /></a></p>
+<h3 id="convex-functions">Convex Functions</h3>
+<p>Taking any two points in the input, the secant line will always lie above the function between that two points.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/NN_convex.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/NN_convex.png" /></a></p>
+<p>However, most neural networks need <strong>nonconvex optimization</strong></p>
+<h2 id="backpropagation">Backpropagation</h2>
+<p><a class="glightbox" href="../img/Learning/DLCV/BP_c1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/BP_c1.png" /></a></p>
+<h3 id="computation-graph">Computation Graph</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/BP_c2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/BP_c2.png" /></a></p>
+<h3 id="backprop-implementation">Backprop Implementation</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/BP_c3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/BP_c3.png" /></a></p>
+<ul>
+<li>You can define your own node object in computation graph using pytorch API</li>
+</ul>
+<h3 id="backprop-with-vectors">Backprop with Vectors</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/BP_c4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/BP_c4.png" /></a></p>
+<h3 id="backprop-with-matrics">Backprop with Matrics</h3>
+<ul>
+<li><span class="arithmatex">\(dL/dx\)</span> must have the same shape as <span class="arithmatex">\(x\)</span> since loss <span class="arithmatex">\(L\)</span> is a scalar</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/BP_c5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/BP_c5.png" /></a></p>
+<p>Assume we want to derive <span class="arithmatex">\(dL/dx_{i,j}\)</span></p>
+<ul>
+<li>Note that only the <span class="arithmatex">\(ith\)</span> row of <span class="arithmatex">\(y\)</span> is formed by <span class="arithmatex">\(x_{i,j}\)</span> and corresponding coefficients are the <span class="arithmatex">\(jth\)</span> row of <span class="arithmatex">\(w\)</span>.</li>
+<li>So <span class="arithmatex">\(dL/dx_{i,j}\)</span> is just the inner product of the <span class="arithmatex">\(ith\)</span> row of <span class="arithmatex">\(dL/dy\)</span> and the <span class="arithmatex">\(jth\)</span> column of <span class="arithmatex">\(w^{T}\)</span>, which leads to the result of <span class="arithmatex">\(dL/dx=(dL/dy)w^{T}\)</span></li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/BP_c6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/BP_c6.png" /></a></p>
+<h3 id="high-order-derivatives">High-Order Derivatives</h3>
+<p><span class="arithmatex">\(\frac{\partial ^{2}L}{\partial x_{0}^{2}}\)</span> is <span class="arithmatex">\(D_{0} \times D_{0}\)</span> dimension for it's the derivative of <span class="arithmatex">\(\frac{\partial L}{\partial x_{0}}\)</span>, which is a <span class="arithmatex">\(D_{0}\)</span> dimension vector.</p>
+<p><a class="glightbox" href="../img/Learning/DLCV/BP_c7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/BP_c7.png" /></a></p>
+<h2 id="convolutional-network">Convolutional Network</h2>
+<ul>
+<li>
+<p><strong>Problem</strong>: So far our classifiers don't respect the spatial structure of images!</p>
+</li>
+<li>
+<p><strong>Solution</strong>: Define new computational nodes that operate on images!</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_1.png" /></a></p>
+<h3 id="convolutional-layer">Convolutional Layer</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_c1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_c1.png" /></a></p>
+<ul>
+<li>There can be many filters generating many activation maps.</li>
+<li>Each filter must have same depth as the input image.</li>
+<li>Each filter also has a bias.</li>
+<li>Activation map can be considered as a feature vector, telling us the structure of the input.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_7.png" /></a></p>
+<ul>
+<li>The input is often a batch of images</li>
+<li>The output channel <span class="arithmatex">\(C_{out}\)</span> is usually different from input channel <span class="arithmatex">\(C_{in}\)</span></li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_c2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_c2.png" /></a></p>
+<h3 id="pooling-layer">Pooling Layer</h3>
+<ul>
+<li>Compute one unique number to represent the region to downsampling.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_c3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_c3.png" /></a></p>
+<h3 id="convolutional-network-architecture">Convolutional Network Architecture</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_c4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_c4.png" /></a></p>
+<h3 id="normalization">Normalization</h3>
+<ul>
+<li><strong>Problem</strong>: Deep network is hard to train</li>
+<li>Normalization is introduced to accelerate optimization.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_c5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_c5.png" /></a></p>
+<ul>
+<li>The batch normalization get its name for it doing normalization in batch dimension <span class="arithmatex">\(N\)</span>. </li>
+<li>It's a stiff constraint for those layers to exactly fit zero mean and unit variance. So in practice, we introduce learnable scale and shift <span class="arithmatex">\(\gamma,\beta\)</span> to make our network able to learn mean and variance.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_c6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_c6.png" /></a></p>
+<ul>
+<li>It is wired that the result of one image is influenced by other images, so the model process differently in training time and test time<ul>
+<li><strong>Training Time</strong>: empirically compute mean and variance.</li>
+<li><strong>Test Time</strong>: use the average of historical mean and variance computed during training to compute.</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CN_c7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CN_c7.png" /></a></p>
+<h2 id="cnn-architecture">CNN Architecture</h2>
+<h3 id="alexnet">AlexNet</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/CA_c1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CA_c1.png" /></a></p>
+<ul>
+<li>Output channels <span class="arithmatex">\(=\)</span> number of filters <span class="arithmatex">\(=\)</span> 64</li>
+<li>Output size <span class="arithmatex">\(W_{out}=(W_{in}-K+2P)/S+1=56\)</span></li>
+<li>Memory that output feature consume<ul>
+<li>Number of output elements <span class="arithmatex">\(=C_{out}\times H_{out}\times W_{out}=200704\)</span></li>
+<li>Bytes per element <span class="arithmatex">\(=4\)</span> (for 32-bit floating point)</li>
+<li>KB <span class="arithmatex">\(=\)</span> (number of elements)<span class="arithmatex">\(\times\)</span> (bytes per element)/1024=784 </li>
+</ul>
+</li>
+<li>Number of learnable parameters<ul>
+<li>Weight shape <span class="arithmatex">\(=C_{out}\times C_{in}\times K \times K\)</span></li>
+<li>Bias shape <span class="arithmatex">\(=C_{out}=64\)</span></li>
+<li>Number of parameter <span class="arithmatex">\(=\)</span> weight <span class="arithmatex">\(+\)</span> bias <span class="arithmatex">\(=\)</span> 23296</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CA_3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CA_3.png" /></a></p>
+<ul>
+<li>Flatten output size <span class="arithmatex">\(=C_{in}\times H\times W\)</span></li>
+<li>FCparams <span class="arithmatex">\(=C_{in}\times C_{out}+C_{out}\)</span></li>
+<li>FC flops <span class="arithmatex">\(=C_{in}\times C_{out}\)</span></li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CA_c2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CA_c2.png" /></a></p>
+<h3 id="vgg">VGG</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/CA_c3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CA_c3.png" /></a></p>
+<ul>
+<li>By stacking 3 by 3 conv, we throw away kernal size as a hyperparam and only need to thing about how many 3x3 conv do we need.</li>
+<li>We can also arbitaryly insert ReLU between these 3x3 conv, allowing more nonlinear computation.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CA_c4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CA_c4.png" /></a></p>
+<h3 id="googlenet">GoogLeNet</h3>
+<ul>
+<li>Many innovation for efficiency: reduce parameter count, memory usage, and computation.</li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/CA_c5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CA_c5.png" /></a></p>
+<h3 id="residual-network">Residual Network</h3>
+<p>When training deeper model, we found that deeper model does worse than shallow model. The initial guess is that Deep model is <strong>overfitting</strong> since it is much bigger than the other model. </p>
+<p><a class="glightbox" href="../img/Learning/DLCV/CA_c6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CA_c6.png" /></a></p>
+<h3 id="other">Other</h3>
+<p><a class="glightbox" href="../img/Learning/DLCV/CA_c7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/CA_c7.png" /></a></p>
+<h2 id="train-neural-network">Train Neural Network</h2>
+<h3 id="one-time-setup">One time setup</h3>
+<h4 id="activation-functions">Activation functions</h4>
+<p><strong>Sigmoid</strong>: <span class="arithmatex">\(\sigma(x)=1/(1+e^{-x})\)</span></p>
+<ul>
+<li>Squashes numbers to range <span class="arithmatex">\([0,1]\)</span></li>
+<li>problems:<ul>
+<li>Saturated neurons "kill" the gradients</li>
+<li>Sigmoid outputs are not zero-centered</li>
+<li>exp() is a bit compute expensive</li>
+</ul>
+</li>
+</ul>
+<p><strong>Tanh</strong></p>
+<ul>
+<li>Squashes numbers to range <span class="arithmatex">\([-1,1]\)</span></li>
+<li>zero centered(nice)</li>
+<li>still kill gradients when saturated</li>
+</ul>
+<p><strong>ReLU</strong>: <span class="arithmatex">\(f(x)=max(0,x)\)</span></p>
+<ul>
+<li>Does not saturate in positive region</li>
+<li>Very computationally efficient</li>
+<li>COnverges much faster than sigmoid/tanh in practice</li>
+<li>Problems:<ul>
+<li>Not zero-centered output</li>
+<li>When x &lt; 0, the gradient will also be zero, which may cause it never update.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Leaky ReLU</strong>: <span class="arithmatex">\(f(x)=max(0.01x,x)\)</span></p>
+<ul>
+<li>Does not saturate</li>
+<li>Very computationally efficient</li>
+<li>COnverges much faster than sigmoid/tanh in practice</li>
+<li>will not "die" like ReLU</li>
+<li>We can introduce learnable parameter <span class="arithmatex">\(\alpha\)</span>, which is call PReLU(Parametric Rectifier): <span class="arithmatex">\(f(x)=max(\alpha x,x)\)</span></li>
+</ul>
+<p><a class="glightbox" href="../img/Learning/DLCV/TNN_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/TNN_1.png" /></a></p>
+<h4 id="data-preprocessing">Data Preprocessing</h4>
+<ul>
+<li>Subtract the mean image(AlexNet)</li>
+<li>Subtract per-channel mean(VGGNet)</li>
+<li>Subtract per-channel mean and divide by per-channel std(ResNet)</li>
+<li>Others<ul>
+<li>PCA: data has diagonal covariance matrix</li>
+<li>whitening: covariance matrix is the identity matrix</li>
+</ul>
+</li>
+</ul>
+<h4 id="weight-initialization">Weight Initialization</h4>
+<p><strong>Q</strong>: What happens if we initialize all <span class="arithmatex">\(W=0, b=0\)</span>?</p>
+<p><strong>A</strong>: All outputs are zero and weights will never update.</p>
+<p><strong>Small random values</strong></p>
+<p><a class="glightbox" href="../img/Learning/DLCV/TNN_2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/TNN_2.png" /></a></p>
+<p><strong>Big random values</strong></p>
+<p><a class="glightbox" href="../img/Learning/DLCV/TNN_3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/TNN_3.png" /></a></p>
+<p><strong>Xavier Initialization</strong></p>
+<p><a class="glightbox" href="../img/Learning/DLCV/TNN_4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Learning/DLCV/TNN_4.png" /></a></p>
+<ul>
+<li><strong>Derivation</strong>: Varience of output = Variance of input</li>
+</ul>
+<div class="arithmatex">\[
+y=Wx\qquad \qquad \qquad \qquad y_{i}=\sum_{j=1}^{Din}x_{j}w_{j} \\
+\begin{align}
+Var(y_{i})&amp;=Din\times Var(x_{i}w_{i}) \qquad &amp;\text{Assume x, w are iid}\\
+&amp;=Din\times (E[x_{i}^{2}]E[w_{i}^{2}]-E[x_{i}]^{2}E[w_{i}]^{2}) \qquad &amp;\text{Assume x, w independent}\\
+&amp;=Din\times Var(x_{i})\times Var(w_{i})\qquad &amp;\text{Assume x, w are zero-mean} \\
+\end{align}
+\\
+\text{If }Var(w_{i})=1/Din\text{ then }Var(y_{i})=Var(x_{i})
+\]</div>
+<p>Unfortunately, this initialization tends to be bad when we use ReLU as activation function.</p>
+<p><strong>Kaiming / MSRA Initialization</strong>
+* ReLU correction: std = sqrt(2 / Din)</p>
+<p>"Just right" - activations nicely scaled for all layers.</p>
+<p>Not do well in Residual Networks.</p>
+<p>If we initialize with MSRA: then <span class="arithmatex">\(Var(F(x))=Var(x)\)</span>. But then <span class="arithmatex">\(Var(F(x)+x)&gt;Var(x)\)</span> - variance grows with each block!</p>
+<ul>
+<li>Solution: Initialize first conv with MSRA, initialize second conv to zero. Then <span class="arithmatex">\(Var(x+F(x))=Var(x)\)</span></li>
+</ul>
+<h4 id="regularization">Regularization</h4>
+<p>In common use: L2 regularization, L1 regularization ...</p>
+<p><strong>Dropout</strong>
+In each forward pass, randomly set some neurons to zero. Probability of dropping is a hyperparameter. 0.5 is common</p>
+<p>Forces the network to have a redundant representation. Prevents co-adaptation of features.</p>
+<p>Another interpretation: Dropout is training a large ensemble of models (that share parameters). Each binary mask is one model</p>
+<ul>
+<li>Test Time: We need to take another way to compute output when testing or our output will be random.<ul>
+<li>We want to "average out" the randomness at test-time. That is, multiply the result without dropout by dropout probobility.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Inverted Dropout</strong>
+Drop and scale layer during training, </p>
+<h4 id="data-augmentation">Data Augmentation</h4>
+<p>Tranform input training image before feeding it into the network. Horizontal flips is one example. This augments the amount of data and keep their label unchanged.</p>
+<p><strong>Random Crops and Scales</strong></p>
+<ul>
+<li>
+<p>Training: sample random crops / scales</p>
+<ul>
+<li>Pick random L in range [256, 480]</li>
+<li>Resize training image, short side = L</li>
+<li>Sample random 224 x 224 patch</li>
+</ul>
+</li>
+<li>
+<p>Testing: average a fixed set of crops</p>
+<ul>
+<li>Resize image at 5 scales: {224, 256, 384, 480, 640}</li>
+<li>For each size, use 10 224 x 224 crops: 4 corners + center, + flips</li>
+</ul>
+</li>
+</ul>
+<h3 id="training-dynamics">Training Dynamics</h3>
+<h4 id="learning-rate-schedules">Learning rate schedules</h4>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/TNN_5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/TNN_5.png" /></a></p>
+<p>We can Start with large learning rate and decay over time.</p>
+<p><strong>Step Schedule</strong></p>
+<p>Step: Reduce learning rate at a few fixed points. </p>
+<p>E.g. for ResNets, multiply LR by 0.1 after epochs 30, 60, and 90.</p>
+<ul>
+<li>Problem: introduce additional hyperparameters we have to tune.</li>
+</ul>
+<p><strong>Cosine Schedule</strong>: <span class="arithmatex">\(\alpha_{t}=\frac{1}{2}\alpha_{0}(1+cos(t\pi /T))\)</span></p>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/TNN_6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/TNN_6.png" /></a></p>
+<p><strong>Linear Schedule</strong>: <span class="arithmatex">\(\alpha_{t}=\alpha_{0}(1-t/T)\)</span></p>
+<p><strong>Inverse Sqrt</strong>: <span class="arithmatex">\(\alpha_{t}=\alpha_{0}/\sqrt{t}\)</span></p>
+<p><strong>Constant</strong>: <span class="arithmatex">\(\alpha_{t}=\alpha_{0}\)</span></p>
+<ul>
+<li>Early Stopping: Stop training the model when accuracy on the validation set decreases. Or train for a long time, but always keep track of the model snapshot that worked best on val. Always a good idea to do this!</li>
+</ul>
+<h4 id="hyperparameter-optimization">hyperparameter optimization</h4>
+<p><strong>Grid Search</strong></p>
+<p>Choose several values for each hyperparameter(Often space choices log-linearly).</p>
+<p>Example:</p>
+<p>Weight decay: [1x10-4, 1x10-3, 1x10-2, 1x10-1], Learning rate: [1x10-4, 1x10-3, 1x10-2, 1x10-1]</p>
+<p>Evaluate all possible choices on this hyperparameter grid.</p>
+<p><strong>Random Search</strong></p>
+<p>Randomly choose several values for each hyperparameter in a given range(Often space choices log-linearly)</p>
+<p>Example:</p>
+<p>Weight decay: log-uniform on [1x10-4, 1x10-1], Learning rate: log-uniform on [1x10-4, 1x10-1]</p>
+<ul>
+<li>Jump out of the grid and may have a better performance when some parameters are not important.</li>
+</ul>
+<p><strong>Choosing hyperparameters:</strong></p>
+<p><strong>Step 1</strong>: Check initial loss</p>
+<p>Turn off weight decay, sanity check loss at initialization</p>
+<p><strong>Step 2</strong>: Overfit a small sample</p>
+<p>Try to train to 100% training accuracy on a small sample of training data (~5-10 minibatches); fiddle with architecture, learning rate, weight initialization. Turn off regularization.</p>
+<p>Loss not going down? LR too low, bad initialization</p>
+<p>Loss explodes to Inf or NaN? LR too high, bad initialization</p>
+<p><strong>Step 3</strong>: Find LR that makes loss go down</p>
+<p>Use the architecture from the previous step, use all training data, turn on small weight decay, find a learning rate that makes the loss drop significantly within ~100 iterations</p>
+<p><strong>Step 4</strong>: Coarse grid, train for ~1-5 epochs</p>
+<p><strong>Step 5</strong>: Refine grid, train longer</p>
+<p><strong>Step 6</strong>: Look at loss curves</p>
+<p><strong>Step 7</strong>: GOTO step 5</p>
+<h3 id="after-training">After training</h3>
+<h4 id="model-ensembles">Model ensembles</h4>
+<ol>
+<li>
+<p>Train multiple independent models</p>
+</li>
+<li>
+<p>At test time average their results</p>
+</li>
+</ol>
+<h4 id="transfer-learning">Transfer learning</h4>
+<ol>
+<li>
+<p>Train on Imagenet</p>
+</li>
+<li>
+<p>Use CNN as a feature extractor. Remove those fully connected layers in the last and freeze other layers.</p>
+</li>
+<li>
+<p>Bigger dataset: <strong>Fine-Tuning</strong></p>
+</li>
+</ol>
+<p>Reinitialize those last layer to new layers and continue training CNN for new task.</p>
+<p><strong>Some tricks</strong>:</p>
+<ul>
+<li>
+<p>Train with feature extraction first before fine-tuning</p>
+</li>
+<li>
+<p>Lower the learning rate: use ~1/10 of LR used in original training</p>
+</li>
+<li>
+<p>Sometimes freeze lower layers to save computation</p>
+</li>
+</ul>
+<h4 id="large-batch-training">Large-batch training</h4>
+<p>How to scale up on data-parallel training on K GPUs?</p>
+<p><strong>Goal:</strong> Train for same number of epochs, but use larger minibatches. We want model to train K times faster</p>
+<p>Single-GPU model: batch size N, learning rate <span class="arithmatex">\(\alpha\)</span></p>
+<p>K-GPU model: batch size KN, learning rate <span class="arithmatex">\(K\alpha\)</span></p>
+<h2 id="object-detection">Object Detection</h2>
+<p><strong>Input</strong>: Single RGB Image</p>
+<p><strong>Output</strong>: A set of detected objects;</p>
+<p>For each object predict:</p>
+<ul>
+<li>Category label (from fixed, known set of categories)</li>
+<li>Bounding box (four numbers: x, y, width, height)</li>
+</ul>
+<p><strong>Challenges</strong>:</p>
+<ul>
+<li>Multiple outputs: Need to output variable numbers of objects per image</li>
+<li>Multiple types of output: Need to predict "what" (category label) as well as "where" (bounding box)</li>
+<li>Large images: Classification works at 224x224; need higher resolution for detection, often ~800x600</li>
+</ul>
+<h3 id="detecting-a-single-object">Detecting a single object</h3>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/OD_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/OD_1.png" /></a></p>
+<h3 id="detecting-multiple-objects">Detecting Multiple Objects</h3>
+<p>Need different numbers of outputs per image</p>
+<h4 id="sliding-wingdow">Sliding Wingdow</h4>
+<p>Apply a CNN to many different crops of the image, CNN classifies each crop as object or background.</p>
+<p><strong>Question</strong>: There are many possible boxes in an image of size <span class="arithmatex">\(H\times W\)</span>. Total possible boxes: <span class="arithmatex">\(\frac{H(H+1)}{2}\frac{W(W+1)}{2}\)</span></p>
+<h4 id="region-proposals">Region Proposals</h4>
+<ul>
+<li>Find a small set of boxes that are likely to cover all objects</li>
+<li>Often based on heuristics: e.g. look for "blob-like" image regions</li>
+<li>Relatively fast to run; e.g. Selective Search gives 2000 region proposals in a few seconds on CPU</li>
+</ul>
+<h4 id="r-cnn-region-based-cnn">R-CNN: Region-Based CNN</h4>
+<p>We can use region proposal method like selective search to get some region proposals in the image with different sizes and different aspect ratios.</p>
+<p>Then we warp these region to a same size and forward them throusgh ConvNet.</p>
+<p>Here if we only output the predicted class in each ConvNet, the box be may not accurate. So we introduce <strong>bounding box regression</strong> to predict "tranform" to correct the box: 4 numbers <span class="arithmatex">\((t_{x},t_{y},t_{h},t_{w})\)</span>. Now our CNN is going to output an additional thing, which is a transformation that will transform the region proposal box into the final box that we want.</p>
+<p>Region proposal: <span class="arithmatex">\((p_{x},p_{y},p_{h},p_{w})\)</span></p>
+<p>Transform: <span class="arithmatex">\((t_{x},t_{y},t_{h},t_{w})\)</span>, which is one of the output of convnet</p>
+<p>Final bex: <span class="arithmatex">\((b_{x},b_{y},b_{h},b_{w})\)</span></p>
+<p>Translate relative to box size: <span class="arithmatex">\(b_{x}=p_{x}+p_{w}t_{x}\qquad b_{y}=p_{y}+p_{h}t_{y}\)</span></p>
+<p>Log-space scale transform: <span class="arithmatex">\(b_{w}=p_{w}exp(t_{w})\qquad b_{h}=p_{h}exp(t_{h})\)</span></p>
+<p>The way we parameterize the transformation is invariant to the location and the scale of the box.</p>
+<p><strong>Test-time</strong>:</p>
+<ul>
+<li>Run region proposal method to compute ~2000 region proposals</li>
+<li>Resize each region to 224x224 and run independently through CNN to predict class scores and bbox transform</li>
+<li>Use scores to select a subset of region proposals to output (Many choices here: threshold on background, or per-category? Or take top K proposals per image?)</li>
+<li>Compare with ground-truth boxes</li>
+</ul>
+<h3 id="comparing-boxes-intersection-over-unioniou">Comparing Boxes: Intersection over Union(IoU)</h3>
+<p>How can we compare our prediction to the ground-truth box?</p>
+<p>Intersection over Union (IoU)(Also called "Jaccard similarity" or
+"Jaccard index"): <span class="arithmatex">\(\frac{Area of Intersection}{Area of Union}\)</span></p>
+<p>IoU &gt; 0.5 is "decent".
+IoU &gt; 0.7 is "pretty good".
+IoU &gt; 0.9 is "almost perfect".</p>
+<h3 id="overlapping-boxes-non-max-supperssionnms">Overlapping Boxes: Non-Max Supperssion(NMS)</h3>
+<p><strong>Problem</strong>: Object detectors often output many overlapping detections, which are detecting the same object but in different boxes.</p>
+<p><strong>Solution</strong>: Post-process raw detections using Non-Max Suppression (NMS)</p>
+<ol>
+<li>
+<p>Select next highest-scoring box</p>
+</li>
+<li>
+<p>Eliminate lower-scoring boxes with loU &gt; threshold (e.g. 0.7)</p>
+</li>
+<li>
+<p>If any boxes remain, GOTO 1</p>
+</li>
+</ol>
+<p><strong>Problem</strong>: NMS may eliminate "good" boxes when objects are highly overlapping ... no good solution </p>
+<h3 id="evaluating-object-detectors-mean-average-precisionmap">Evaluating Object Detectors: Mean Average Precision(mAP)</h3>
+<ul>
+<li>
+<p>Run object detector on all test images (with NMS)</p>
+</li>
+<li>
+<p>For each category, compute Average Precision (AP) = area under Precision vs Recall Curve</p>
+<ul>
+<li>
+<p>For each detection (highest score to lowest score)</p>
+<ul>
+<li>
+<p>If it matches some GT box with loU &gt; 0.5, mark it as positive and eliminate the GT</p>
+</li>
+<li>
+<p>Otherwise mark it as negative</p>
+</li>
+<li>
+<p>Plot a point on PR Curve</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Average Precision (AP) = area under PR curve</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Mean Average Precision (mAP) = average of AP for each category</p>
+</li>
+<li>
+<p>For "COCO mAP": Compute mAP@thresh for each loU threshold (0.5, 0.55, 0.6, ... , 0.95) and take average</p>
+</li>
+</ul>
+<blockquote>
+<p>How to get AP = 1.0: Hit all GT boxes with loU &gt; 0.5, and have no "false positive" detections ranked above any "true positives"</p>
+</blockquote>
+<h3 id="fast-r-cnn">Fast R-CNN</h3>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/OD_2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/OD_2.png" /></a></p>
+<h3 id="cropping-features-rol-pool">Cropping Features: Rol Pool</h3>
+<p>First, we project proposal onto features. The projected region may not align with the grid cells so we have to "snap" them to fit the grid cells.</p>
+<p>Then we divide these regions into 2x2 grid of (roughly) equal subregions. Max-pool within each subregion to get the region features. So region features always the same size even if input regions have different sizes.</p>
+<p><strong>Problem</strong>:</p>
+<ul>
+<li>
+<p>Misaligned features due to snapping</p>
+</li>
+<li>
+<p>Can't backprop to box coordinates</p>
+</li>
+</ul>
+<h3 id="cropping-features-rol-align">Cropping Features: Rol Align</h3>
+<p>We still divide the projected proposal into equal-size subregion. But instead of snapping, we're going to sample a fixed number of regularly-spaced points inside each subregion. These points may not align with the grid. Here we use bilinear interpolation.</p>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/OD_5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/OD_5.png" /></a></p>
+<p>After sampling, max-pool in each subregion.</p>
+<p>Output features now aligned to input box! And we can backprop to box coordinates!</p>
+<h3 id="faster-r-cnn-learnable-region-proposals">Faster R-CNN: Learnable Region Proposals</h3>
+<p>We eliminate the heuristic algorithm called selective search and instead train a CNN to predict region proposals.</p>
+<p>Compared to Fast R-CNN, we insert <strong>Region Proposal Network(RPN)</strong> after feature map to predict porposals from features.</p>
+<p>Otherwise same as Fast R-CNN: Crop features for each proposal, classify each one.</p>
+<h3 id="region-proposal-networkrpn">Region Proposal Network(RPN)</h3>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/OD_3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/OD_3.png" /></a></p>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/OD_4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/OD_4.png" /></a></p>
+<p>Now in Faster R-CNN, we jointly train with 4 losses:</p>
+<ul>
+<li>RPN classification: anchor box is object / not an object</li>
+<li>RPN regression: predict transform from anchor box to proposal box</li>
+<li>Object classification: classify proposals as background / object class</li>
+<li>Object regression: predict transform from proposal box to object box</li>
+</ul>
+<p>Faster R-CNN is a <strong>Two-stage object detector</strong></p>
+<p><strong>First stage</strong>: Run once per image
+* Backbone network
+* Region proposal network</p>
+<p><strong>Second stage</strong>: Run once per region
+* Crop features: Rol pool / align
+* Predict object class
+* Prediction bbox offset</p>
+<h3 id="single-stage-object-detection">Single-Stage Object Detection</h3>
+<p>Just like the RPN in faster R-CNN except that rather than classfying the anchor boxes as object or not object, instead we'll just make a full classification decision for the category of the object right here.</p>
+<h2 id="semantic-segmentation">Semantic Segmentation</h2>
+<p>Label each pixel in the image with a category label. Don't differentiate instances, only care about pixels</p>
+<h3 id="sliding-window">Sliding Window</h3>
+<p>For every pixel, extract a patch centered it and input to CNN to get the label for that pixel.</p>
+<p><strong>Problem</strong>: Very inefficient! Not reusing shared features between overlapping patches.</p>
+<h3 id="fully-convolutional-network">Fully Convolutional Network</h3>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/SS_1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/SS_1.png" /></a></p>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/SS_2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/SS_2.png" /></a></p>
+<h3 id="in-network-upsampleing-unpooling">In-Network Upsampleing: "Unpooling"</h3>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/SS_3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../../../img/Learning/DLCV/SS_3.png" /></a></p>
+<p><strong>Bilinear Interpolation</strong>
+<a class="glightbox" href="../../../img/Learning/DLCV/SS_4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../../../img/Learning/DLCV/SS_4.png" /></a></p>
+<p><strong>Bicubic Interpolation</strong></p>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/SS_5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="alt text" src="../../../img/Learning/DLCV/SS_5.png" /></a></p>
+<p><strong>Max Unpooling</strong></p>
+<p>Pair each downsampling layer with an upsampling layer</p>
+<p>When Max Pooling, Remember which position had the max</p>
+<p>When Max Unpooling, Place the value into remembered positions, while filling other positions with 0.</p>
+<p><strong>Transposed Convolution</strong></p>
+<p>Convolution with stride &gt; 1 is "Learnable Downsampling"</p>
+<p>Can we use stride &lt; 1 for "Learnable Upsampling"?</p>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/SS_6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/SS_6.png" /></a></p>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/SS_7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/SS_7.png" /></a></p>
+<p><a class="glightbox" href="../../../img/Learning/DLCV/SS_8.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/DLCV/SS_8.png" /></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8v12Z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://b23.tv/HokHR7N" target="_blank" rel="noopener" title="b23.tv" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0s16.1 2.868 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0c8.8 0 16.1 2.868 21.9 8.603 5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1zm-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8 6.3-6.5 9.7-14.3 10.1-23.5V173.8zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5-9.6 0-17.5-3.2-23.6-9.5-6.1-6.3-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2 6.3-6.3 13.2-9.6 23.3-10 9.2.4 17 3.7 23.3 10zm191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.1 6.3-14 9.5-23.6 9.5-9.6 0-17.4-3.2-23.6-9.5-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2 6.3-6.3 14.1-9.6 23.3-10 9.2.4 17 3.7 23.3 10z"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tianliangtian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.b8dbb3d2.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.ad660dcc.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
