@@ -1,6 +1,7 @@
-# Train Neural Network
-## One time setup
-### Activation functions
+# Deep Learning for Computer Vision
+## Train Neural Network
+### One time setup
+#### Activation functions
 **Sigmoid**: $\sigma(x)=1/(1+e^{-x})$
 
 * Squashes numbers to range $[0,1]$
@@ -35,7 +36,7 @@
 
 ![](../../img/Learning/DLCV/TNN_1.png)
 
-### Data Preprocessing
+#### Data Preprocessing
 * Subtract the mean image(AlexNet)
 * Subtract per-channel mean(VGGNet)
 * Subtract per-channel mean and divide by per-channel std(ResNet)
@@ -43,7 +44,7 @@
     * PCA: data has diagonal covariance matrix
     * whitening: covariance matrix is the identity matrix
 
-### Weight Initialization
+#### Weight Initialization
 **Q**: What happens if we initialize all $W=0, b=0$?
 
 **A**: All outputs are zero and weights will never update.
@@ -86,7 +87,7 @@ If we initialize with MSRA: then $Var(F(x))=Var(x)$. But then $Var(F(x)+x)>Var(x
 
 * Solution: Initialize first conv with MSRA, initialize second conv to zero. Then $Var(x+F(x))=Var(x)$
 
-### Regularization
+#### Regularization
 In common use: L2 regularization, L1 regularization ...
 
 **Dropout**
@@ -102,7 +103,7 @@ Another interpretation: Dropout is training a large ensemble of models (that sha
 **Inverted Dropout**
 Drop and scale layer during training, 
 
-### Data Augmentation
+#### Data Augmentation
 Tranform input training image before feeding it into the network. Horizontal flips is one example. This augments the amount of data and keep their label unchanged.
 
 **Random Crops and Scales**
@@ -118,8 +119,8 @@ Tranform input training image before feeding it into the network. Horizontal fli
     * For each size, use 10 224 x 224 crops: 4 corners + center, + flips
 
 
-## Training Dynamics
-### Learning rate schedules
+### Training Dynamics
+#### Learning rate schedules
 ![](../../img/Learning/DLCV/TNN_5.png)
 
 We can Start with large learning rate and decay over time.
@@ -144,7 +145,7 @@ E.g. for ResNets, multiply LR by 0.1 after epochs 30, 60, and 90.
 
 * Early Stopping: Stop training the model when accuracy on the validation set decreases. Or train for a long time, but always keep track of the model snapshot that worked best on val. Always a good idea to do this!
 
-### hyperparameter optimization
+#### hyperparameter optimization
 **Grid Search**
 
 Choose several values for each hyperparameter(Often space choices log-linearly).
@@ -191,14 +192,14 @@ Use the architecture from the previous step, use all training data, turn on smal
 
 **Step 7**: GOTO step 5
 
-## After training
-### Model ensembles
+### After training
+#### Model ensembles
 
 1. Train multiple independent models
 
 2. At test time average their results
 
-### Transfer learning
+#### Transfer learning
 1. Train on Imagenet
 
 2. Use CNN as a feature extractor. Remove those fully connected layers in the last and freeze other layers.
@@ -214,7 +215,7 @@ Reinitialize those last layer to new layers and continue training CNN for new ta
 - Lower the learning rate: use ~1/10 of LR used in original training
 
 - Sometimes freeze lower layers to save computation
-### Large-batch training
+#### Large-batch training
 How to scale up on data-parallel training on K GPUs?
 
 **Goal:** Train for same number of epochs, but use larger minibatches. We want model to train K times faster

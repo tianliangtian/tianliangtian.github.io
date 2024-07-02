@@ -1,20 +1,22 @@
-# Semantic Segmentation
+# Deep Learning for Computer Vision
+
+## Semantic Segmentation
 
 Label each pixel in the image with a category label. Don't differentiate instances, only care about pixels
 
-## Sliding Window
+### Sliding Window
 
 For every pixel, extract a patch centered it and input to CNN to get the label for that pixel.
 
 **Problem**: Very inefficient! Not reusing shared features between overlapping patches.
 
-## Fully Convolutional Network
+### Fully Convolutional Network
 
 ![](../../img/Learning/DLCV/SS_1.png)
 
 ![](../../img/Learning/DLCV/SS_2.png)
 
-## In-Network Upsampleing: "Unpooling"
+### In-Network Upsampleing: "Unpooling"
 
 ![alt text](../../img/Learning/DLCV/SS_3.png)
 

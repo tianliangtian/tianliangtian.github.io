@@ -1,4 +1,5 @@
-# Object Detection
+# Deep Learning for Computer Vision
+## Object Detection
 **Input**: Single RGB Image
 
 **Output**: A set of detected objects;
@@ -14,27 +15,27 @@ For each object predict:
 - Multiple types of output: Need to predict "what" (category label) as well as "where" (bounding box)
 - Large images: Classification works at 224x224; need higher resolution for detection, often ~800x600
 
-## Detecting a single object
+### Detecting a single object
 
 ![](../../img/Learning/DLCV/OD_1.png)
 
-## Detecting Multiple Objects
+### Detecting Multiple Objects
 
 Need different numbers of outputs per image
 
-### Sliding Wingdow 
+#### Sliding Wingdow 
 
 Apply a CNN to many different crops of the image, CNN classifies each crop as object or background.
 
 **Question**: There are many possible boxes in an image of size $H\times W$. Total possible boxes: $\frac{H(H+1)}{2}\frac{W(W+1)}{2}$
 
-### Region Proposals
+#### Region Proposals
 
 * Find a small set of boxes that are likely to cover all objects
 * Often based on heuristics: e.g. look for "blob-like" image regions
 * Relatively fast to run; e.g. Selective Search gives 2000 region proposals in a few seconds on CPU
 
-### R-CNN: Region-Based CNN
+#### R-CNN: Region-Based CNN
 
 We can use region proposal method like selective search to get some region proposals in the image with different sizes and different aspect ratios.
 
@@ -61,7 +62,7 @@ The way we parameterize the transformation is invariant to the location and the 
 * Use scores to select a subset of region proposals to output (Many choices here: threshold on background, or per-category? Or take top K proposals per image?)
 * Compare with ground-truth boxes
 
-## Comparing Boxes: Intersection over Union(IoU)
+### Comparing Boxes: Intersection over Union(IoU)
 
 How can we compare our prediction to the ground-truth box?
 
@@ -72,7 +73,7 @@ IoU > 0.5 is "decent".
 IoU > 0.7 is "pretty good".
 IoU > 0.9 is "almost perfect".
 
-## Overlapping Boxes: Non-Max Supperssion(NMS)
+### Overlapping Boxes: Non-Max Supperssion(NMS)
 
 **Problem**: Object detectors often output many overlapping detections, which are detecting the same object but in different boxes.
 
@@ -86,7 +87,7 @@ IoU > 0.9 is "almost perfect".
 
 **Problem**: NMS may eliminate "good" boxes when objects are highly overlapping ... no good solution 
 
-## Evaluating Object Detectors: Mean Average Precision(mAP)
+### Evaluating Object Detectors: Mean Average Precision(mAP)
 
 * Run object detector on all test images (with NMS)
 
@@ -108,11 +109,11 @@ IoU > 0.9 is "almost perfect".
 
 > How to get AP = 1.0: Hit all GT boxes with loU > 0.5, and have no "false positive" detections ranked above any "true positives"
 
-## Fast R-CNN
+### Fast R-CNN
 
 ![](../../img/Learning/DLCV/OD_2.png)
 
-## Cropping Features: Rol Pool
+### Cropping Features: Rol Pool
 
 First, we project proposal onto features. The projected region may not align with the grid cells so we have to "snap" them to fit the grid cells.
 
@@ -124,7 +125,7 @@ Then we divide these regions into 2x2 grid of (roughly) equal subregions. Max-po
 
 * Can't backprop to box coordinates
 
-## Cropping Features: Rol Align
+### Cropping Features: Rol Align
 We still divide the projected proposal into equal-size subregion. But instead of snapping, we're going to sample a fixed number of regularly-spaced points inside each subregion. These points may not align with the grid. Here we use bilinear interpolation.
 
 ![](../../img/Learning/DLCV/OD_5.png)
@@ -132,7 +133,7 @@ We still divide the projected proposal into equal-size subregion. But instead of
 After sampling, max-pool in each subregion.
 
 Output features now aligned to input box! And we can backprop to box coordinates!
-## Faster R-CNN: Learnable Region Proposals
+### Faster R-CNN: Learnable Region Proposals
 
 We eliminate the heuristic algorithm called selective search and instead train a CNN to predict region proposals.
 
@@ -140,7 +141,7 @@ Compared to Fast R-CNN, we insert **Region Proposal Network(RPN)** after feature
 
 Otherwise same as Fast R-CNN: Crop features for each proposal, classify each one.
 
-## Region Proposal Network(RPN)
+### Region Proposal Network(RPN)
 
 ![](../../img/Learning/DLCV/OD_3.png)
 
@@ -164,6 +165,6 @@ Faster R-CNN is a **Two-stage object detector**
 * Predict object class
 * Prediction bbox offset
 
-## Single-Stage Object Detection
+### Single-Stage Object Detection
 
 Just like the RPN in faster R-CNN except that rather than classfying the anchor boxes as object or not object, instead we'll just make a full classification decision for the category of the object right here.

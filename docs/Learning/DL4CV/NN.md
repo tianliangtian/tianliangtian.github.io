@@ -1,4 +1,5 @@
-# Optimization
+# Deep Learning for Computer Vision
+## Optimization
 
 * goal: find $w^{*}=argmin_{w}L(w)$
 
@@ -22,11 +23,11 @@ How to evaluate gradient?
 
 * In practice, always use analytic gradient, but check implementation with numerical gradienet. This is called a ***gradient check***
 
-## Gradient Descent
+### Gradient Descent
 
 ![](../../img/Learning/DLCV/Op_5.png)
 
-## Stochastic Gradient Descend
+### Stochastic Gradient Descend
 
 * We don't use the full training data but some small subsamples of it  to approximate loss function and gradient, for computing on the whole set is expansive. These small subsamples are called ***minibatches***
 
@@ -52,21 +53,21 @@ How to evaluate gradient?
 
 ![](../../img/Learning/DLCV/Op_20.png)
 
-# Neural Network
+## Neural Network
 To solve the limitation of linear classifier, we can apply feature transformation.
 
 ![](../../img/Learning/DLCV/NN_c1.png)
 
-## Activation function
+### Activation function
 
 ![](../../img/Learning/DLCV/NN_4.png)
 
 ![](../../img/Learning/DLCV/NN_5.png)
 
-## Neuron
+### Neuron
 ![](../../img/Learning/DLCV/NN_6.png)
 
-## Space Warping
+### Space Warping
 
 ![](../../img/Learning/DLCV/NN_SW.png)
 
@@ -74,38 +75,38 @@ The more the layer, the more complex the model is. Try to adjust regularization 
 
 ![](../../img/Learning/DLCV/NN_size_reg.png)
 
-## Universal Approximation
+### Universal Approximation
 A two layer neural network can approximate any function. But it may need a large size to get high fidelity.
 
 ![](../../img/Learning/DLCV/NN_UA.png)
 
 
-## Convex Functions
+### Convex Functions
 Taking any two points in the input, the secant line will always lie above the function between that two points.
 
 ![](../../img/Learning/DLCV/NN_convex.png)
 
 However, most neural networks need **nonconvex optimization**
 
-# Backpropagation
+## Backpropagation
 
 ![](../../img/Learning/DLCV/BP_c1.png)
 
-## Computation Graph
+### Computation Graph
 
 ![](../../img/Learning/DLCV/BP_c2.png)
 
-## Backprop Implementation
+### Backprop Implementation
 
 ![](../../img/Learning/DLCV/BP_c3.png)
 
 * You can define your own node object in computation graph using pytorch API
 
-## Backprop with Vectors
+### Backprop with Vectors
 
 ![](../../img/Learning/DLCV/BP_c4.png)
 
-## Backprop with Matrics
+### Backprop with Matrics
 
 * $dL/dx$ must have the same shape as $x$ since loss $L$ is a scalar
 
@@ -118,7 +119,7 @@ Assume we want to derive $dL/dx_{i,j}$
 
 ![](../../img/Learning/DLCV/BP_c6.png)
 
-## High-Order Derivatives
+### High-Order Derivatives
 $\frac{\partial ^{2}L}{\partial x_{0}^{2}}$ is $D_{0} \times D_{0}$ dimension for it's the derivative of $\frac{\partial L}{\partial x_{0}}$, which is a $D_{0}$ dimension vector.
 
 ![](../../img/Learning/DLCV/BP_c7.png)

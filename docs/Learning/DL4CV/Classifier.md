@@ -1,4 +1,5 @@
-# Image Classifier - Nearest Neighbor Classifier
+# Deep Learning for Computer Vision
+## Image Classifier - Nearest Neighbor Classifier
 Compare a new image with each image in training set using some similarity function. Assign the new image a label as same as the most similar image in training set.
 
 ![](../../img/Learning/DLCV/NNC_c1.png)
@@ -18,7 +19,7 @@ If we want to have a good prediction on a new image, we need a large amount of e
 
 ![](../../img/Learning/DLCV/NNC_c4.png)
 
-# Linear Classifier
+## Linear Classifier
 
 ![](../../img/Learning/DLCV/LC_c1.png)
 

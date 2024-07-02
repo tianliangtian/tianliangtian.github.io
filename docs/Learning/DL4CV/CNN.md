@@ -1,4 +1,5 @@
-# Convolutional Network
+# Deep Learning for Computer Vision
+## Convolutional Network
 * **Problem**: So far our classifiers don't respect the spatial structure of images!
 
 * **Solution**: Define new computational nodes that operate on images!
@@ -6,7 +7,7 @@
 
 ![](../img/Learning/DLCV/CN_1.png)
 
-## Convolutional Layer
+### Convolutional Layer
 ![](../img/Learning/DLCV/CN_c1.png)
 
 * There can be many filters generating many activation maps.
@@ -21,16 +22,16 @@
 
 ![](../img/Learning/DLCV/CN_c2.png)
 
-## Pooling Layer
+### Pooling Layer
 * Compute one unique number to represent the region to downsampling.
 
 ![](../img/Learning/DLCV/CN_c3.png)
 
-## Convolutional Network Architecture
+### Convolutional Network Architecture
 
 ![](../img/Learning/DLCV/CN_c4.png)
 
-## Normalization
+### Normalization
 
 * **Problem**: Deep network is hard to train
 * Normalization is introduced to accelerate optimization.
@@ -48,8 +49,8 @@
 
 ![](../img/Learning/DLCV/CN_c7.png)
 
-# CNN Architecture
-## AlexNet
+## CNN Architecture
+### AlexNet
 
 ![](../img/Learning/DLCV/CA_c1.png)
 
@@ -72,7 +73,7 @@
 
 ![](../img/Learning/DLCV/CA_c2.png)
 
-## VGG
+### VGG
 
 ![](../img/Learning/DLCV/CA_c3.png)
 
@@ -81,17 +82,17 @@
 
 ![](../img/Learning/DLCV/CA_c4.png)
 
-## GoogLeNet
+### GoogLeNet
 * Many innovation for efficiency: reduce parameter count, memory usage, and computation.
 
 ![](../img/Learning/DLCV/CA_c5.png)
 
-## Residual Network
+### Residual Network
 
 When training deeper model, we found that deeper model does worse than shallow model. The initial guess is that Deep model is **overfitting** since it is much bigger than the other model. 
 
 ![](../img/Learning/DLCV/CA_c6.png)
 
-## Other
+### Other
 
 ![](../img/Learning/DLCV/CA_c7.png)
