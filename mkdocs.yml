@@ -48,6 +48,10 @@ nav:
     - Computer Vision:
       - ML4360 - Computer vision: Learning/CV/ML.md
       - EECS 498.008 / 598.008 - DL4CV: Learning/CV/DL4CV.md
+    - DL4CV:
+      - Classifier: Learning/DL4CV/Classifier.md
+      - Neural Network: Learning/DL4CV/NN.md
+      - CNN: Learning/DL4CV/CNN.md
 plugins:
   - search
   - tags
