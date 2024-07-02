@@ -52,6 +52,9 @@ nav:
       - Classifier: Learning/DL4CV/Classifier.md
       - Neural Network: Learning/DL4CV/NN.md
       - CNN: Learning/DL4CV/CNN.md
+      - Training: Learning/DL4CV/Training.md
+      - Object Detection: Learning/DL4CV/OD.md
+      - Semantic Segmentation: Learning/DL4CV/SS.md
 plugins:
   - search
   - tags
