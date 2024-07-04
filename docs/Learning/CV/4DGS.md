@@ -85,7 +85,7 @@ In $d$ dimensional case, the level sets form geometrical structures known as **e
 
 #### Closure properties
 
-$\textbf {Theorem}\text{: Suppose that }y\sim\mathcal{N}(\mu,\Sigma)\text{ and }z\sim\mathcal{N}(\mu',\Sigma')\text{ are independent Gaussian distributed random variables, where }\mu,\mu'\in R^{d}\text{ and }\Sigma,\Sigma'\in S^{d}_{++}\text{. Then, their sum is also Gaussian:}$
+**Theorem:** Suppose that $y\sim\mathcal{N}(\mu,\Sigma)$ and $z\sim\mathcal{N}(\mu',\Sigma')$ are independent Gaussian distributed random variables, where $\mu,\mu'\in R^{d}$ and $\Sigma,\Sigma'\in S^{d}_{++}$. Then, their sum is also Gaussian:
 
 $$
 y+z\sim \mathcal{N}(\mu+\mu',\Sigma+\Sigma')\\
@@ -129,21 +129,21 @@ $$
 
 $$
 \begin{bmatrix}
-x_{A} \\
-x_{B}
+x_{A}\\
+x_{B}\\
 \end{bmatrix}
 \sim\mathcal{N}
-\left(
+\begin{pmatrix}
 \begin{bmatrix}
-x_{A} \\
-x_{B}
+x_{A}\\
+x_{B}\\
 \end{bmatrix}
 ,
 \begin{bmatrix}
-\Sigma_{AA} & \Sigma_{AB}\\
-\Sigma_{BA} & \Sigma_{BB}
+\Sigma_{AA}&\Sigma_{AB}\\
+\Sigma_{BA}&\Sigma_{BB}\\
 \end{bmatrix}
-\right)
+\end{pmatrix}
 $$
 
 where $x_{A}\in R^{n},x_{B}\in R^{d}$ and the dimensions of the mean vectors and covariance matrix subblocks are chosen to match $x_{A}$ and $x_{B}$. Then, the conditional densities are Gaussian:
