@@ -16,14 +16,20 @@ $$
 
     A symmetric matrix $A\in S^{n}$ is **positive semidefinite** (PSD) if for all vectors $x^{T}Ax\geq 0$
  
-$\text{\textit{proof}: For any vector }z\in R^{n} \text{, observe that}$
+$\textit{proof}\text{: For any vector }z\in R^{n} \text{, observe that}$
 
 $$
 z^{T}\Sigma z= \sum_{i=1}^{n}\sum_{j=1}^{n}\Sigma_{ij}z_{i}z_{j}\\
 =E[\sum_{i=1}^{n}\sum_{j=1}^{n}(X_{i}-E[X_{i}])(X_{j}-E[X_{j}])z_{i}z_{j}]
 $$
 
-$\text{Observe that the quantity inside the brackets is of the form} \sum_{i=1}^{n}\sum_{j=1}^{n}x_{i}x_{j}z_{i}z_{j}=(x^{T}z)^{2}\geq 0\text{, which complete the proof}$
+$\text{Observe that the quantity inside the brackets is of the form}$ 
+
+$$
+\sum_{i=1}^{n}\sum_{j=1}^{n}x_{i}x_{j}z_{i}z_{j}=(x^{T}z)^{2}\geq 0\\
+$$
+
+$\text{, which complete the proof}$
 
 ### Gaussian Distribution
 
@@ -54,8 +60,10 @@ $$
 Consider the case where $d=2$ and $\Sigma$ is diagonal. For some constant $c\in R$ and all $x1,x2\in R$, we have
 
 $$
-c=\frac{1}{2\pi \sigma_{1}\sigma_{2}}\exp{(-\frac{1}{2\sigma_{1}^{2}}(x_{1}-\mu_{1})^{2}-\frac{1}{2\sigma_{2}^{2}}(x_{2}-\mu_{2})^{2})}\\
-1=\frac{(x_{1}-\mu_{1})^{2}}{2\sigma_{1}^{2}\log{\frac{1}{2\pi c\sigma_{1}\sigma_{2}}}}+\frac{(x_{2}-\mu_{2})^{2}}{2\sigma_{2}^{2}\log{\frac{1}{2\pi c\sigma_{1}\sigma_{2}}}}
+\begin{aligned}
+c&=\frac{1}{2\pi \sigma_{1}\sigma_{2}}\exp{(-\frac{1}{2\sigma_{1}^{2}}(x_{1}-\mu_{1})^{2}-\frac{1}{2\sigma_{2}^{2}}(x_{2}-\mu_{2})^{2})} \\
+1&=\frac{(x_{1}-\mu_{1})^{2}}{2\sigma_{1}^{2}\log{\frac{1}{2\pi c\sigma_{1}\sigma_{2}}}}+\frac{(x_{2}-\mu_{2})^{2}}{2\sigma_{2}^{2}\log{\frac{1}{2\pi c\sigma_{1}\sigma_{2}}}}
+\end{aligned}
 $$
 
 Defining
