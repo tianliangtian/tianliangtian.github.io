@@ -85,15 +85,14 @@ In $d$ dimensional case, the level sets form geometrical structures known as **e
 
 #### Closure properties
 
-${\textbf Theorem}\text{: Suppose that }y\sim\mathcal{N}(\mu,\Sigma)\text{ and }z\sim\mathcal{N}(\mu',\Sigma')\text{ are independent Gaussian distributed random variables, where }\mu,\mu'\in R^{d}\text{ and }\Sigma,\Sigma'\in S^{d}_{++}\text{. Then, their sum is also Gaussian:}$
+$\textbf {Theorem}\text{: Suppose that }y\sim\mathcal{N}(\mu,\Sigma)\text{ and }z\sim\mathcal{N}(\mu',\Sigma')\text{ are independent Gaussian distributed random variables, where }\mu,\mu'\in R^{d}\text{ and }\Sigma,\Sigma'\in S^{d}_{++}\text{. Then, their sum is also Gaussian:}$
 
 $$
 y+z\sim \mathcal{N}(\mu+\mu',\Sigma+\Sigma')\\
 $$
 
-$
-\text{{\bf Theorem: } Suppose that}
-$
+
+**Theorem**: Suppose that
 
 $$
 \begin{bmatrix}
@@ -114,21 +113,19 @@ x_{B}
 \right)
 $$
 
-$
-\text{where }x_{A}\in R^{n},x_{B}\in R^{d}\text{ and the dimensions of the mean vectors and covariance matrix subblocks are chosen to match} x_{A}\text{ and }x_{B}\text{. Then, the marginal densities are Gaussian:}
-$
+where $x_{A}\in R^{n},x_{B}\in R^{d}$ and the dimensions of the mean vectors and covariance matrix subblocks are chosen to match $x_{A}$ and $x_{B}$. Then, the marginal densities are Gaussian:
 
 $$
-p(x_A)=\int_{x_{B}\in R^{d}}p(x_{A},x_{B};\mu,\Sigma)dx_{B}\\
-p(x_B)=\int_{x_{A}\in R^{n}}p(x_{A},x_{B};\mu,\Sigma)dx_{A}\\
+\begin{aligned}
+p(x_A)&=\int_{x_{B}\in R^{d}}p(x_{A},x_{B};\mu,\Sigma)dx_{B}\\
+p(x_B)&=\int_{x_{A}\in R^{n}}p(x_{A},x_{B};\mu,\Sigma)dx_{A}\\
 \\
-x_{A}\sim \mathcal{N}(\mu_{A},\Sigma_{AA})\\
-x_{B}\sim \mathcal{N}(\mu_{B},\Sigma_{BB})
+x_{A}&\sim \mathcal{N}(\mu_{A},\Sigma_{AA})\\
+x_{B}&\sim \mathcal{N}(\mu_{B},\Sigma_{BB})
+\end{aligned}
 $$
 
-$
-\text{{\bf Theorem: } Suppose that}
-$
+**Theorem**: Suppose that
 
 $$
 \begin{bmatrix}
@@ -149,14 +146,14 @@ x_{B}
 \right)
 $$
 
-$
-\text{where }x_{A}\in R^{n},x_{B}\in R^{d}\text{ and the dimensions of the mean vectors and covariance matrix subblocks are chosen to match} x_{A}\text{ and }x_{B}\text{. Then, the conditional densities are Gaussian:}
-$
+where $x_{A}\in R^{n},x_{B}\in R^{d}$ and the dimensions of the mean vectors and covariance matrix subblocks are chosen to match $x_{A}$ and $x_{B}$. Then, the conditional densities are Gaussian:
 
 $$
-p(x_{A}|x_{B})=\frac{p(x_{A},x_{B};\mu,\Sigma)}{\int_{x_{A}\in R^{n}}p(x_{A},x_{B};\mu,\Sigma)dx_{A}}\\
-p(x_B|x_{A})=\frac{p(x_{A},x_{B};\mu,\Sigma)}{\int_{x_{B}\in R^{d}}p(x_{A},x_{B};\mu,\Sigma)dx_{B}}\\
+\begin{aligned}
+p(x_{A}|x_{B})&=\frac{p(x_{A},x_{B};\mu,\Sigma)}{\int_{x_{A}\in R^{n}}p(x_{A},x_{B};\mu,\Sigma)dx_{A}}\\
+p(x_B|x_{A})&=\frac{p(x_{A},x_{B};\mu,\Sigma)}{\int_{x_{B}\in R^{d}}p(x_{A},x_{B};\mu,\Sigma)dx_{B}}\\
 \\
-x_{A}|x_{B}\sim \mathcal{N}(\mu_{A}+\Sigma_{AB}\Sigma_{BB}^{-1}(x_{B}-\mu_{B}),\Sigma_{AA}-\Sigma_{AB}\Sigma_{BB}^{-1}\Sigma_{BA})\\
-x_{B}|x_{A}\sim \mathcal{N}(\mu_{B}+\Sigma_{BA}\Sigma_{AA}^{-1}(x_{A}-\mu_{A}),\Sigma_{BB}-\Sigma_{BA}\Sigma_{AA}^{-1}\Sigma_{AB})
+x_{A}|x_{B}&\sim \mathcal{N}(\mu_{A}+\Sigma_{AB}\Sigma_{BB}^{-1}(x_{B}-\mu_{B}),\Sigma_{AA}-\Sigma_{AB}\Sigma_{BB}^{-1}\Sigma_{BA})\\
+x_{B}|x_{A}&\sim \mathcal{N}(\mu_{B}+\Sigma_{BA}\Sigma_{AA}^{-1}(x_{A}-\mu_{A}),\Sigma_{BB}-\Sigma_{BA}\Sigma_{AA}^{-1}\Sigma_{AB})
+\end{aligned}
 $$
