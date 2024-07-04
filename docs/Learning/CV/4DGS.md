@@ -10,7 +10,7 @@ $$
 \Sigma=E[(X-E[X])(X-E[X])^{T}] 
 $$
 
-**Proposition:** Suppose that $\Sigma$ is the covariance matrix corresponding to some random vector $X$. Then $\Sigma $ is symmetric positive semidefinite
+**Proposition:** Suppose that $\Sigma$ is the covariance matrix corresponding to some random vector $X$. Then $\Sigma$ is symmetric positive semidefinite
 
 !!! note "positive semidefinite"
 
