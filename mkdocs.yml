@@ -47,6 +47,7 @@ nav:
       - Neural Network and Deep Learning: Learning/DeepLearning/NNandDL.md
     - Computer Vision:
       - ML4360 - Computer vision: Learning/CV/ML.md
+      - 4DGS: Learning/CV/4DGS.md
     - DL4CV:
       - Classifier: Learning/DL4CV/Classifier.md
       - Neural Network: Learning/DL4CV/NN.md
