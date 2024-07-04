@@ -85,7 +85,7 @@ In $d$ dimensional case, the level sets form geometrical structures known as **e
 
 #### Closure properties
 
-**Theorem:** Suppose that $y\sim\mathcal{N}(\mu,\Sigma)$ and $z\sim\mathcal{N}(\mu',\Sigma')$ are independent Gaussian distributed random variables, where $\mu,\mu'\in R^{d}$ and $\Sigma,\Sigma'\in S^{d}_{++}$. Then, their sum is also Gaussian:
+$\textbf{Theorem:}\text{ Suppose that }y\sim\mathcal{N}(\mu,\Sigma)\text{ and }z\sim\mathcal{N}(\mu',\Sigma')\text{ are independent Gaussian distributed random variables, where }\mu,\mu'\in R^{d}\text{ and }\Sigma,\Sigma'\in S^{d}_{++}\text{. Then, their sum is also Gaussian:}$
 
 $$
 y+z\sim \mathcal{N}(\mu+\mu',\Sigma+\Sigma')\\
@@ -153,7 +153,7 @@ $$
 p(x_{A}|x_{B})&=\frac{p(x_{A},x_{B};\mu,\Sigma)}{\int_{x_{A}\in R^{n}}p(x_{A},x_{B};\mu,\Sigma)dx_{A}}\\
 p(x_B|x_{A})&=\frac{p(x_{A},x_{B};\mu,\Sigma)}{\int_{x_{B}\in R^{d}}p(x_{A},x_{B};\mu,\Sigma)dx_{B}}\\
 \\
-x_{A}|x_{B}&\sim \mathcal{N}(\mu_{A}+\Sigma_{AB}\Sigma_{BB}^{-1}(x_{B}-\mu_{B}),\Sigma_{AA}-\Sigma_{AB}\Sigma_{BB}^{-1}\Sigma_{BA})\\
-x_{B}|x_{A}&\sim \mathcal{N}(\mu_{B}+\Sigma_{BA}\Sigma_{AA}^{-1}(x_{A}-\mu_{A}),\Sigma_{BB}-\Sigma_{BA}\Sigma_{AA}^{-1}\Sigma_{AB})
+x_{A}|x_{B}\sim \mathcal{N}(\mu_{A}+\Sigma_{AB}&\Sigma_{BB}^{-1}(x_{B}-\mu_{B}),\Sigma_{AA}-\Sigma_{AB}\Sigma_{BB}^{-1}\Sigma_{BA})\\
+x_{B}|x_{A}\sim \mathcal{N}(\mu_{B}+\Sigma_{BA}&\Sigma_{AA}^{-1}(x_{A}-\mu_{A}),\Sigma_{BB}-\Sigma_{BA}\Sigma_{AA}^{-1}\Sigma_{AB})
 \end{aligned}
 $$
