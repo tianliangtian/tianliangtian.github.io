@@ -85,10 +85,10 @@ In $d$ dimensional case, the level sets form geometrical structures known as **e
 
 #### Closure properties
 
-$\text{{\bf Theorem}: Suppose that }y\sim\mathcal{N}(\mu,\Sigma)\text{ and }z\sim\mathcal{N}(\mu',\Sigma')\text{ are independent Gaussian distributed random variables, where }\mu,\mu'\in R^{d}\text{ and }\Sigma,\Sigma'\in S^{d}_{++}\text{. Then, their sum is also Gaussian:}$
+${\textbf Theorem}\text{: Suppose that }y\sim\mathcal{N}(\mu,\Sigma)\text{ and }z\sim\mathcal{N}(\mu',\Sigma')\text{ are independent Gaussian distributed random variables, where }\mu,\mu'\in R^{d}\text{ and }\Sigma,\Sigma'\in S^{d}_{++}\text{. Then, their sum is also Gaussian:}$
 
 $$
-y+z\sim \mathcal{N}(\mu+\mu',\Sigma+\Sigma')
+y+z\sim \mathcal{N}(\mu+\mu',\Sigma+\Sigma')\\
 $$
 
 $
