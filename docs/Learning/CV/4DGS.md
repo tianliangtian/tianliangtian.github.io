@@ -179,6 +179,20 @@ $$
 \Sigma=RSS^{T}T^{T}
 $$
 
+When optimization $\Sigma$, the gradient descent may not preserve the property of positive definite. We can equivalently optimize $R$ and $S$ separately, using a $3D$ vecter $s$ for scaling and a quaternion $q$ to represent rotation. Making sure to normalize $q$ to obtain a valid unit quaternion.
+
+$$
+\mathbf{q}=q_r+q_i\cdot i+q_j\cdot j+q_k\cdot k\\
+~\\
+\mathbf{R(q)}=2
+\begin{pmatrix}
+\frac{1}{2}-(q_{j}^{2}+q_{k}^{2})&(q_{i}q_{j}-q_{r}q_{k})&(q_{i}q_{k}+q_{r}q_{j})\\
+(q_{i}q_{j}+q_{r}q_{k})&\frac{1}{2}-(q_{i}^{2}+q_{k}^{2})&(q_{j}q_{k}-q_{r}q_{i})\\
+(q_{i}q_{k}-q_{r}q_{j})&(q_{j}q_{k}+q_{r}q_{i})&\frac{1}{2}-(q_{i}^{2}+q_{j}^{2})
+\end{pmatrix}
+$$
+
+
 ## Volumn Rendering
 
 **backward mapping algorithm:** shoot rays through pixels on the image plane into the volume data
@@ -230,7 +244,7 @@ $$
 q_{j}(\hat{\mathbf{x}})=\int_{\mathbb{R}}r_{k}(\hat{\mathbf{x}},x_{2})dx_{2}
 $$
 
-### The Viewing Transformation
+## The Viewing Transformation
 
 Denote the Gaussian reconstruction kernels in *object space* by $r_{k}''(\mathbf{t})=\mathcal{G}_{\mathbf{V''}}(\mathbf{t}-\mathbf{t_k})$, where $\mathbf{t_k}$ are the voxel positions of center of kernel.
 
@@ -244,7 +258,7 @@ $$
 
 where $\mathbf{u_k}=\varphi(\mathbf{t_k})$ is the center of the Gaussian in camera coordinates and $\mathbf{V'}_{k}=\mathbf{W}\mathbf{V''}_{k}\mathbf{W}^{T}$ is the variance matrix in camera coordinates.
 
-### The Projective Transformation
+## The Projective Transformation
 
 In camera space, The ray intersecting the center of projection and the point $(x_0, x_1)$ on the projection plane is called a viewing ray.
 
@@ -263,8 +277,8 @@ x_2\\
 u_{0}/u_{2}\\
 u_{1}/u_{2}\\
 \Vert(u_{0},u_{1},u_{2})^{T}\Vert\\
-\end{pmatrix}\\
-~\\
+\end{pmatrix}\\\\
+~\\\\
 \begin{pmatrix}
 u_0\\
 u_1\\
@@ -283,7 +297,7 @@ where $l=\Vert(x_{0},x_{1},1)^{T}\Vert$.
 Unfortunately, these mappings are not affine. The Gaussian after the transformation may not still Gaussian. To solve this problem, we introduce the *local affine approximation* $m_{uk}$ of the projective transformation. It is defined by the first two terms of the Taylor expansion of $\mathbf{m}$ at the point $\mathbf{u}_k$:
 
 $$
-\mathbf{m_{u_k}(u)=x_k+J_{u_k}\cdot (u-u_k)}\\
+\mathbf{m_{u_k}(u)=x_k+J_{u_k}\cdot (u-u_k)}\\\\
 ~\\
 \mathbf{J_{u_k}}={\frac{\partial \mathbf{m}}{\partial \mathbf{u}}}(\mathbf{u}_k)
 $$
@@ -307,3 +321,28 @@ $$
 &=\mathbf{JW}\mathbf{V''}_{k}\mathbf{W}^{T}\mathbf{J}^{T}
 \end{aligned}
 $$
+
+## Spherical Harmonic Functions
+
+Spherical harmonic functions are a series of orthogonal functions defined on the surface of a sphere, which can be use to approximate function in spherical coordinate:
+
+$$
+f(t)\approx \sum_{l}\sum_{m=-l}^{l}c_{l}^{m}Y_{l}^{m}(\theta,\phi)
+$$
+
+* $l$: the degree (non-negative integer)
+
+* $m$: the order (integer such that $−l\leq m\leq l$)
+
+* $c_{l}^{m}$: SH coefficients
+
+$$
+c_{l}^{m}=\int_{\Omega}f(w)Y_{l}^{m}(w)dw
+$$
+
+* $Y_{l}^{m}$: SH functions, where $P_{l}^{m}$ are the associated Legendre polynomials, $\theta$ is the colatitude(0 to $\pi$), and $\phi$ is the longitude(0 to $2\pi$)
+
+$$
+Y_{l}^{m}=\sqrt{\frac{(2l+1)(l-m)!}{4\pi (l+m)!}}P_{l}^{m}(cos\theta)e^{im\phi}
+$$
+
