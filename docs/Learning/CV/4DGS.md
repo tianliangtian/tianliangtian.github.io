@@ -277,8 +277,7 @@ x_2\\
 u_{0}/u_{2}\\
 u_{1}/u_{2}\\
 \Vert(u_{0},u_{1},u_{2})^{T}\Vert\\
-\end{pmatrix}\\\\
-~\\\\
+\end{pmatrix}\\
 \begin{pmatrix}
 u_0\\
 u_1\\
@@ -297,8 +296,7 @@ where $l=\Vert(x_{0},x_{1},1)^{T}\Vert$.
 Unfortunately, these mappings are not affine. The Gaussian after the transformation may not still Gaussian. To solve this problem, we introduce the *local affine approximation* $m_{uk}$ of the projective transformation. It is defined by the first two terms of the Taylor expansion of $\mathbf{m}$ at the point $\mathbf{u}_k$:
 
 $$
-\mathbf{m_{u_k}(u)=x_k+J_{u_k}\cdot (u-u_k)}\\\\
-~\\
+\mathbf{m_{u_k}(u)=x_k+J_{u_k}\cdot (u-u_k)}\\
 \mathbf{J_{u_k}}={\frac{\partial \mathbf{m}}{\partial \mathbf{u}}}(\mathbf{u}_k)
 $$
 
@@ -324,7 +322,7 @@ $$
 
 ## Spherical Harmonic Functions
 
-Spherical harmonic functions are a series of orthogonal functions defined on the surface of a sphere, which can be use to approximate function in spherical coordinate:
+Spherical harmonics form an orthogonal basis for functions defined over the sphere, with low degree harmonics encoding smooth (more Lambertian) changes in color and higher degree harmonics encoding higher-frequency (more specular) effects.
 
 $$
 f(t)\approx \sum_{l}\sum_{m=-l}^{l}c_{l}^{m}Y_{l}^{m}(\theta,\phi)
@@ -346,3 +344,54 @@ $$
 Y_{l}^{m}=\sqrt{\frac{(2l+1)(l-m)!}{4\pi (l+m)!}}P_{l}^{m}(cos\theta)e^{im\phi}
 $$
 
+## Structural Similarity Index Measure
+
+The structural similarity index measure (SSIM) is a method for predicting the perceived quality of digital television and cinematic pictures, as well as other kinds of digital images and videos. It is also used for measuring the similarity between two images. 
+
+### Algorithm
+
+The SSIM index is calculated on various windows of an image. The SSIM formula is based on three comparison measurements between two window $x$ and $y$ of common size $N\times N$ is: luminance ($l$), contrast ($c$) and structure ($s$). The individual comparison functions are:
+
+$$
+l(x,y)=\frac{2\mu_{x}\mu_{y}+c_1}{\mu_{x}^{2}+\mu_{y}^{2}+c_1}\\
+c(x,y)=\frac{2\sigma_{x}\sigma_{y}+c_2}{\sigma_{x}^{2}+\sigma_{y}^{2}+c_2}\\
+s(x,y)=\frac{\sigma_{xy}+c_3}{\sigma_{x}\sigma_{y}+c_3}
+$$
+
+where:
+
+* $\mu_{x}$ the pixel sample mean of $x$
+
+* $\mu_{y}$ the pixel sample mean of $y$
+
+* $\sigma_{x}^{2}$ the variance of $x$
+
+* $\sigma_{y}^{2}$ the variance of $x$
+
+* $\sigma_{xy}$ the covariance of $x$ and $y$
+
+* $c_{1}=(k_1L)^{2},c_{2}=(k_2L)^2=2c_3$ two variables to stabilize the division with weak denominator
+
+* $L$ the dynamic range of the pixel-values (typically is $2^{\#bits per pixel}-1$)
+
+* $k_1=0.01$ and $k_2=0.03$ by default.
+
+SSIM is then a weighted combination of those comparative measures:
+
+$$
+SSIM(x,y)=l(x,y)^{\alpha}\cdot c(x,y)^{\beta} \cdot s(x,y)^{\gamma}
+$$
+
+Setting the weights $\alpha,\beta,\gamma$ to 1, the formula can be reduced to the form below:
+
+$$
+SSIM(x,y)=\frac{(2\mu_{x}\mu_{y}+c_1)(2\sigma_{xy}+c_2)}{(\mu_{x}^{2}+\mu_{y}^{2}+c_1)(\sigma_{x}^{2}+\sigma_{y}^{2}+c_2)}
+$$
+
+### Structural Dissimilarity
+
+Structural dissimilarity (DSSIM) may be derived from SSIM, though it does not constitute a distance function as the triangle inequality is not necessarily satisfied.
+
+$$
+DSSIM(x,y)=\frac{1-SSIM(x,y)}{2}
+$$

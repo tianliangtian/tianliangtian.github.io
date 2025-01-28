@@ -40,11 +40,10 @@ nav:
   - Home: index.md
   - Learning: 
     - Learning/index.md
-    - Git: Learning/Git.md
-    - Website building: Learning/Website-building.md
     - Python: Learning/Python.md
     - Deep Learning:
       - Neural Network and Deep Learning: Learning/DeepLearning/NNandDL.md
+      - Transformer: Learning/DeepLearning/Transformer.md
     - Computer Vision:
       - ML4360 - Computer vision: Learning/CV/ML.md
       - 4DGS: Learning/CV/4DGS.md
@@ -55,6 +54,21 @@ nav:
       - Training: Learning/DL4CV/Training.md
       - Object Detection: Learning/DL4CV/OD.md
       - Semantic Segmentation: Learning/DL4CV/SS.md
+    - GAMES101:
+      - Introduction: Learning/GAMES101/GAMES101.md
+      - Rasterization: Learning/GAMES101/Rasterization.md
+      - Shading: Learning/GAMES101/Shading.md
+      - Geometry: Learning/GAMES101/Geometry.md
+      - Ray Tracing: Learning/GAMES101/RayTracing.md
+    - Miscellaneous: Learning/Miscellaneous.md
+  - Tools:
+    - Tools/index.md
+    - Git: Tools/Git.md
+    - Website building: Tools/Website-building.md
+    - Anaconda: Tools/Anaconda.md
+    - Python: Tools/Python.md
+    - Linux: 
+      - Tools/Linux/tmux.md
 plugins:
   - search
   - tags
