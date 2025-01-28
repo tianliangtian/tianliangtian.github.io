@@ -102,6 +102,7 @@ markdown_extensions:
       custom_checkbox: true
   - attr_list                       # image
   - md_in_html
+  - pymdownx.blocks.caption
 
 extra_javascript:
   - javascripts/mathjax.js

@@ -30,6 +30,8 @@ Combine implicit geometry via Boolean operations
 
 <img src="./img/Geo0.png" alt="" style="width: 80%;">
 
+![](./img/Geo0.png){ width="80%" }
+
 #### Distance Function
 
 Instead of Booleans, gradually blend surfaces together using Distance functions:
