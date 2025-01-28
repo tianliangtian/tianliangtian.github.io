@@ -18,26 +18,26 @@ Inputs:
 * Light drection $\mathbf{l}$
 * Surface parameters (color, shininess, ...)
 
-<img src="./img/Sha2.png" alt="" style="width: 50%;">
+![](./img/Sha2.png){ width="50%" }
 
 ### Diffuse Reflection
 
 * Light is scattered uniformly in all directions
 * Surface color is the same for all viewing directions
 
-<img src="./img/Sha3.png" alt="" style="width: 70%;">
+![](./img/Sha3.png){ width="70%" }
 
 * The light hitting the same surface at different angles will produce varying levels of brightness.
 
 * How much light(energy) is received? Lambert's cosine law: 
 
-<img src="./img/Sha4.png" alt="" style="width: 100%;">
+![](./img/Sha4.png){ width="100%" }
 
 * According to the law of energy conservation, the energy emitted by a point light source is the same at both near and far spheres.
 
 * So the energy of the light will diminish with the distance between the object and the point light source.
 
-<img src="./img/Sha5.png" alt="" style="width: 100%;">
+![](./img/Sha5.png){ width="100%" }
 
 Lambertian (Diffuse) Shading: 
 
@@ -52,7 +52,7 @@ $$
 * Diffuse reflection is **independent** of view direction
 * Produces diffuse appearance
 
-<img src="./img/Sha6.png" alt="" style="width: 100%;">
+![](./img/Sha6.png){ width="100%" }
 
 ### Specular Reflection
 
@@ -71,14 +71,14 @@ L_s&=k_s(I/r^2)\max{(0, \cos{\alpha})^p}\\
 \end{align*}
 $$
 
-<img src="./img/Sha7.png" alt="" style="width: 50%;">
+![](./img/Sha7.png){ width="50%" }
 
 * $L_s$ is specularly reflected light
 * $k_s$ is specular coefficient, generally $(1,1,1)$(white)
 * Increasing $p$ narrows the reflection lobe
 
-<img src="./img/Sha8.png" alt="" style="width: 100%;">
-<img src="./img/Sha9.png" alt="" style="width: 100%;">
+![](./img/Sha8.png){ width="100%" }
+![](./img/Sha9.png){ width="100%" }
 
 ### Ambient
 
@@ -99,7 +99,7 @@ L&=L_a+L_d+L_s\\
 \end{align*}
 $$
 
-<img src="./img/Sha10.png" alt="" style="width: 100%;">
+![](./img/Sha10.png){ width="100%" }
 
 
 ## Shading Frequencies
@@ -114,7 +114,7 @@ So far, we have only discussed shading at a specific point.
 
 * Not good for smooth surfaces
 
-<img src="./img/Sha11.png" alt="" style="width: 50%;">
+![](./img/Sha11.png){ width="50%" }
 
 ### Shade each vertex (Gouraud shading)
 
@@ -122,7 +122,7 @@ So far, we have only discussed shading at a specific point.
 
 * **Interpolate** colors from vertices across triangle
 
-<img src="./img/Sha12.png" alt="" style="width: 50%;">
+![](./img/Sha12.png){ width="50%" }
 
 ### Shade each pixel (Phong shading)
 
@@ -132,10 +132,10 @@ So far, we have only discussed shading at a specific point.
 
 * Not the Blinn-Phong Reflectance Model
 
-<img src="./img/Sha13.png" alt="" style="width: 50%;">
+![](./img/Sha13.png){ width="50%" }
 
 * Flat shading also produces good results with more faces.
-<img src="./img/Sha14.png" alt="" style="width: 50%;">
+![](./img/Sha14.png){ width="50%" }
 
 ## Defining Per-Vertex Normal Vectors
 
@@ -150,7 +150,7 @@ $$
 
 * **Barycentric interpolation** of vertex normals
 
-<img src="./img/Sha15.png" alt="" style="width: 50%;">
+![](./img/Sha15.png){ width="50%" }
 
 
 !!! note
@@ -158,7 +158,7 @@ $$
 
 ## Graphics (real time) pipeline
 
-<img src="./img/Sha16.png" alt="" style="width: 100%;">
+![](./img/Sha16.png){ width="100%" }
 
 ### Shader Programs
 
@@ -207,7 +207,7 @@ void diffuseShader()
         * this constrain the points to be in the same plane
     * All three coordinates are non-negative if $(x,y)$ is inside the triangle.
 
-<img src="./img/Sha19.png" alt="" style="width: 50%;">
+![](./img/Sha19.png){ width="50%" }
 
 * How can we get the Barycentric coordinate for a point inside the triangle?
     * The coefficient are proportional to areas
@@ -220,7 +220,7 @@ $$
 \end{align*}
 $$
 
-<img src="./img/Sha20.png" alt="" style="width: 50%;">
+![](./img/Sha20.png){ width="50%" }
 
 * What's the barycentric coordinate of the centroid?
     * $\alpha = \beta = \gamma = \frac{1}{3}$
@@ -245,7 +245,7 @@ $$
 
 * $V_A, V_B, V_C$ can be positions, texture coordinates, color, normal, depth, material attributes ...
 
-<img src="./img/Sha21.png" alt="" style="width: 50%;">
+![](./img/Sha21.png){ width="50%" }
 
 
 !!! note
@@ -261,7 +261,7 @@ $$
     * $f(x,y) = \text{lerp}(t,u_{0},u_{1})$
 
 
-<img src="./img/Sha23.png" alt="" style="width: 60%;">
+![](./img/Sha23.png){ width="60%" }
 
 
 ## Texture Mapping
@@ -270,11 +270,11 @@ $$
 
 * Every 3D surface point maps to a point in the 2D image (**texture**)
 
-<img src="./img/Sha17.png" alt="" style="width: 100%;">
+![](./img/Sha17.png){ width="100%" }
 
 * Each triangle "copies" a piece of the texture image to the surface
 
-<img src="./img/Sha18.png" alt="" style="width: 100%;">
+![](./img/Sha18.png){ width="100%" }
 
 * Each triangle vertex is assigned a texture coordinate $(u,v)$. Generally, both $u$ and $v$ are in range $[0,1]$ 
 
@@ -300,17 +300,17 @@ for each rasterized screen sample (x,y):
 
 * Many texels are mapped to one pixel
 
-<img src="./img/Sha22.png" alt="" style="width: 100%;">
+![](./img/Sha22.png){ width="100%" }
 
 * What if the texture is too big?
 
-<img src="./img/Sha24.png" alt="" style="width: 100%;">
+![](./img/Sha24.png){ width="100%" }
 
 * Why?
     * The near pixel covers a small range of texels, while the far pixel covers a large range.
     * Problems arise when we use a single texel to represent a large range.
 
-<img src="./img/Sha25.png" alt="" style="width: 100%;">
+![](./img/Sha25.png){ width="100%" }
 
 * Will supersampling work?
     * Yes, high quality, but costly
@@ -318,7 +318,7 @@ for each rasterized screen sample (x,y):
     * Signal frequency too large in a pixel
     * Need even higher sampling frequency
 
-<img src="./img/Sha26.png" alt="" style="width: 100%;">
+![](./img/Sha26.png){ width="100%" }
 
 * Let's understand this problem in another way
     * What if we don't sample?
@@ -332,7 +332,7 @@ for each rasterized screen sample (x,y):
 
 * Allowing fast, approximate and square range queries
 
-<img src="./img/Sha27.png" alt="" style="width: 100%;">
+![](./img/Sha27.png){ width="100%" }
 
 * Level 0 is the original image
 
@@ -354,27 +354,27 @@ $$
 
 * Query the texel in Level $D$
 
-<img src="./img/Sha28.png" alt="" style="width: 100%;">
+![](./img/Sha28.png){ width="100%" }
 
 #### Smooth Boundary
 
 * Problem: The result is not smooth in the boundary of different level
 
-<img src="./img/Sha29.png" alt="" style="width: 80%;">
+![](./img/Sha29.png){ width="80%" }
 
 * How to solve? Using trilinear interpolation
 
-<img src="./img/Sha30.png" alt="" style="width: 100%;">
+![](./img/Sha30.png){ width="100%" }
 
-<img src="./img/Sha31.png" alt="" style="width: 100%;">
+![](./img/Sha31.png){ width="100%" }
 
 * Limitations: Overblur
 
-<img src="./img/Sha32.png" alt="" style="width: 100%;">
+![](./img/Sha32.png){ width="100%" }
 
 * Why? There are irregular pixel footprint in texture.
 
-<img src="./img/Sha33.png" alt="" style="width: 100%;">
+![](./img/Sha33.png){ width="100%" }
 
 #### Anisotropic Filtering
 
@@ -383,7 +383,7 @@ Ripmaps and summed area tables
 rectangular zones
 * Diagonal footprints still a problem
 
-<img src="./img/Sha34.png" alt="" style="width: 70%;">
+![](./img/Sha34.png){ width="70%" }
 
 EWA filtering
 * Use multiple lookups
@@ -391,7 +391,7 @@ EWA filtering
 * Mipmap hierarchy still helps
 * Can handle irregular footprints
 
-<img src="./img/Sha35.png" alt="" style="width: 70%;">
+![](./img/Sha35.png){ width="70%" }
 
 ### Application
 
@@ -411,7 +411,7 @@ Many applications
 
 We can use texture to represent light from environment
 
-<img src="./img/Sha36.png" alt="" style="width: 80%;">
+![](./img/Sha36.png){ width="80%" }
 
 !!! note 
     Actually, the environment light is related to both position and direction, but here we approximate it by assuming the light source is infinitely far away.
@@ -422,11 +422,11 @@ Assuming you place a mirror sphere in the middle of the scene, you will be able 
 
 * This inspires us to store the environment light on a sphere, which is called a **Spherical Environment Map**.
 
-<img src="./img/Sha37.png" alt="" style="width: 80%;">
+![](./img/Sha37.png){ width="80%" }
 
 * Problem: The top and bottom parts are prone to distortion
 
-<img src="./img/Sha38.png" alt="" style="width: 80%;">
+![](./img/Sha38.png){ width="80%" }
 
 ##### Cube Map
 
@@ -436,14 +436,14 @@ Assuming you place a mirror sphere in the middle of the scene, you will be able 
 
 * Each direction vector maps to a cube point along it.
 
-<img src="./img/Sha39.png" alt="" style="width: 80%;">
+![](./img/Sha39.png){ width="80%" }
 
 * Much less distortion
 
 * When querying a direction, need to first find the corresponding face.
 
 
-<img src="./img/Sha40.png" alt="" style="width: 80%;">
+![](./img/Sha40.png){ width="80%" }
 
 #### Bump & Normal Mapping
 
@@ -453,7 +453,7 @@ For a bumpy surface, it is costly to represent it using triangles
 
 * Fake the detailed geometry
 
-<img src="./img/Sha41.png" alt="" style="width: 80%;">
+![](./img/Sha41.png){ width="80%" }
 
 Bump mappng adds surface detail without adding more triangles
 
@@ -463,7 +463,7 @@ Bump mappng adds surface detail without adding more triangles
 
 * The black line is the original surface while the orange one represents the perturbed surface
 
-<img src="./img/Sha42.png" alt="" style="width: 80%;">
+![](./img/Sha42.png){ width="80%" }
 
 ##### Perturb The Normal
 
@@ -495,7 +495,7 @@ Displacement Mapping is a more advanced approach
 
 * More triangle needed to get a good result
 
-<img src="./img/Sha43.png" alt="" style="width: 80%;">
+![](./img/Sha43.png){ width="80%" }
 
 #### 3D Procedural Noise + Solid Modeling
 
@@ -503,7 +503,7 @@ Displacement Mapping is a more advanced approach
 
 * Define 3D noise function to generate texture
 
-<img src="./img/Sha44.png" alt="" style="width: 80%;">
+![](./img/Sha44.png){ width="80%" }
 
 #### Provide Precomputed Shading
 
@@ -513,7 +513,7 @@ Texture can also store precomputed information
 
 * multiply the shading result with the texture map. 0 means occluded.
 
-<img src="./img/Sha45.png" alt="" style="width: 80%;">
+![](./img/Sha45.png){ width="80%" }
 
 !!! note
     Textures can store various types of information, including but not limited to color. The meaning depends on how you interpret it in the shader.

@@ -209,11 +209,11 @@ How to draw shadows using rasterization?  Shadow Mapping
 
 * Pass 2B: Reproject visible points in the eye view back to the light source. If the depth matches the light's depth map, the point can be seen by both the eye and the light.
 
-<img src="./img/Ray0.png" alt="" style="width: 60%;">
+![](./img/Ray0.png){ width="60%" }
 
 * Compare with and without shadows
 
-<img src="./img/Ray1.png" alt="" style="width: 80%;">
+![](./img/Ray1.png){ width="80%" }
 
 ### Problems
 
@@ -223,11 +223,11 @@ How to draw shadows using rasterization?  Shadow Mapping
 
     * soft shadow: produced by area light sources and have blurred, gradual edges due to the varying degrees of occlusion.
 
-<img src="./img/Ray3.png" alt="" style="width: 80%;">
+![](./img/Ray3.png){ width="80%" }
 
 * Quality depends on shadow map resolution (general problem with image-based techniques)
 
 * Involves equality comparison of floating-point depth values, which introduces issues of scale, bias, and tolerance.
     * Noisy near the boundary
 
-<img src="./img/Ray2.png" alt="" style="width: 80%;">
+![](./img/Ray2.png){ width="80%" }

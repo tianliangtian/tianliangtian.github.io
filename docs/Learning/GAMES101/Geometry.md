@@ -28,8 +28,6 @@ Based on classifying points
 
 Combine implicit geometry via Boolean operations
 
-<img src="./img/Geo0.png" alt="" style="width: 80%;">
-
 ![](./img/Geo0.png){ width="80%" }
 
 #### Distance Function
@@ -42,11 +40,11 @@ Instead of Booleans, gradually blend surfaces together using Distance functions:
 
 * blend, for example, can be linear interpolation
 
-<img src="./img/Geo1.png" alt="" style="width: 80%;">
+![](./img/Geo1.png){ width="80%" }
 
 * Can blend any two distance functions $d1, d2$: 
 
-<img src="./img/Geo2.png" alt="" style="width: 80%;">
+![](./img/Geo2.png){ width="80%" }
 
 * The surface can be found via $d(\mathbf{x})=0$
 
@@ -61,7 +59,7 @@ Alternative: store a grid of values approximating function
 * Provides much more explicit control over shape (like a
 texture)
 
-<img src="./img/Geo3.png" alt="" style="width: 60%;">
+![](./img/Geo3.png){ width="60%" }
 
 #### Fractals
 
@@ -71,12 +69,11 @@ texture)
 
 * Hard to control shape!
 
-<img src="./img/Geo4.png" alt="" style="width: 80%;">
+![](./img/Geo4.png){ width="80%" }
 
 Level set encodes distance to air-liquid boundary
 
-<img src="./img/Geo5.png" alt="" style="width: 80%;">
-
+![](./img/Geo5.png){ width="80%" }
 
 #### Prons & Cons
 
@@ -128,7 +125,7 @@ All points are given **directly** or via **parameter mapping**
 
 #### Polygon Mesh
 
-<img src="./img/Geo6.png" alt="" style="width: 80%;">
+![](./img/Geo6.png){ width="80%" }
 
 * Store vertices & polygons (often triangles or quads)
 
@@ -150,7 +147,8 @@ The Bezier Curve is controlled by $n$ control points.
 
 * The tangent line at the start passes through the first two points, and the tangent line at the end passes through the last two points.
 
-<img src="./img/Geo7.png" alt="" style="width: 70%;">
+![](./img/Geo7.png){ width="70%" }
+
 
 #### Evaluating Bezier Curves(de Casteljau Algorithm)
 
@@ -164,11 +162,11 @@ Consider three points (quadratic Bezier), we can use a parameter $t\in[0,1]$ to 
 
 * Compute $b_0^2$ for every $t$ to draw the curve
 
-<img src="./img/Geo8.png" alt="" style="width: 70%;">
+![](./img/Geo8.png){ width="70%" }
 
 For four input points (Cubic Bezier), same recursive linear interpolations
 
-<img src="./img/Geo9.png" alt="" style="width: 70%;">
+![](./img/Geo9.png){ width="70%" }
 
 #### Algebratic Formula
 
@@ -176,7 +174,7 @@ de Casteljau algorithm gives a pyramid of coefficients
 
 * Every rightward arrow is multiplication by $t$, Every leftward arrow by $(1-t)$
 
-<img src="./img/Geo10.png" alt="" style="width: 70%;">
+![](./img/Geo10.png){ width="70%" }
 
 The coefficient for each point is actually binomial coefficient.
 
@@ -200,7 +198,7 @@ $$
 
 * The points on Bezier curve are actually a weighted sum of control points, since $\sum_{j=0}^nB_j^n(t)=1$
 
-<img src="./img/Geo11.png" alt="" style="width: 50%;">
+![](./img/Geo11.png){ width="50%" }
 
 #### Properties of Bézier Curves
 
@@ -223,7 +221,7 @@ Convex hull property
 
 * Convex hull: the smallest convex shape that can enclose a set of points in a plane or space
 
-<img src="./img/Geo12.png" alt="" style="width: 50%;">
+![](./img/Geo12.png){ width="50%" }
 
 #### Piecewise Bézier Curves
 
@@ -231,13 +229,13 @@ Higher-Order Bezier Curves are hard to control
 
 * The middle doesn't twist as much as we expected.
 
-<img src="./img/Geo13.png" alt="" style="width: 50%;">
+![](./img/Geo13.png){ width="50%" }
 
 * Instead, chain many low-order Bézier curve
 
 * **Piecewise cubic Bezier** is the most common technique
 
-<img src="./img/Geo14.png" alt="" style="width: 80%;">
+![](./img/Geo14.png){ width="80%" }
 
 Below are two Bézier curves, let's call the left one $\mathbf{a}$ and the right one $\mathbf{b}$
 
@@ -247,7 +245,7 @@ Below are two Bézier curves, let's call the left one $\mathbf{a}$ and the right
 
 * where $\mathbf{a}_{n}$ is the last control point of $\mathbf{a}$ and $\mathbf{b}_{0}$ is the first control point of $\mathbf{b}$
 
-<img src="./img/Geo15.png" alt="" style="width: 80%;">
+![](./img/Geo15.png){ width="80%" }
 
 ### Other Types of Splines
 
@@ -281,7 +279,7 @@ For bi-cubic Bezier surface patch,
 
 * Output: 2D surface parameterized by $(u,v)$ in $[0,1]^2$
 
-<img src="./img/Geo16.png" alt="" style="width: 80%;">
+![](./img/Geo16.png){ width="80%" }
 
 
 * Goal: Evaluate surface position corresponding to $(u,v)$
@@ -293,7 +291,7 @@ $u$. This gives 4 control points for the "moving" Bezier curve
 
 * Use 1D de Casteljau to evaluate point $v$ on the "moving" curve
 
-<img src="./img/Geo17.png" alt="" style="width: 80%;">
+![](./img/Geo17.png){ width="80%" }
 
 ### Mesh
 
@@ -314,7 +312,7 @@ Loop Subdivision is a common subdivision rule for **triangle mesh**
 * First, create more triangles (vertices)
     * Split each triangle into four
 
-<img src="./img/Geo18.png" alt="" style="width: 50%;">
+![](./img/Geo18.png){ width="50%" }
 
 * Second, tune their positions
     * Assign new vertex positions according to weights
@@ -322,7 +320,7 @@ Loop Subdivision is a common subdivision rule for **triangle mesh**
 
 For new vertices, update to $\frac{3}{8}(A+B)+\frac{1}{8}(C+D)$
 
-<img src="./img/Geo19.png" alt="" style="width: 50%;">
+![](./img/Geo19.png){ width="50%" }
 
 For old vertices, update to: $(1-n\cdot u)\cdot position_{original}+u\cdot sum(position_{neighbors})$
 
@@ -330,11 +328,11 @@ For old vertices, update to: $(1-n\cdot u)\cdot position_{original}+u\cdot sum(p
 * $u$: $\frac{3}{16}$ if $n=3,\frac{3}{8n}$ otherwise
 * A weighted sum of its original position and the positions of its neighbors.
 
-<img src="./img/Geo20.png" alt="" style="width: 50%;">
+![](./img/Geo20.png){ width="50%" }
 
 * $C^2$ continuity on regular meshes
 
-<img src="./img/Geo21.png" alt="" style="width: 80%;">
+![](./img/Geo21.png){ width="80%" }
 
 ##### Catmull-Clark Subdivision
 
@@ -346,7 +344,7 @@ Define:
 
 * Extraordinary vertex: vertex with $degree\neq 4$
 
-<img src="./img/Geo22.png" alt="" style="width: 60%;">
+![](./img/Geo22.png){ width="60%" }
 
 Subdivision Step: 
 
@@ -356,7 +354,7 @@ Subdivision Step:
 
 * Connect all new vertices
 
-<img src="./img/Geo23.png" alt="" style="width: 60%;">
+![](./img/Geo23.png){ width="60%" }
 
 After one subdivision: 
 
@@ -366,21 +364,21 @@ After one subdivision:
 * How many non-quad faces?
     * None. Each non-quad face becomes many quad faces with one additional extraordinary point.
 
-<img src="./img/Geo24.png" alt="" style="width: 60%;">
+![](./img/Geo24.png){ width="60%" }
 
 Vertex Update Rules (Quad Mesh):
 
-<img src="./img/Geo25.png" alt="" style="width: 80%;">
+![](./img/Geo25.png){ width="80%" }
 
 Convergence: Overall Shape and Creases
 
-<img src="./img/Geo26.png" alt="" style="width: 80%;">
+![](./img/Geo26.png){ width="80%" }
 
 #### Mesh simplification
 
 Goal: reduce number of mesh elements while maintaining the overall shape
 
-<img src="./img/Geo27.png" alt="" style="width: 80%;">
+![](./img/Geo27.png){ width="80%" }
 
 ##### Edge Collapsing
 
@@ -388,7 +386,7 @@ We can simplify a mesh using edge Collapsing
 
 * Removing an edge by merging its two vertices into a single vertex.
 
-<img src="./img/Geo28.png" alt="" style="width: 80%;">
+![](./img/Geo28.png){ width="80%" }
 
 ##### Quadric Error Metrics
 
@@ -398,7 +396,7 @@ We can simplify a mesh using edge Collapsing
 
 * Quadric error: new vertex should minimize its **sum of square distance (L2 distance)** to previously related **triangle planes**!
 
-<img src="./img/Geo29.png" alt="" style="width: 60%;">
+![](./img/Geo29.png){ width="60%" }
 
 How to collapse edges? 
 
@@ -416,4 +414,4 @@ Which edge should we collapse?
 
 * actually a greedy algorithm: try to find global optimal with local optimal. But has great results
 
-<img src="./img/Geo30.png" alt="" style="width: 80%;">
+![](./img/Geo30.png){ width="80%" }

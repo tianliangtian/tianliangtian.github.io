@@ -8,7 +8,7 @@ Why Ray Tracing?
 
     - And especially when the light bounces more than once
 
-<img src="./img/Ray4.png" alt="" style="width: 80%;">
+![](./img/Ray4.png){ width="80%" }
 
 * Rasterization is fast, but quality is relatively low
 
@@ -40,7 +40,7 @@ Three ideas about light rays
 
 4. Perform shading calculation to compute color of pixel
 
-<img src="./img/Ray5.png" alt="" style="width: 80%;">
+![](./img/Ray5.png){ width="80%" }
 
 * Local only, without reflection and refraction
 
@@ -48,7 +48,7 @@ Three ideas about light rays
 
 An improved illumination model for shaded display
 
-<img src="./img/Ray6.png" alt="" style="width: 70%;">
+![](./img/Ray6.png){ width="70%" }
 
 * When a ray hits a glass-like material, both reflection and refraction occur.
 
@@ -60,7 +60,7 @@ An improved illumination model for shaded display
 
 * Sum these results to get the color
 
-<img src="./img/Ray7.png" alt="" style="width: 80%;">
+![](./img/Ray7.png){ width="80%" }
 
 ## Ray-Surface Intersection
 
@@ -82,7 +82,7 @@ $$
 
 * $\mathbf{d}$: normalized direction
 
-<img src="./img/Ray8.png" alt="" style="width: 50%;">
+![](./img/Ray8.png){ width="50%" }
 
 ### Ray Intersection With Implicit Surface
 
@@ -139,7 +139,7 @@ $$
 
 * Check: $0\leq t\leq \infty$
 
-<img src="./img/Ray9.png" alt="" style="width: 40%;">
+![](./img/Ray9.png){ width="40%" }
 
 ##### Möller Trumbore Algorithm
 
@@ -201,7 +201,7 @@ Quick way to avoid intersections: bound complex object with a simple volume
 
 * So test BVol first, then test object if there is a hit
 
-<img src="./img/Ray10.png" alt="" style="width: 80%;">
+![](./img/Ray10.png){ width="80%" }
 
 #### Ray-Intersection With Box
 
@@ -211,7 +211,7 @@ Box is the **intersection of 3 pairs of slabs**
     
     * i.e. any side of the BB is along either x, y, or z axis
 
-<img src="./img/Ray11.png" alt="" style="width: 50%;">
+![](./img/Ray11.png){ width="50%" }
 
 For 2D cases, 
 
@@ -223,7 +223,7 @@ For 2D cases,
 
     * Take the intersection of $t$ for each pair
 
-<img src="./img/Ray12.png" alt="" style="width: 90%;">
+![](./img/Ray12.png){ width="90%" }
 
 * Key ideas: 
 
@@ -243,7 +243,7 @@ For 2D cases,
 
 Why Axis-Aligned?
 
-<img src="./img/Ray13.png" alt="" style="width: 90%;">
+![](./img/Ray13.png){ width="90%" }
 
 ### Uniform Spatial Partitions (Grids)
 
@@ -255,7 +255,7 @@ Preprocess: Build Acceleration Grid
 
 3. Store each object in overlapping cells
 
-<img src="./img/Ray14.png" alt="" style="width: 70%;">
+![](./img/Ray14.png){ width="70%" }
 
 How to find Ray-Scene Intersection?
 
@@ -263,7 +263,7 @@ How to find Ray-Scene Intersection?
 
 * For each grid cell: Test intersection with all objects stored at that cell
 
-<img src="./img/Ray15.png" alt="" style="width: 70%;">
+![](./img/Ray15.png){ width="70%" }
 
 How to select grid resolution? 
 
@@ -303,7 +303,7 @@ When They fail?
 
     * Hard to perform division in high dimension
 
-<img src="./img/Ray16.png" alt="" style="width: 80%;">
+![](./img/Ray16.png){ width="80%" }
 
 * you could have these in both 2D and 3D. Here we will illustrate principles in 2D.
 
@@ -315,7 +315,7 @@ Pre-Processing
 
 * Note that nodes 1 and 2 should also be subdivided but we don't demonstrate it here for simplicity
 
-<img src="./img/Ray17.png" alt="" style="width: 80%;">
+![](./img/Ray17.png){ width="80%" }
 
 
 Data Structure for KD-Trees
@@ -342,7 +342,7 @@ Traversing a KD-Tree
 
 * If the node is leaf node, test the intersection of all objects inside it.
 
-<img src="./img/Ray18.png" alt="" style="width: 80%;">
+![](./img/Ray18.png){ width="80%" }
 
 Problem: 
 
@@ -368,7 +368,7 @@ Procedure:
 
 * Store objects in each leaf node
 
-<img src="./img/Ray19.png" alt="" style="width: 80%;">
+![](./img/Ray19.png){ width="80%" }
 
 How to subdivide a node?
 
@@ -421,7 +421,7 @@ Intersect (Ray ray, BVH node) {
 }
 ```
 
-<img src="./img/Ray20.png" alt="" style="width: 60%;">
+![](./img/Ray20.png){ width="60%" }
 
 
 #### Spatial vs Object Partitions
@@ -482,11 +482,11 @@ $$
 
 * Flux can also be understood as #photons flowing through a sensor in unit time
 
-<img src="./img/Ray21.png" alt="" style="width: 60%;">
+![](./img/Ray21.png){ width="60%" }
 
 important Light Measurements of Interest
 
-<img src="./img/Ray22.png" alt="" style="width: 60%;">
+![](./img/Ray22.png){ width="60%" }
 
 ### Radiant Intensity
 
@@ -504,7 +504,7 @@ Angle: ratio of subtended arc length on circle to radius
 
 * Circle has $2\pi$ radians
 
-<img src="./img/Ray23.png" alt="" style="width: 40%;">
+![](./img/Ray23.png){ width="40%" }
 
 Solid angle: ratio of subtended area on sphere to radius squared
 
@@ -512,7 +512,7 @@ Solid angle: ratio of subtended area on sphere to radius squared
 
 * Sphere has $4\pi$ steradians
 
-<img src="./img/Ray24.png" alt="" style="width: 40%;">
+![](./img/Ray24.png){ width="40%" }
 
 Differential Solid Angles
 
@@ -529,7 +529,7 @@ $$
 \end{align*}
 $$
 
-<img src="./img/Ray25.png" alt="" style="width: 60%;">
+![](./img/Ray25.png){ width="60%" }
 
 For sphere $S^2$, the solid angle is: 
 
@@ -543,7 +543,7 @@ $$
 
 We use $\omega$ to denote a direction vector (unit length)
 
-<img src="./img/Ray26.png" alt="" style="width: 80%;">
+![](./img/Ray26.png){ width="80%" }
 
 For Isotropic Point Source, 
 
@@ -558,7 +558,7 @@ $$
 I=\frac{\Phi}{4\pi}
 $$
 
-<img src="./img/Ray27.png" alt="" style="width: 60%;">
+![](./img/Ray27.png){ width="60%" }
 
 ### Irradiance
 
@@ -572,11 +572,11 @@ $$
 
 This explains Lambert's cosine law we discussed before: 
 
-<img src="./img/Ray28.png" alt="" style="width: 80%;">
+![](./img/Ray28.png){ width="80%" }
 
 This also explains irradiance falloff
 
-<img src="./img/Ray29.png" alt="" style="width: 80%;">
+![](./img/Ray29.png){ width="80%" }
 
 ### Radiance
 
@@ -586,7 +586,7 @@ Radiance is the fundamental field quantity that describes the distribution of li
 
 * Rendering is all about computing radiance
 
-<img src="./img/Ray30.png" alt="" style="width: 40%;">
+![](./img/Ray30.png){ width="40%" }
 
 Definition: 
 
@@ -599,7 +599,7 @@ $$
 
 * $\cos{\theta}$ accounts for projected surface area
 
-<img src="./img/Ray31.png" alt="" style="width: 40%;">
+![](./img/Ray31.png){ width="40%" }
 
 Recall
 
@@ -623,7 +623,7 @@ $$
 L(\mathrm{p},\omega)=\frac{\mathrm{d}E(\mathrm{p})}{\mathrm{d}\omega\cos\theta}
 $$
 
-<img src="./img/Ray32.png" alt="" style="width: 40%;">
+![](./img/Ray32.png){ width="40%" }
 
 #### Exiting Radiance
 
@@ -635,7 +635,7 @@ $$
 L(\mathrm{p},\omega)=\frac{\mathrm{d}I(\mathrm{p},\omega)}{\mathrm{d}A\cos\theta}
 $$
 
-<img src="./img/Ray33.png" alt="" style="width: 40%;">
+![](./img/Ray33.png){ width="40%" }
 
 #### Irradiance vs. Radiance
 
@@ -650,7 +650,7 @@ E(\mathrm{p}) & =\int_{H^2}L_i(\mathrm{p},\omega)\cos\theta\mathrm{d}\omega
 \end{aligned}
 $$
 
-<img src="./img/Ray34.png" alt="" style="width: 60%;">
+![](./img/Ray34.png){ width="60%" }
 
 
 ## Bidirectional Reflectance Distribution Function (BRDF)
@@ -665,7 +665,7 @@ Reflection at a Point:
 
 * Differential radiance exiting (due to $dE(\omega_i)$): $dL_r(\omega_r)$
 
-<img src="./img/Ray35.png" alt="" style="width: 60%;">
+![](./img/Ray35.png){ width="60%" }
 
 ### BRDF 
 
@@ -675,7 +675,7 @@ $$
 f_r(\omega_i\rightarrow\omega_r)=\frac{dL_r(\omega_r)}{dE_i(\omega_i)}=\frac{dL_r(\omega_r)}{L_i(\omega_i)\cos{\theta_i}d\omega_i}\left[\frac{1}{\mathrm{sr}}\right]
 $$
 
-<img src="./img/Ray36.png" alt="" style="width: 60%;">
+![](./img/Ray36.png){ width="60%" }
 
 ### Reflection Equation
 
@@ -687,7 +687,7 @@ $$
 L_r(p,\omega_r)=\int_{H^2}f_r(p,\omega_i\rightarrow\omega_r)L_i(p,\omega_i)\cos{\theta_i}d\omega_i
 $$
 
-<img src="./img/Ray37.png" alt="" style="width: 80%;">
+![](./img/Ray37.png){ width="80%" }
 
 * Challenge: Recursive Equation
 
@@ -740,8 +740,8 @@ $$
 
 Now we can have a deeper understanding that $E$ is the emission directly from light sources, $KE$ is the direct illumination on surfaces, $K^2E$ is indirect illumination (One bounce), $\dots$
 
-<img src="./img/Ray38.png" alt="" style="width: 80%;">
+![](./img/Ray38.png){ width="80%" }
 
-<img src="./img/Ray39.png" alt="" style="width: 80%;">
+![](./img/Ray39.png){ width="80%" }
 
-<img src="./img/Ray40.png" alt="" style="width: 80%;">
+![](./img/Ray40.png){ width="80%" }
