@@ -94,7 +94,7 @@ In general
 
     - Scale into "canonical" cube
 
-![](../img/Learning/GAMES101/1.png)
+![](./img/1.png)
 
 Transformation matrix
 
@@ -129,13 +129,13 @@ How to do perspective projection
 
 - Do orthographic projection ($M_{ortho}$, already known!)
 
-![](../img/Learning/GAMES101/2.png)
+![](./img/2.png)
 
 In order to find a transformation
 
 - Find the relationship between transformed points $(x', y', z')$ and the original points $(x, y, z)$
 
-![](../img/Learning/GAMES101/3.png)
+![](./img/3.png)
 
 $$
 y'=\frac{n}{z}y \qquad x'=\frac{n}{z}x
@@ -250,7 +250,7 @@ What's near plane's $l, r, b, t$(left, right, bottom, top) then?
 
 - Sometimes people prefer: vertical field-of-view ($fovY$) and aspect ratio(assume symmetry i.e. I = -r, b = -t)
 
-![](../img/Learning/GAMES101/4.png)
+![](./img/4.png)
 
 $$
 tan\frac{fovY}{2}=\frac{t}{|n|}\\

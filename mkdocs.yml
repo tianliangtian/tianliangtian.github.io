@@ -36,6 +36,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to light mode
+  font:
+    text: Lora
 nav:
   - Home: index.md
   - Learning: 

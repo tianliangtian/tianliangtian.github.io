@@ -745,3 +745,288 @@ Now we can have a deeper understanding that $E$ is the emission directly from li
 ![](./img/Ray39.png){ width="80%" }
 
 ![](./img/Ray40.png){ width="80%" }
+
+## Monte Carlo Integration
+
+Why? 
+
+* We want to solve an integral, but it can be too difficult to solve analytically
+
+What & How? 
+
+* Estimate the integral of a function by averaging random samples of the functoins's value
+
+![](./img/Ray41.png){ width="80%" }
+
+For the definite integral of given function $f(x)$, define: 
+
+* Definite integral $\int_{a}^{b}f(x)dx$
+
+* Random varirable $X_i \sim p(x)$
+
+* Monte Carlo estimator: $F_N =\frac{1}{N}\sum_{i=1}^{N}\frac{f(X_i)}{p(X_i)}$
+
+![](./img/Ray42.png){ width="60%" align=left}
+
+For uniform random variable, 
+
+$$
+\begin{align*}
+&X_i \sim p(x)=C\\
+&\int_{a}^{b}p(x)dx=1\\
+&\Rightarrow C=\frac{1}{b-a}
+\end{align*}
+$$
+
+This brings us the Basic Monte Carlo estimator: 
+
+$$
+F_N=\frac{b-a}{N}\sum_{i=1}^Nf(X_i)
+$$
+
+In conclusion, we estimate the integral by the following formula: 
+
+$$
+\int f(x)dx=\frac{1}{N}\sum_{i=1}^{N}\frac{f(X_i)}{p(X_i)}\quad X_i\sim p(x)
+$$
+
+* The more samples, the less variance
+
+* Sample on $x$, integrate on $x$
+
+## Path Tracing
+
+Motivation: Whitted-style ray tracing: 
+
+* Always perform specular reflections / refractions
+
+* Stop bouncing at diffuse surfaces
+
+* Problem: 
+
+    * Where should the ray be reflected for glossy materials?
+
+    * No reflections between diffuse materials?
+
+![](./img/Ray43.png){ width="80%" }
+
+Whitted-Style Ray Tracing is Wrong
+
+* The rendering equation is correct
+
+$$
+L_o(p,\omega_o)=L_e(p,\omega_o) + \int_{\Omega+}L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)d\omega_i
+$$
+
+* But it involves: 
+
+    * Solving an integral over the hemisphere
+
+    * Recursive execution
+
+### A Simple Monte Carlo Solution
+
+Suppose we want to render one pixel (point) in the following scene for direct illumination only.
+
+* An area light
+
+* Assume all directions are **pointing outwards**
+
+![](./img/Ray44.png){ width="60%" }
+
+We want to compute the radiance at point $p$ towards the camera: 
+
+$$
+L_o(p,\omega_o)=\int_{\Omega+}L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)d\omega_i
+$$
+
+* Using Monte Carlo integration: $\int_a^b f(x)dx\approx\frac{1}{N}\sum_{k=1}^{N}\frac{f(X_k)}{p(X_k)}\quad X_k\sim p(x)$
+
+* $f(x)=L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)$
+
+* $p(\omega_i)=\frac{1}{2\pi}$
+
+    * Since we assume uniformly sampling the hemisphere and the solid angle for a sphere is $4\pi$
+
+So, in general: 
+
+$$
+L_o(p,\omega_o)\approx \frac{1}{N}\sum_{i=1}^{N}\frac{L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)}{p(\omega_i)}
+$$
+
+It's a correct shading algorithm for direct illumination
+
+```
+shade (p, wo): 
+    Randomly choose N directions wi~pdf
+    Lo = 0.0
+    For each wi
+        Trace a ray r(p, wi)
+        If ray r hit the light
+            Lo += (1 / N) * L_i * f_r * cosine / pdf(wi)
+    Return Lo
+```
+
+### Introducing Global Illumination
+
+One more step forward: what if a ray hits an object?
+
+* For the following example, $Q$ reflects direct illumination to $P$
+
+![](./img/Ray45.png){ width="70%" }
+
+We can modify our algorithm, when the ray hits an object at q, recursively compute the shade at q
+
+```
+shade (p, wo): 
+    Randomly choose N directions wi~pdf
+    Lo = 0.0
+    For each wi:
+        Trace a ray r(p, wi)
+        If ray r hit the light:
+            Lo += (1 / N) * L_i * f_r * cosine / pdf(wi)
+        Else If ray r hit an object at q:
+            Lo += (1 / N) * shade(q, -wi) * f_r * cosine / pdf(wi)
+    Return Lo
+```
+
+### Path Tracing
+
+**Problem 1**: Explosion of $\#rays$ as $\#bounces$ go up: $\#rays=N^{\#bounces}$
+
+![](./img/Ray.png){ width="70%" }
+
+Key Observation: 
+
+* $\#rays$ will not explode iff $N=1$
+
+From now on, we always assume that only 1 ray is traced at each shading point, this is **path tracing** (Distributed Ray Tracing if $N\neq1$)
+
+```
+shade (p, wo): 
+    Randomly choose 1 directions wi~pdf
+    Trace a ray r(p, wi)
+    If ray r hit the light:
+        Return * L_i * f_r * cosine / pdf(wi)
+    Else If ray r hit an object at q:
+        Return shade(q, -wi) * f_r * cosine / pdf(wi)
+    Return Lo
+```
+
+This can be too noisy, but we can just trace more paths through each pixel and average their radiance. It's similar to ray casting in ray tracing and called **Ray Generation**
+
+```
+ray_generation (camPos, pixel):
+    Uniformly choose N sample positions within the pixel
+    pixel_radiance = 0.0
+    For each sample in the pixel
+        Shoot a ray r(camPos, cam_to_sample)
+        If ray r hit the scene at p
+            pixel_radiance += 1 / N * shade(p, sample_to_cam)
+    Return pixel_radiance
+```
+
+![](./img/Ray46.png){ width="70%" }
+
+**Problem 2**: The recursive algorithm will never stop
+
+* Dilemma: the light does not stop bouncing in reality. Cutting #bounces equals cutting energy
+
+Solution: Russian Roulette (RR)
+
+* Previously, we always shoot a ray at a shading point and get the shading result $L_o$
+
+* Now, set a probability $P\ (0<P<1)$
+
+    * With probability $P$, shoot a ray and return the shading result divided by $P$: $Lo / P$
+
+    * With probability $1-P$, don't shoot a ray and you'll get $0$
+
+* The expectation is still $L_o$: $E=P\cdot (L_o/ P)+(1-P)\cdot 0=L_o$
+
+```
+shade (p, wo): 
+    Manually specify a probability P_RR
+    Randomly select ksi in a uniform dist. in [0, 1]
+    If (ksi > P_RR) return 0.0;
+
+    Randomly choose ONE direction wi~pdf(w)
+    Trace a ray r(p, wi)
+    If ray r hit the light:
+        Return L_i * f_r * cosine / pdf(wi) / P_RR
+    Else If ray r hit an object at q:
+        Return shade(q, -wi) * f_r * cosine / pdf(wi) / P_RR
+```
+
+Now we already have a correct version of path tracing!
+
+But it's not really efficient.
+
+![](./img/Ray47.png){ width="80%" }
+
+### Sampling the Light
+
+Why inefficient? 
+
+* Only part of rays will hit the light while others are wasted if we uniformly sample the hemisphere
+
+Idea: 
+
+* Always sample the light so that no rays are wasted.
+
+Take the following case for example: 
+
+* Assume uniformly sampling on the light, $pdf=\frac{1}{A}$
+
+    * Because $\int pdf\ dA=1$, where $A$ is the light area
+
+* The rendering equation integrates on the solid angle $d\omega_i$, we need transform it to an integral of $dA$: 
+
+    * Recall the alternative defination of solid angle, Projected area on the unit sphere: $d\omega=\frac{dA\cos{\theta'}}{\|x'-x\|^2}$ (Note: $\theta'$ instead of $\theta$)
+
+* Then we can rewrite the rendering equation as 
+
+$$
+\begin{align*}
+L_o(p,\omega_o)&=\int_{\Omega+}L_i(x,\omega_i)f_r(x,\omega_i,\omega_o)\cos{\theta}d\omega_i\\
+&=\int_A L_i(x,\omega_i)f_r(x,\omega_i,\omega_o)\frac{\cos{\theta}\cos{\theta'}}{\|x'-x\|^2}dA
+\end{align*}
+$$
+
+![](./img/Ray48.png){ width="80%" }
+
+Previously, we assume the light is "accidentally" shot by uniform hemisphere sampling
+
+Now we consider the radiance coming from two parts:
+
+1. light source (direct, no need to have RR)
+
+2. other reflectors (indirect, RR)
+
+![](./img/Ray49.png){ width="80%" }
+
+
+One final thing: what if the sample on the light is blocked? 
+
+* check when shooting
+
+```
+shade (p, wo):
+    # Contribution from the light source.
+    Uniformly sample the light at x' (pdf_light = 1 / A)
+    Shoot a ray from p to x'
+    If the ray is not blocked in the middle:
+        L_dir = L i * f_r * cos 0 * cos 0' / |x' - p| ^2 / pdf_light
+
+    # Contribution from other reflectors.
+    L_indir = 0.0
+    Test Russian Roulette with probability P_RR
+    Uniformly sample the hemisphere toward wi (pdf_hemi = 1 / 2pi)
+    Trace a ray r(p, wi)
+    If ray r hit a non-emitting object at q
+        L_indir = shade(q, -wi) * f_r * cos 0 / pdf_hemi / P_RR
+
+    Return L dir + L indir
+```
+
+![](./img/Ray50.png){ width="80%" }

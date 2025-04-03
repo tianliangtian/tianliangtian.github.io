@@ -517,3 +517,59 @@ Texture can also store precomputed information
 
 !!! note
     Textures can store various types of information, including but not limited to color. The meaning depends on how you interpret it in the shader.
+
+## Gamma Correction
+
+Gamma Correction is an important technique in graphics used to adjust the brightness representation of images on display devices. 
+
+### Why is Gamma Correction Needed?
+
+* Human Perception
+
+    * The human eye is more sensitive to changes in brightness in dark areas and less sensitive to changes in bright areas.
+
+    * This perceptual characteristic can be described by a curve approximately following a power function.
+
+* Display Device Characteristics:
+
+    * Most display devices (e.g., monitors, TVs) have non-linear brightness output, typically following a curve approximately defined by $V_{out}=V^{\gamma}_{in}$ is the display device's gamma value (usually 2.2).
+
+* Without gamma correction, images may appear too dark or too bright on display devices, failing to accurately reproduce the brightness of the original scene.
+
+### Principle
+
+* Gamma Encoding:
+
+    * During image saving or transmission, brightness values are gamma-encoded $V_{encoded}=V_{linear}^{1/\gamma}$ 
+
+* Gamma Decoding:
+
+    * During image display, brightness values are gamma-decoded $V_{linear}=V_{encoded}^{\gamma}$ 
+
+* typically using $\gamma=2.2$
+
+### Implementation
+
+We always perform rendering or image processing in linear space, since brightness values in linear space are proportional to physical light intensity.
+
+* If textures are stored in gamma space (e.g., JPEG, PNG formats), perform gamma decoding on texture colors to transform them into linear space in the shader:
+
+* Perform gamma encoding on the final color for outputing on screen.
+
+```glsl
+vec3 gammaCorrect(vec3 color) {
+    return pow(color, vec3(1.0 / 2.2));
+}
+
+vec3 gammaDecode(vec3 color) {
+    return pow(color, vec3(2.2));
+}
+
+void main() {
+    vec3 textureColor = texture2D(uSampler, vTexCoord).rgb;
+    vec3 linearColor = gammaDecode(textureColor);  // Gamma decoding
+    // Perform lighting calculations in linearColor
+    vec3 finalColor = gammaCorrect(linearColor);  // Gamma encoding
+    gl_FragColor = vec4(finalColor, 1.0);
+}
+```
