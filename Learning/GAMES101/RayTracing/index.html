@@ -1,0 +1,3520 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="tianliangtian">
+      
+      
+        <link rel="canonical" href="https://tianliangtian.github.io/Learning/GAMES101/RayTracing/">
+      
+      
+        <link rel="prev" href="../Geometry/">
+      
+      
+        <link rel="next" href="../../Miscellaneous/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Ray Tracing - tianliangtian's pages</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lora";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#ray-tracing" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://tianliangtian.github.io" title="tianliangtian&#39;s pages" class="md-header__button md-logo" aria-label="tianliangtian's pages" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tianliangtian's pages
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Ray Tracing
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Tools/index.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://tianliangtian.github.io" title="tianliangtian&#39;s pages" class="md-nav__button md-logo" aria-label="tianliangtian's pages" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    tianliangtian's pages
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Learning
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Deep Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DeepLearning/NNandDL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network and Deep Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DeepLearning/Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Computer Vision
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Vision
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CV/ML/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ML4360 - Computer vision
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CV/4DGS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4DGS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DL4CV
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            DL4CV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/Classifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Classifier
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/NN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/CNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/Training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/OD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Object Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/SS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Segmentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    GAMES101
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            GAMES101
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GAMES101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rasterization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rasterization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Shading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shading
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Geometry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Ray Tracing
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ray Tracing
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-ray-tracing-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Ray-Tracing Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Ray-Tracing Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#light-rays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Light Rays
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ray-casting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Casting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursive-whitted-style-ray-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursive (Whitted-Style) Ray Tracing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ray-surface-intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray-Surface Intersection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ray-Surface Intersection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ray-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Equation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ray-intersection-with-implicit-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Intersection With Implicit Surface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ray-intersection-with-triangle-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Intersection With Triangle Mesh
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ray Intersection With Triangle Mesh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ray-intersection-with-triangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Intersection With Triangle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ray Intersection With Triangle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#moller-trumbore-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Möller Trumbore Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accelerating-ray-surface-intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accelerating Ray-Surface Intersection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accelerating Ray-Surface Intersection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Challenges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounding-volumns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounding Volumns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bounding Volumns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ray-intersection-with-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray-Intersection With Box
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniform-spatial-partitions-grids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uniform Spatial Partitions (Grids)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatial Partitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spatial Partitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-structures-to-partition-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Structures to Partition Space
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kd-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      KD-Tree
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-partitions-bounding-volume-hierarchy-bvh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object Partitions &amp; Bounding Volume Hierarchy (BVH)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Object Partitions &amp; Bounding Volume Hierarchy (BVH)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-bvh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building BVH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-structure-for-bvh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Structure for BVH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bvh-traversal" class="md-nav__link">
+    <span class="md-ellipsis">
+      BVH Traversal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-vs-object-partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatial vs Object Partitions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radiometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiometry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Radiometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radient-energy-and-flux-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radient Energy and Flux (Power)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiant-intensity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiant Intensity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irradiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Irradiance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Radiance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incident-radiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incident Radiance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exiting-radiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exiting Radiance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irradiance-vs-radiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Irradiance vs. Radiance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bidirectional-reflectance-distribution-function-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bidirectional Reflectance Distribution Function (BRDF)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bidirectional Reflectance Distribution Function (BRDF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      BRDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflection-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Equation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rendering-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rendering Equation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monte-carlo-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monte Carlo Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Tracing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Path Tracing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-simple-monte-carlo-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Simple Monte Carlo Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#introducing-global-illumination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducing Global Illumination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-tracing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Tracing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling-the-light" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sampling the Light
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Miscellaneous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Miscellaneous
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Website-building/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Website building
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Anaconda.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anaconda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Linux/tmux.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#basic-ray-tracing-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Basic Ray-Tracing Algorithm
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Basic Ray-Tracing Algorithm">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#light-rays" class="md-nav__link">
+    <span class="md-ellipsis">
+      Light Rays
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ray-casting" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Casting
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#recursive-whitted-style-ray-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recursive (Whitted-Style) Ray Tracing
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ray-surface-intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray-Surface Intersection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ray-Surface Intersection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ray-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Equation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ray-intersection-with-implicit-surface" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Intersection With Implicit Surface
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ray-intersection-with-triangle-mesh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Intersection With Triangle Mesh
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ray Intersection With Triangle Mesh">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ray-intersection-with-triangle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray Intersection With Triangle
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ray Intersection With Triangle">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#moller-trumbore-algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Möller Trumbore Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#accelerating-ray-surface-intersection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Accelerating Ray-Surface Intersection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Accelerating Ray-Surface Intersection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#performance-challenges" class="md-nav__link">
+    <span class="md-ellipsis">
+      Performance Challenges
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bounding-volumns" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bounding Volumns
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bounding Volumns">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ray-intersection-with-box" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ray-Intersection With Box
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#uniform-spatial-partitions-grids" class="md-nav__link">
+    <span class="md-ellipsis">
+      Uniform Spatial Partitions (Grids)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatial Partitions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Spatial Partitions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#data-structures-to-partition-space" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Structures to Partition Space
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#kd-tree" class="md-nav__link">
+    <span class="md-ellipsis">
+      KD-Tree
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#object-partitions-bounding-volume-hierarchy-bvh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Object Partitions &amp; Bounding Volume Hierarchy (BVH)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Object Partitions &amp; Bounding Volume Hierarchy (BVH)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#building-bvh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Building BVH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#data-structure-for-bvh" class="md-nav__link">
+    <span class="md-ellipsis">
+      Data Structure for BVH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bvh-traversal" class="md-nav__link">
+    <span class="md-ellipsis">
+      BVH Traversal
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#spatial-vs-object-partitions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spatial vs Object Partitions
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#radiometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiometry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Radiometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#radient-energy-and-flux-power" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radient Energy and Flux (Power)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiant-intensity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiant Intensity
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irradiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Irradiance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#radiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Radiance
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Radiance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incident-radiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incident Radiance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exiting-radiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Exiting Radiance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#irradiance-vs-radiance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Irradiance vs. Radiance
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#bidirectional-reflectance-distribution-function-brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bidirectional Reflectance Distribution Function (BRDF)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bidirectional Reflectance Distribution Function (BRDF)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#brdf" class="md-nav__link">
+    <span class="md-ellipsis">
+      BRDF
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reflection-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Reflection Equation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rendering-equation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rendering Equation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#monte-carlo-integration" class="md-nav__link">
+    <span class="md-ellipsis">
+      Monte Carlo Integration
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#path-tracing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Tracing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Path Tracing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-simple-monte-carlo-solution" class="md-nav__link">
+    <span class="md-ellipsis">
+      A Simple Monte Carlo Solution
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#introducing-global-illumination" class="md-nav__link">
+    <span class="md-ellipsis">
+      Introducing Global Illumination
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#path-tracing_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Path Tracing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#sampling-the-light" class="md-nav__link">
+    <span class="md-ellipsis">
+      Sampling the Light
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="ray-tracing">Ray Tracing</h1>
+<p>Why Ray Tracing?</p>
+<ul>
+<li>
+<p>Rasterization couldn't handle global effects well</p>
+<ul>
+<li>
+<p>(Soft) shadows</p>
+</li>
+<li>
+<p>And especially when the light bounces more than once</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray4.png" width="80%" /></a></p>
+<ul>
+<li>
+<p>Rasterization is fast, but quality is relatively low</p>
+</li>
+<li>
+<p>Ray tracing is accurate, but is very slow</p>
+<ul>
+<li>
+<p>Rasterization: real-time, ray tracing: offline</p>
+</li>
+<li>
+<p>~10K CPU core hours to render one frame in production</p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="basic-ray-tracing-algorithm">Basic Ray-Tracing Algorithm</h2>
+<h3 id="light-rays">Light Rays</h3>
+<p>Three ideas about light rays</p>
+<ol>
+<li>
+<p>Light travels in straight lines (though this is wrong)</p>
+</li>
+<li>
+<p>Light rays do not "collide" with each other if they cross (though this is still wrong)</p>
+</li>
+<li>
+<p>Light rays travel from the light sources to the eye (but the physics is invariant under path reversal - reciprocity).</p>
+</li>
+</ol>
+<h3 id="ray-casting">Ray Casting</h3>
+<ol>
+<li>
+<p>Generate an image by casting one eye ray per pixel.</p>
+</li>
+<li>
+<p>Find the closest scene intersection point</p>
+</li>
+<li>
+<p>Check for shadows by sending a ray to the light</p>
+</li>
+<li>
+<p>Perform shading calculation to compute color of pixel</p>
+</li>
+</ol>
+<p><a class="glightbox" href="../img/Ray5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray5.png" width="80%" /></a></p>
+<ul>
+<li>Local only, without reflection and refraction</li>
+</ul>
+<h3 id="recursive-whitted-style-ray-tracing">Recursive (Whitted-Style) Ray Tracing</h3>
+<p>An improved illumination model for shaded display</p>
+<p><a class="glightbox" href="../img/Ray6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray6.png" width="70%" /></a></p>
+<ul>
+<li>
+<p>When a ray hits a glass-like material, both reflection and refraction occur.</p>
+</li>
+<li>
+<p>When the primary ray hits the surface, continuely computing the intersection point between refracted/reflected rays and surface</p>
+</li>
+<li>
+<p>For each intersection point, shoot a ray to light source to check shadow</p>
+</li>
+<li>
+<p>Compute shading result on each intersection point</p>
+</li>
+<li>
+<p>Sum these results to get the color</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray7.png" width="80%" /></a></p>
+<h2 id="ray-surface-intersection">Ray-Surface Intersection</h2>
+<h3 id="ray-equation">Ray Equation</h3>
+<p>Ray is defined by its origin and a direction vector.</p>
+<p>Ray equation: </p>
+<div class="arithmatex">\[
+\mathbf{r}(t)=\mathbf{o}+t\mathbf{d}\quad0\leq t\leq \infty
+\]</div>
+<ul>
+<li>
+<p><span class="arithmatex">\(\mathbf{r}\)</span>: point along ray</p>
+</li>
+<li>
+<p><span class="arithmatex">\(t\)</span>: "time"</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{o}\)</span>: origin</p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mathbf{d}\)</span>: normalized direction</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray8.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray8.png" width="50%" /></a></p>
+<h3 id="ray-intersection-with-implicit-surface">Ray Intersection With Implicit Surface</h3>
+<p>Ray: <span class="arithmatex">\(\mathbf{r}(t)=\mathbf{o}+t\mathbf{d}\quad0\leq t\leq \infty\)</span></p>
+<p>General implicit surface: <span class="arithmatex">\(\mathbf{p}:f(\mathbf{p})=0\)</span></p>
+<p>Substitute ray equation: <span class="arithmatex">\(f(\mathbf{o}+t\mathbf{d})=0\)</span></p>
+<ul>
+<li>Solve for <strong>real, positive</strong> roots</li>
+</ul>
+<h3 id="ray-intersection-with-triangle-mesh">Ray Intersection With Triangle Mesh</h3>
+<p>Why?</p>
+<ul>
+<li>
+<p>Rendering: visibility, shadows, lighting ...</p>
+</li>
+<li>
+<p>Geometry: inside/outside test</p>
+<ul>
+<li>Shoot a ray from the point, if #intersection between the ray and surface is odd, then the point is inside the surface, outside otherwise.</li>
+</ul>
+</li>
+</ul>
+<p>How to compute?</p>
+<p>Let's break this down:</p>
+<ul>
+<li>
+<p>Simple idea: just intersect ray with each triangle</p>
+</li>
+<li>
+<p>Simple, but slow </p>
+</li>
+<li>
+<p>Note: can have 0, 1 intersections (ignoring multiple intersections)</p>
+</li>
+</ul>
+<h4 id="ray-intersection-with-triangle">Ray Intersection With Triangle</h4>
+<p>Triangle is in a plane</p>
+<ul>
+<li>
+<p>First find ray-plane intersection</p>
+</li>
+<li>
+<p>Then test if hit point is inside
+triangle</p>
+</li>
+</ul>
+<p>Plane is defined by normal vector and a point on plane</p>
+<p>Plane Equation (if p satisfies it, then p is on the plane):</p>
+<div class="arithmatex">\[
+\mathbf{p}:(\mathbf{p}-\mathbf{p}^{\prime})\cdot\mathbf{N}=0
+\]</div>
+<p>Solve for intersection: Set <span class="arithmatex">\(\mathbf{p}=\mathbf{r}(t)\)</span> and solve for <span class="arithmatex">\(t\)</span></p>
+<div class="arithmatex">\[
+(\mathbf{p}-\mathbf{p}^{\prime})\cdot\mathbf{N}=(\mathbf{o}+t\mathbf{d}-\mathbf{p}^{\prime})\cdot\mathbf{N}=0 \\
+t=\frac{(\mathbf{p}^{\prime}-\mathbf{o})\cdot\mathbf{N}}{\mathbf{d}\cdot\mathbf{N}}
+\]</div>
+<ul>
+<li>Check: <span class="arithmatex">\(0\leq t\leq \infty\)</span></li>
+</ul>
+<p><a class="glightbox" href="../img/Ray9.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray9.png" width="40%" /></a></p>
+<h5 id="moller-trumbore-algorithm">Möller Trumbore Algorithm</h5>
+<p>A faster approach, giving barycentric coordinate directly</p>
+<div class="arithmatex">\[
+\vec{\mathbf{O}}+t\vec{\mathbf{D}}=(1-b_1-b_2)\vec{\mathbf{P}}_0+b_1\vec{\mathbf{P}}_1+b_2\vec{\mathbf{P}}_2\\
+\begin{bmatrix}
+t \\
+b_1 \\
+b_2
+\end{bmatrix}=\frac{1}{\vec{\mathbf{S}}_1\bullet\vec{\mathbf{E}}_1}
+\begin{bmatrix}
+\vec{\mathbf{S}}_2\bullet\vec{\mathbf{E}}_2 \\
+\vec{\mathbf{S}}_1\bullet\vec{\mathbf{S}} \\
+\vec{\mathbf{S}}_2\bullet\vec{\mathbf{D}}
+\end{bmatrix}
+\]</div>
+<p>Where: </p>
+<div class="arithmatex">\[
+\begin{aligned}
+ &amp; \mathbf{\vec{E}}_1=\mathbf{\vec{P}}_1-\mathbf{\vec{P}}_0 \\
+ &amp; \mathbf{\vec{E}}_{2}=\mathbf{\vec{P}}_{2}-\mathbf{\vec{P}}_{0} \\
+ &amp; \vec{\mathbf{S}}=\vec{\mathbf{O}}-\vec{\mathbf{P}}_{0} \\
+ &amp; \vec{\mathbf{S}}_1=\vec{\mathbf{D}}\times\vec{\mathbf{E}}_2 \\
+ &amp; \vec{\mathbf{S}}_{2}=\vec{\mathbf{S}}\times\vec{\mathbf{E}}_{1}
+\end{aligned}
+\]</div>
+<ul>
+<li>
+<p><span class="arithmatex">\(Cost = (1 div, 27 mul, 17 add)\)</span></p>
+</li>
+<li>
+<p>The intersection is inside the triangle if <span class="arithmatex">\(b_1&gt;0,b_2&gt;0,b_1+b_2&lt;1\)</span></p>
+</li>
+</ul>
+<h2 id="accelerating-ray-surface-intersection">Accelerating Ray-Surface Intersection</h2>
+<h3 id="performance-challenges">Performance Challenges</h3>
+<p>Simple ray-scene intersection</p>
+<ul>
+<li>Exhaustively test ray-intersection with every triangle</li>
+<li>Find the closest hit (i.e. minimum t)</li>
+</ul>
+<p>Problem:</p>
+<ul>
+<li>Naive algorithm = <span class="arithmatex">\(\#pixels \times \# traingles \times \#bounces\)</span></li>
+<li>Very slow!</li>
+</ul>
+<p>For generality, we use the term objects instead of triangles later (but doesn't necessarily mean entire objects)</p>
+<h3 id="bounding-volumns">Bounding Volumns</h3>
+<p>Quick way to avoid intersections: bound complex object with a simple volume</p>
+<ul>
+<li>
+<p>Object is fully contained in the volume</p>
+</li>
+<li>
+<p>If it doesn't hit the volume, it doesn't hit the object</p>
+</li>
+<li>
+<p>So test BVol first, then test object if there is a hit</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray10.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray10.png" width="80%" /></a></p>
+<h4 id="ray-intersection-with-box">Ray-Intersection With Box</h4>
+<p>Box is the <strong>intersection of 3 pairs of slabs</strong></p>
+<ul>
+<li>
+<p>Specifically, we often use an Axis-Aligned Bounding Box (AABB)</p>
+<ul>
+<li>i.e. any side of the BB is along either x, y, or z axis</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray11.png" width="50%" /></a></p>
+<p>For 2D cases, </p>
+<ul>
+<li>
+<p>We first compute the intersections with each pair of slabs</p>
+<ul>
+<li>This tells us the time <span class="arithmatex">\(t\)</span> when the ray is inside that pair: <span class="arithmatex">\(t_{min}\leq t\leq t_{max}\)</span></li>
+</ul>
+</li>
+<li>
+<p>When the ray intersects the box? </p>
+<ul>
+<li>Take the intersection of <span class="arithmatex">\(t\)</span> for each pair</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray12.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray12.png" width="90%" /></a></p>
+<ul>
+<li>
+<p>Key ideas: </p>
+<ul>
+<li>
+<p>The ray enters the box <strong>only when</strong> it enters all pairs of slabs</p>
+</li>
+<li>
+<p>The ray exits the box <strong>as long as</strong> it exits any pair of slabs</p>
+</li>
+</ul>
+</li>
+<li>
+<p>For each pair, calculate the <span class="arithmatex">\(t_{min}\)</span> and <span class="arithmatex">\(t_{max}\)</span> (negative is fine)</p>
+</li>
+<li>
+<p>For 3D box, <span class="arithmatex">\(t_{enter}=\max\{t_{min}\},t_{exit}=\min\{t_{max}\}\)</span></p>
+</li>
+<li>
+<p>The ray and AABB intersect iff <span class="arithmatex">\(t_{enter}&lt;t_{exit}\ and\ t_{exit}\geq 0\)</span></p>
+<ul>
+<li>
+<p>If <span class="arithmatex">\(t_{exit}&lt;0\)</span>: The box is "behind" the ray, no intersection</p>
+</li>
+<li>
+<p>If <span class="arithmatex">\(t_{exit}\geq 0\ and\ t_{enter}&lt; 0\)</span>: The ray's origin is inside the box, have intersection.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>Why Axis-Aligned?</p>
+<p><a class="glightbox" href="../img/Ray13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray13.png" width="90%" /></a></p>
+<h3 id="uniform-spatial-partitions-grids">Uniform Spatial Partitions (Grids)</h3>
+<p>Preprocess: Build Acceleration Grid</p>
+<ol>
+<li>
+<p>Find bounding box</p>
+</li>
+<li>
+<p>Create grid</p>
+</li>
+<li>
+<p>Store each object in overlapping cells</p>
+</li>
+</ol>
+<p><a class="glightbox" href="../img/Ray14.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray14.png" width="70%" /></a></p>
+<p>How to find Ray-Scene Intersection?</p>
+<ul>
+<li>
+<p>Step through grid in ray traversal order</p>
+</li>
+<li>
+<p>For each grid cell: Test intersection with all objects stored at that cell</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray15.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray15.png" width="70%" /></a></p>
+<p>How to select grid resolution? </p>
+<ul>
+<li>
+<p>One cell: </p>
+<ul>
+<li>No speedup</li>
+</ul>
+</li>
+<li>
+<p>Too many cells: </p>
+<ul>
+<li>Inefficiency due to extraneous grid traversal</li>
+</ul>
+</li>
+<li>
+<p>Heuristic:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\#cells = C \times \#objs\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(C \approx 27\)</span> in 3D</p>
+</li>
+</ul>
+</li>
+</ul>
+<p>When uniform grids work well? </p>
+<ul>
+<li>Grids work well on large collections of objects that are distributed evenly in size and space</li>
+</ul>
+<p>When They fail?</p>
+<ul>
+<li>"Teapot in a stadium" problem: Have to spend lots of time to test grid without objects inside</li>
+</ul>
+<h3 id="spatial-partitions">Spatial Partitions</h3>
+<h4 id="data-structures-to-partition-space">Data Structures to Partition Space</h4>
+<ul>
+<li>
+<p>Oct-Tree: Recursively divides a space into 8 (4 in 2D) regions with equivalent volume. Stop when the number of objects in the space is 0 or below a threshold.</p>
+<ul>
+<li>The branching factor of an Oct-Tree grows exponentially with the number of dimensions.</li>
+</ul>
+</li>
+<li>
+<p>KD-Tree: Recursively divides a space into two regions by selecting an axis and splitting the data along a chosen coordinate. The axis used for division typically cycles through the dimensions (e.g., x, y, z) at each level of the tree.</p>
+</li>
+<li>
+<p>BSP-Tree: Similar to KD-Tree, but the divisions are not necessarily axis-aligned.</p>
+<ul>
+<li>Hard to perform division in high dimension</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray16.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray16.png" width="80%" /></a></p>
+<ul>
+<li>you could have these in both 2D and 3D. Here we will illustrate principles in 2D.</li>
+</ul>
+<h4 id="kd-tree">KD-Tree</h4>
+<p>Pre-Processing</p>
+<ul>
+<li>
+<p>Divide the space into several regions following the rule. Then we get a KD-Tree.</p>
+</li>
+<li>
+<p>Note that nodes 1 and 2 should also be subdivided but we don't demonstrate it here for simplicity</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray17.png" width="80%" /></a></p>
+<p>Data Structure for KD-Trees</p>
+<ul>
+<li>
+<p>Internal nodes store</p>
+<ul>
+<li>
+<p>split axis: x-, y-, or z-axis</p>
+</li>
+<li>
+<p>split position: coordinate of split plane along axis</p>
+</li>
+<li>
+<p>children: pointers to child nodes</p>
+</li>
+<li>
+<p>No objects are stored in internal nodes</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Leaf nodes store</p>
+<ul>
+<li>list of objects</li>
+</ul>
+</li>
+</ul>
+<p>Traversing a KD-Tree</p>
+<ul>
+<li>
+<p>First check the split axis and split position of the root node to decide whether the ray intersect with its child.</p>
+</li>
+<li>
+<p>Recursively traverse the subtree that intersects.</p>
+</li>
+<li>
+<p>If the node is leaf node, test the intersection of all objects inside it.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray18.png" width="80%" /></a></p>
+<p>Problem: </p>
+<ul>
+<li>
+<p>It's hard to determine the intersection between box and triangle</p>
+</li>
+<li>
+<p>An object can be in many leaf nodes</p>
+</li>
+</ul>
+<h3 id="object-partitions-bounding-volume-hierarchy-bvh">Object Partitions &amp; Bounding Volume Hierarchy (BVH)</h3>
+<h4 id="building-bvh">Building BVH</h4>
+<p>Procedure: </p>
+<ul>
+<li>
+<p>Find the bounding box of the current set objects</p>
+</li>
+<li>
+<p>Recursively split the set of objects into two subsets</p>
+<ul>
+<li>Need to minimize the overlap of bounding boxes</li>
+</ul>
+</li>
+<li>
+<p>Recompute the bounding box of the subsets</p>
+</li>
+<li>
+<p>Stop when necessary</p>
+</li>
+<li>
+<p>Store objects in each leaf node</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray19.png" width="80%" /></a></p>
+<p>How to subdivide a node?</p>
+<ul>
+<li>
+<p>Choose a dimension to split</p>
+</li>
+<li>
+<p>Heuristic #1: Always choose the longest axis in node</p>
+</li>
+<li>
+<p>Heuristic #2: Split node at location of median object</p>
+<ul>
+<li>i.e. make the childs have same number of nodes. The tree can be more balanced</li>
+</ul>
+</li>
+</ul>
+<p>Termination criteria?</p>
+<p>. Heuristic: stop when node contains few elements
+(e.g. 5)</p>
+<h4 id="data-structure-for-bvh">Data Structure for BVH</h4>
+<p>Internal nodes store</p>
+<ul>
+<li>
+<p>Bounding box</p>
+</li>
+<li>
+<p>Children: pointers to child nodes </p>
+</li>
+</ul>
+<p>Leaf nodes store</p>
+<ul>
+<li>
+<p>Bounding box</p>
+</li>
+<li>
+<p>List of objects</p>
+</li>
+</ul>
+<p>Nodes represent subset of primitives in scene</p>
+<ul>
+<li>All objects in subtree</li>
+</ul>
+<h4 id="bvh-traversal">BVH Traversal</h4>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Intersect (Ray ray, BVH node) {
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    if (ray misses node.bbox) return;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>    if (node is a leaf node)
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>        test intersection with all objs;
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>        return closest intersection;
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    hit1 = Intersect(ray, node.child1);
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    hit2 = Intersect(ray, node.child2);
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    return the closer of hit1, hit2;
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>
+</span><span id="__span-0-13"><a id="__codelineno-0-13" name="__codelineno-0-13" href="#__codelineno-0-13"></a>}
+</span></code></pre></div>
+<p><a class="glightbox" href="../img/Ray20.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray20.png" width="60%" /></a></p>
+<h4 id="spatial-vs-object-partitions">Spatial vs Object Partitions</h4>
+<p>Spatial partition (e.g.KD-tree)</p>
+<ul>
+<li>
+<p>Partition space into non-overlapping regions</p>
+</li>
+<li>
+<p>An object can be contained in multiple regions</p>
+</li>
+</ul>
+<p>Object partition (e.g. BVH)</p>
+<ul>
+<li>
+<p>Partition set of objects into disjoint subsets</p>
+</li>
+<li>
+<p>Bounding boxes for each set may overlap in space</p>
+</li>
+</ul>
+<h2 id="radiometry">Radiometry</h2>
+<p>Why Radiometry?</p>
+<ul>
+<li>
+<p>Blinn-Phong model is just a approximation: </p>
+<ul>
+<li>
+<p>Many assumptions are incorrect.</p>
+</li>
+<li>
+<p>Many quantities do not have a definite physical meaning.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Whitted style ray tracing does not gives the correct result</p>
+</li>
+</ul>
+<p>Radiometry: </p>
+<ul>
+<li>
+<p>Measurement system and units for illumination</p>
+</li>
+<li>
+<p>Accurately measure the spatial properties of light</p>
+<ul>
+<li>New terms: Radiant flux, intensity, irradiance, radiance</li>
+</ul>
+</li>
+<li>
+<p>Perform lighting calculations in a physically correct manner</p>
+</li>
+</ul>
+<h3 id="radient-energy-and-flux-power">Radient Energy and Flux (Power)</h3>
+<p>Radiant Energy: </p>
+<ul>
+<li>Definition: Radiant energy is the energy of electromagnetic
+radiation. It is measured in units of joules, and denoted by
+the symbol:</li>
+</ul>
+<div class="arithmatex">\[
+Q\left[\text{J}=\text{Joule}\right]
+\]</div>
+<p>Radiant flux (power):</p>
+<ul>
+<li>Definition: Radiant flux (power) is the energy emitted, reflected, transmitted or received, per unit time.</li>
+</ul>
+<div class="arithmatex">\[
+\Phi\equiv\frac{\mathrm{d}Q}{\mathrm{d}t}\text{ [W = Watt] [lm = lumen]}
+\]</div>
+<ul>
+<li>Flux can also be understood as #photons flowing through a sensor in unit time</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray21.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray21.png" width="60%" /></a></p>
+<p>important Light Measurements of Interest</p>
+<p><a class="glightbox" href="../img/Ray22.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray22.png" width="60%" /></a></p>
+<h3 id="radiant-intensity">Radiant Intensity</h3>
+<p>Definition: </p>
+<ul>
+<li>The radiant (luminous) intensity is the power per unit solid angle emitted by a point light source.</li>
+</ul>
+<div class="arithmatex">\[
+I(\omega)\equiv\frac{\mathrm{d}\Phi}{\mathrm{d}\omega}\left[\frac{\mathrm{W}}{\mathrm{sr}}\right]\left[\frac{\mathrm{lm}}{\mathrm{sr}}=\mathrm{cd}=\mathrm{candela}\right]
+\]</div>
+<p>Angle: ratio of subtended arc length on circle to radius</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\theta = \frac{l}{r}\)</span></p>
+</li>
+<li>
+<p>Circle has <span class="arithmatex">\(2\pi\)</span> radians</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray23.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray23.png" width="40%" /></a></p>
+<p>Solid angle: ratio of subtended area on sphere to radius squared</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\Omega=\frac{A}{r^2}\)</span></p>
+</li>
+<li>
+<p>Sphere has <span class="arithmatex">\(4\pi\)</span> steradians</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray24.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray24.png" width="40%" /></a></p>
+<p>Differential Solid Angles</p>
+<div class="arithmatex">\[
+\begin{align*}
+\mathrm{d}A&amp;=(r\mathrm{d}\theta)(r\sin{\theta}\mathrm{d}\phi)\\
+&amp;=r^2\sin{\theta}\ \mathrm{d}\theta \mathrm{d}\phi
+\end{align*}
+\]</div>
+<div class="arithmatex">\[
+\begin{align*}
+\mathrm{d}\omega=\frac{\mathrm{d}A}{r^2}=\sin{\theta}\ \mathrm{d}\theta\mathrm{d}\phi
+\end{align*}
+\]</div>
+<p><a class="glightbox" href="../img/Ray25.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray25.png" width="60%" /></a></p>
+<p>For sphere <span class="arithmatex">\(S^2\)</span>, the solid angle is: </p>
+<div class="arithmatex">\[
+\begin{align*}
+\Omega&amp;=\int_{S^2}\mathrm{d}\omega\\
+&amp;=\int_{0}^{2\pi}\int_{0}^{\pi}\sin{\theta}\ \mathrm{d}\theta\mathrm{d}\phi\\
+&amp;=4\pi
+\end{align*}
+\]</div>
+<p>We use <span class="arithmatex">\(\omega\)</span> to denote a direction vector (unit length)</p>
+<p><a class="glightbox" href="../img/Ray26.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray26.png" width="80%" /></a></p>
+<p>For Isotropic Point Source, </p>
+<div class="arithmatex">\[
+\begin{align*}
+\Phi&amp;=\int_{S^2}I\mathrm{d}\omega\\
+&amp;=4\pi I
+\end{align*}
+\]</div>
+<div class="arithmatex">\[
+I=\frac{\Phi}{4\pi}
+\]</div>
+<p><a class="glightbox" href="../img/Ray27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray27.png" width="60%" /></a></p>
+<h3 id="irradiance">Irradiance</h3>
+<p>Definition: </p>
+<ul>
+<li>The irradiance is the power per (<strong>perpendicular/projected</strong>) unit area incident on a surface point.</li>
+</ul>
+<div class="arithmatex">\[
+E(\mathbf{x})\equiv\frac{\mathrm{d}\Phi(\mathbf{x})}{\mathrm{d}A}\left[\frac{\mathrm{W}}{\mathrm{m}^2}\right]\left[\frac{\mathrm{lm}}{\mathrm{m}^2}=\mathrm{lux}\right]
+\]</div>
+<p>This explains Lambert's cosine law we discussed before: </p>
+<p><a class="glightbox" href="../img/Ray28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray28.png" width="80%" /></a></p>
+<p>This also explains irradiance falloff</p>
+<p><a class="glightbox" href="../img/Ray29.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray29.png" width="80%" /></a></p>
+<h3 id="radiance">Radiance</h3>
+<p>Radiance is the fundamental field quantity that describes the distribution of light in an environment</p>
+<ul>
+<li>
+<p>Radiance is the quantity associated with a ray</p>
+</li>
+<li>
+<p>Rendering is all about computing radiance</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray30.png" width="40%" /></a></p>
+<p>Definition: </p>
+<ul>
+<li>The radiance (luminance) is the power emitted, reflected, transmitted or received by a surface, <strong>per unit solid angle</strong>, <strong>per projected unit area</strong>.</li>
+</ul>
+<div class="arithmatex">\[
+L(\mathrm{p},\omega) \equiv\frac{\mathrm{d}^2\Phi(\mathrm{p},\omega)}{\mathrm{d}\omega\mathrm{d}A\cos\theta}
+\left[\frac{\mathrm{W}}{\mathrm{sr}\ \mathrm{m}^2}\right]\left[\frac{\mathrm{cd}}{\mathrm{m}^2}=\frac{\mathrm{lm}}{\mathrm{sr}\ \mathrm{m}^2}=\mathrm{nit}\right]
+\]</div>
+<ul>
+<li><span class="arithmatex">\(\cos{\theta}\)</span> accounts for projected surface area</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray31.png" width="40%" /></a></p>
+<p>Recall</p>
+<ul>
+<li>
+<p>Irradiance: power per projected unit area</p>
+</li>
+<li>
+<p>Intensity: power per solid angle</p>
+</li>
+</ul>
+<p>So</p>
+<ul>
+<li>
+<p>Radiance: Irradiance per solid angle</p>
+</li>
+<li>
+<p>Radiance: Intensity per projected unit area</p>
+</li>
+</ul>
+<h4 id="incident-radiance">Incident Radiance</h4>
+<p>Incident radiance is the irradiance per unit solid angle arriving at the surface.</p>
+<ul>
+<li>i.e. it is the light arriving at the surface along a given ray (point on surface and incident direction).</li>
+</ul>
+<div class="arithmatex">\[
+L(\mathrm{p},\omega)=\frac{\mathrm{d}E(\mathrm{p})}{\mathrm{d}\omega\cos\theta}
+\]</div>
+<p><a class="glightbox" href="../img/Ray32.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray32.png" width="40%" /></a></p>
+<h4 id="exiting-radiance">Exiting Radiance</h4>
+<p>Exiting surface radiance is the intensity per unit projected area leaving the surface.</p>
+<ul>
+<li>e.g. for an area light it is the light emitted along a given ray (point on surface and exit direction).</li>
+</ul>
+<div class="arithmatex">\[
+L(\mathrm{p},\omega)=\frac{\mathrm{d}I(\mathrm{p},\omega)}{\mathrm{d}A\cos\theta}
+\]</div>
+<p><a class="glightbox" href="../img/Ray33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray33.png" width="40%" /></a></p>
+<h4 id="irradiance-vs-radiance">Irradiance vs. Radiance</h4>
+<ul>
+<li>
+<p>Irradiance: total power received by area <span class="arithmatex">\(\mathrm{d}A\)</span></p>
+</li>
+<li>
+<p>Radiance: power received by area <span class="arithmatex">\(\mathrm{d}A\)</span> from "direction" <span class="arithmatex">\(\mathrm{d}\omega\)</span></p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+dE(\mathrm{p},\omega) &amp; =L_i(\mathrm{p},\omega)\cos\theta\mathrm{d}\omega \\
+E(\mathrm{p}) &amp; =\int_{H^2}L_i(\mathrm{p},\omega)\cos\theta\mathrm{d}\omega
+\end{aligned}
+\]</div>
+<p><a class="glightbox" href="../img/Ray34.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray34.png" width="60%" /></a></p>
+<h2 id="bidirectional-reflectance-distribution-function-brdf">Bidirectional Reflectance Distribution Function (BRDF)</h2>
+<p>Reflection at a Point:</p>
+<ul>
+<li>
+<p>Radiance from direction <span class="arithmatex">\(\omega_i\)</span> turns into the power <span class="arithmatex">\(E\)</span> that <span class="arithmatex">\(\mathrm{d}A\)</span> receives</p>
+</li>
+<li>
+<p>Then power <span class="arithmatex">\(E\)</span> will become the radiance to any other direction <span class="arithmatex">\(\omega _o\)</span></p>
+</li>
+<li>
+<p>Differential irradiance incoming: <span class="arithmatex">\(dE(\omega_i)=L(\omega_i)\cos{\theta_i}d\omega_i\)</span></p>
+</li>
+<li>
+<p>Differential radiance exiting (due to <span class="arithmatex">\(dE(\omega_i)\)</span>): <span class="arithmatex">\(dL_r(\omega_r)\)</span></p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray35.png" width="60%" /></a></p>
+<h3 id="brdf">BRDF</h3>
+<ul>
+<li>The Bidirectional Reflectance Distribution Function (BRDF) represents how much light is reflected into each outgoing direction <span class="arithmatex">\(\omega _r\)</span> from each incoming direction <span class="arithmatex">\(\omega _i\)</span></li>
+</ul>
+<div class="arithmatex">\[
+f_r(\omega_i\rightarrow\omega_r)=\frac{dL_r(\omega_r)}{dE_i(\omega_i)}=\frac{dL_r(\omega_r)}{L_i(\omega_i)\cos{\theta_i}d\omega_i}\left[\frac{1}{\mathrm{sr}}\right]
+\]</div>
+<p><a class="glightbox" href="../img/Ray36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray36.png" width="60%" /></a></p>
+<h3 id="reflection-equation">Reflection Equation</h3>
+<ul>
+<li>
+<p>Defines how much light is reflected into the outgoing direction <span class="arithmatex">\(\omega_r\)</span></p>
+</li>
+<li>
+<p>Integrate light from all incoming direction <span class="arithmatex">\(\omega_i\)</span> times BRDF</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+L_r(p,\omega_r)=\int_{H^2}f_r(p,\omega_i\rightarrow\omega_r)L_i(p,\omega_i)\cos{\theta_i}d\omega_i
+\]</div>
+<p><a class="glightbox" href="../img/Ray37.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray37.png" width="80%" /></a></p>
+<ul>
+<li>
+<p>Challenge: Recursive Equation</p>
+<ul>
+<li>
+<p>The Reflected radiance <span class="arithmatex">\(L_r(p,\omega_r)\)</span> depends on incoming radiance <span class="arithmatex">\(L_i(p,\omega_i)\)</span></p>
+</li>
+<li>
+<p>But incoming radiance depends on reflected radiance (at another point in the scene)</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="rendering-equation">Rendering Equation</h3>
+<ul>
+<li>The surface may emit light spontaneously. Adding an Emission term to reflection equation to make it general</li>
+</ul>
+<div class="arithmatex">\[
+L_o(p,\omega_o)=L_e(p,\omega_o) + \int_{\Omega+}L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)d\omega_i
+\]</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Here we assume that all directions are pointing outwards</p>
+</div>
+<p>Note that <span class="arithmatex">\(L_i\)</span> is also the reflected light computed from the rendering function. So we can reformulate the equation as following: </p>
+<div class="arithmatex">\[
+l(u)=e(u)+\int l(v)K(u,v)dv
+\]</div>
+<p>where</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(l(u/v)\)</span> denotes the light from direction <span class="arithmatex">\(u/v\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(K(u,v)dv\)</span> is the kernel of equation (Light Transport Operator)</p>
+</li>
+</ul>
+<p>It can be discretized to a simple matrix equation (or system of simultaneous linear equations): </p>
+<div class="arithmatex">\[
+L=E+KL
+\]</div>
+<p>where <span class="arithmatex">\(L,E\)</span> are vectors and <span class="arithmatex">\(K\)</span> is the light transport matrix.</p>
+<div class="arithmatex">\[
+\begin{align*}
+L&amp;=E+KL\\
+IL-KL&amp;=E\\
+L&amp;=(I-K)^{-1}E\\
+L&amp;=(I+K+K^2+K^3+\dots)\quad(\text{Binomial Theorem})\\
+L&amp;=E+KE+K^2E+K^3E+\dots
+\end{align*}
+\]</div>
+<p>Now we can have a deeper understanding that <span class="arithmatex">\(E\)</span> is the emission directly from light sources, <span class="arithmatex">\(KE\)</span> is the direct illumination on surfaces, <span class="arithmatex">\(K^2E\)</span> is indirect illumination (One bounce), <span class="arithmatex">\(\dots\)</span></p>
+<p><a class="glightbox" href="../img/Ray38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray38.png" width="80%" /></a></p>
+<p><a class="glightbox" href="../img/Ray39.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray39.png" width="80%" /></a></p>
+<p><a class="glightbox" href="../img/Ray40.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray40.png" width="80%" /></a></p>
+<h2 id="monte-carlo-integration">Monte Carlo Integration</h2>
+<p>Why? </p>
+<ul>
+<li>We want to solve an integral, but it can be too difficult to solve analytically</li>
+</ul>
+<p>What &amp; How? </p>
+<ul>
+<li>Estimate the integral of a function by averaging random samples of the functoins's value</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray41.png" width="80%" /></a></p>
+<p>For the definite integral of given function <span class="arithmatex">\(f(x)\)</span>, define: </p>
+<ul>
+<li>
+<p>Definite integral <span class="arithmatex">\(\int_{a}^{b}f(x)dx\)</span></p>
+</li>
+<li>
+<p>Random varirable <span class="arithmatex">\(X_i \sim p(x)\)</span></p>
+</li>
+<li>
+<p>Monte Carlo estimator: <span class="arithmatex">\(F_N =\frac{1}{N}\sum_{i=1}^{N}\frac{f(X_i)}{p(X_i)}\)</span></p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray42.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img align="left" alt="" src="../img/Ray42.png" width="60%" /></a></p>
+<p>For uniform random variable, </p>
+<div class="arithmatex">\[
+\begin{align*}
+&amp;X_i \sim p(x)=C\\
+&amp;\int_{a}^{b}p(x)dx=1\\
+&amp;\Rightarrow C=\frac{1}{b-a}
+\end{align*}
+\]</div>
+<p>This brings us the Basic Monte Carlo estimator: </p>
+<div class="arithmatex">\[
+F_N=\frac{b-a}{N}\sum_{i=1}^Nf(X_i)
+\]</div>
+<p>In conclusion, we estimate the integral by the following formula: </p>
+<div class="arithmatex">\[
+\int f(x)dx=\frac{1}{N}\sum_{i=1}^{N}\frac{f(X_i)}{p(X_i)}\quad X_i\sim p(x)
+\]</div>
+<ul>
+<li>
+<p>The more samples, the less variance</p>
+</li>
+<li>
+<p>Sample on <span class="arithmatex">\(x\)</span>, integrate on <span class="arithmatex">\(x\)</span></p>
+</li>
+</ul>
+<h2 id="path-tracing">Path Tracing</h2>
+<p>Motivation: Whitted-style ray tracing: </p>
+<ul>
+<li>
+<p>Always perform specular reflections / refractions</p>
+</li>
+<li>
+<p>Stop bouncing at diffuse surfaces</p>
+</li>
+<li>
+<p>Problem: </p>
+<ul>
+<li>
+<p>Where should the ray be reflected for glossy materials?</p>
+</li>
+<li>
+<p>No reflections between diffuse materials?</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray43.png" width="80%" /></a></p>
+<p>Whitted-Style Ray Tracing is Wrong</p>
+<ul>
+<li>The rendering equation is correct</li>
+</ul>
+<div class="arithmatex">\[
+L_o(p,\omega_o)=L_e(p,\omega_o) + \int_{\Omega+}L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)d\omega_i
+\]</div>
+<ul>
+<li>
+<p>But it involves: </p>
+<ul>
+<li>
+<p>Solving an integral over the hemisphere</p>
+</li>
+<li>
+<p>Recursive execution</p>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="a-simple-monte-carlo-solution">A Simple Monte Carlo Solution</h3>
+<p>Suppose we want to render one pixel (point) in the following scene for direct illumination only.</p>
+<ul>
+<li>
+<p>An area light</p>
+</li>
+<li>
+<p>Assume all directions are <strong>pointing outwards</strong></p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Ray44.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray44.png" width="60%" /></a></p>
+<p>We want to compute the radiance at point <span class="arithmatex">\(p\)</span> towards the camera: </p>
+<div class="arithmatex">\[
+L_o(p,\omega_o)=\int_{\Omega+}L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)d\omega_i
+\]</div>
+<ul>
+<li>
+<p>Using Monte Carlo integration: <span class="arithmatex">\(\int_a^b f(x)dx\approx\frac{1}{N}\sum_{k=1}^{N}\frac{f(X_k)}{p(X_k)}\quad X_k\sim p(x)\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(f(x)=L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(p(\omega_i)=\frac{1}{2\pi}\)</span></p>
+<ul>
+<li>Since we assume uniformly sampling the hemisphere and the solid angle for a sphere is <span class="arithmatex">\(4\pi\)</span></li>
+</ul>
+</li>
+</ul>
+<p>So, in general: </p>
+<div class="arithmatex">\[
+L_o(p,\omega_o)\approx \frac{1}{N}\sum_{i=1}^{N}\frac{L_i(p,\omega_i)f_r(p,\omega_i,\omega_o)(n\cdot \omega_i)}{p(\omega_i)}
+\]</div>
+<p>It's a correct shading algorithm for direct illumination</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>shade (p, wo): 
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    Randomly choose N directions wi~pdf
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    Lo = 0.0
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    For each wi
+</span><span id="__span-1-5"><a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>        Trace a ray r(p, wi)
+</span><span id="__span-1-6"><a id="__codelineno-1-6" name="__codelineno-1-6" href="#__codelineno-1-6"></a>        If ray r hit the light
+</span><span id="__span-1-7"><a id="__codelineno-1-7" name="__codelineno-1-7" href="#__codelineno-1-7"></a>            Lo += (1 / N) * L_i * f_r * cosine / pdf(wi)
+</span><span id="__span-1-8"><a id="__codelineno-1-8" name="__codelineno-1-8" href="#__codelineno-1-8"></a>    Return Lo
+</span></code></pre></div>
+<h3 id="introducing-global-illumination">Introducing Global Illumination</h3>
+<p>One more step forward: what if a ray hits an object?</p>
+<ul>
+<li>For the following example, <span class="arithmatex">\(Q\)</span> reflects direct illumination to <span class="arithmatex">\(P\)</span></li>
+</ul>
+<p><a class="glightbox" href="../img/Ray45.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray45.png" width="70%" /></a></p>
+<p>We can modify our algorithm, when the ray hits an object at q, recursively compute the shade at q</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>shade (p, wo): 
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>    Randomly choose N directions wi~pdf
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>    Lo = 0.0
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>    For each wi:
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a>        Trace a ray r(p, wi)
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a>        If ray r hit the light:
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a>            Lo += (1 / N) * L_i * f_r * cosine / pdf(wi)
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>        Else If ray r hit an object at q:
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a>            Lo += (1 / N) * shade(q, -wi) * f_r * cosine / pdf(wi)
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a>    Return Lo
+</span></code></pre></div>
+<h3 id="path-tracing_1">Path Tracing</h3>
+<p><strong>Problem 1</strong>: Explosion of <span class="arithmatex">\(\#rays\)</span> as <span class="arithmatex">\(\#bounces\)</span> go up: <span class="arithmatex">\(\#rays=N^{\#bounces}\)</span></p>
+<p><a class="glightbox" href="../img/Ray.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray.png" width="70%" /></a></p>
+<p>Key Observation: </p>
+<ul>
+<li><span class="arithmatex">\(\#rays\)</span> will not explode iff <span class="arithmatex">\(N=1\)</span></li>
+</ul>
+<p>From now on, we always assume that only 1 ray is traced at each shading point, this is <strong>path tracing</strong> (Distributed Ray Tracing if <span class="arithmatex">\(N\neq1\)</span>)</p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-3-1"><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>shade (p, wo): 
+</span><span id="__span-3-2"><a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>    Randomly choose 1 directions wi~pdf
+</span><span id="__span-3-3"><a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>    Trace a ray r(p, wi)
+</span><span id="__span-3-4"><a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>    If ray r hit the light:
+</span><span id="__span-3-5"><a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a>        Return * L_i * f_r * cosine / pdf(wi)
+</span><span id="__span-3-6"><a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>    Else If ray r hit an object at q:
+</span><span id="__span-3-7"><a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a>        Return shade(q, -wi) * f_r * cosine / pdf(wi)
+</span><span id="__span-3-8"><a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a>    Return Lo
+</span></code></pre></div>
+<p>This can be too noisy, but we can just trace more paths through each pixel and average their radiance. It's similar to ray casting in ray tracing and called <strong>Ray Generation</strong></p>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-4-1"><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a>ray_generation (camPos, pixel):
+</span><span id="__span-4-2"><a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a>    Uniformly choose N sample positions within the pixel
+</span><span id="__span-4-3"><a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>    pixel_radiance = 0.0
+</span><span id="__span-4-4"><a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a>    For each sample in the pixel
+</span><span id="__span-4-5"><a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a>        Shoot a ray r(camPos, cam_to_sample)
+</span><span id="__span-4-6"><a id="__codelineno-4-6" name="__codelineno-4-6" href="#__codelineno-4-6"></a>        If ray r hit the scene at p
+</span><span id="__span-4-7"><a id="__codelineno-4-7" name="__codelineno-4-7" href="#__codelineno-4-7"></a>            pixel_radiance += 1 / N * shade(p, sample_to_cam)
+</span><span id="__span-4-8"><a id="__codelineno-4-8" name="__codelineno-4-8" href="#__codelineno-4-8"></a>    Return pixel_radiance
+</span></code></pre></div>
+<p><a class="glightbox" href="../img/Ray46.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray46.png" width="70%" /></a></p>
+<p><strong>Problem 2</strong>: The recursive algorithm will never stop</p>
+<ul>
+<li>Dilemma: the light does not stop bouncing in reality. Cutting #bounces equals cutting energy</li>
+</ul>
+<p>Solution: Russian Roulette (RR)</p>
+<ul>
+<li>
+<p>Previously, we always shoot a ray at a shading point and get the shading result <span class="arithmatex">\(L_o\)</span></p>
+</li>
+<li>
+<p>Now, set a probability <span class="arithmatex">\(P\ (0&lt;P&lt;1)\)</span></p>
+<ul>
+<li>
+<p>With probability <span class="arithmatex">\(P\)</span>, shoot a ray and return the shading result divided by <span class="arithmatex">\(P\)</span>: <span class="arithmatex">\(Lo / P\)</span></p>
+</li>
+<li>
+<p>With probability <span class="arithmatex">\(1-P\)</span>, don't shoot a ray and you'll get <span class="arithmatex">\(0\)</span></p>
+</li>
+</ul>
+</li>
+<li>
+<p>The expectation is still <span class="arithmatex">\(L_o\)</span>: <span class="arithmatex">\(E=P\cdot (L_o/ P)+(1-P)\cdot 0=L_o\)</span></p>
+</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-5-1"><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>shade (p, wo): 
+</span><span id="__span-5-2"><a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>    Manually specify a probability P_RR
+</span><span id="__span-5-3"><a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>    Randomly select ksi in a uniform dist. in [0, 1]
+</span><span id="__span-5-4"><a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a>    If (ksi &gt; P_RR) return 0.0;
+</span><span id="__span-5-5"><a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a>
+</span><span id="__span-5-6"><a id="__codelineno-5-6" name="__codelineno-5-6" href="#__codelineno-5-6"></a>    Randomly choose ONE direction wi~pdf(w)
+</span><span id="__span-5-7"><a id="__codelineno-5-7" name="__codelineno-5-7" href="#__codelineno-5-7"></a>    Trace a ray r(p, wi)
+</span><span id="__span-5-8"><a id="__codelineno-5-8" name="__codelineno-5-8" href="#__codelineno-5-8"></a>    If ray r hit the light:
+</span><span id="__span-5-9"><a id="__codelineno-5-9" name="__codelineno-5-9" href="#__codelineno-5-9"></a>        Return L_i * f_r * cosine / pdf(wi) / P_RR
+</span><span id="__span-5-10"><a id="__codelineno-5-10" name="__codelineno-5-10" href="#__codelineno-5-10"></a>    Else If ray r hit an object at q:
+</span><span id="__span-5-11"><a id="__codelineno-5-11" name="__codelineno-5-11" href="#__codelineno-5-11"></a>        Return shade(q, -wi) * f_r * cosine / pdf(wi) / P_RR
+</span></code></pre></div>
+<p>Now we already have a correct version of path tracing!</p>
+<p>But it's not really efficient.</p>
+<p><a class="glightbox" href="../img/Ray47.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray47.png" width="80%" /></a></p>
+<h3 id="sampling-the-light">Sampling the Light</h3>
+<p>Why inefficient? </p>
+<ul>
+<li>Only part of rays will hit the light while others are wasted if we uniformly sample the hemisphere</li>
+</ul>
+<p>Idea: </p>
+<ul>
+<li>Always sample the light so that no rays are wasted.</li>
+</ul>
+<p>Take the following case for example: </p>
+<ul>
+<li>
+<p>Assume uniformly sampling on the light, <span class="arithmatex">\(pdf=\frac{1}{A}\)</span></p>
+<ul>
+<li>Because <span class="arithmatex">\(\int pdf\ dA=1\)</span>, where <span class="arithmatex">\(A\)</span> is the light area</li>
+</ul>
+</li>
+<li>
+<p>The rendering equation integrates on the solid angle <span class="arithmatex">\(d\omega_i\)</span>, we need transform it to an integral of <span class="arithmatex">\(dA\)</span>: </p>
+<ul>
+<li>Recall the alternative defination of solid angle, Projected area on the unit sphere: <span class="arithmatex">\(d\omega=\frac{dA\cos{\theta'}}{\|x'-x\|^2}\)</span> (Note: <span class="arithmatex">\(\theta'\)</span> instead of <span class="arithmatex">\(\theta\)</span>)</li>
+</ul>
+</li>
+<li>
+<p>Then we can rewrite the rendering equation as </p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align*}
+L_o(p,\omega_o)&amp;=\int_{\Omega+}L_i(x,\omega_i)f_r(x,\omega_i,\omega_o)\cos{\theta}d\omega_i\\
+&amp;=\int_A L_i(x,\omega_i)f_r(x,\omega_i,\omega_o)\frac{\cos{\theta}\cos{\theta'}}{\|x'-x\|^2}dA
+\end{align*}
+\]</div>
+<p><a class="glightbox" href="../img/Ray48.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray48.png" width="80%" /></a></p>
+<p>Previously, we assume the light is "accidentally" shot by uniform hemisphere sampling</p>
+<p>Now we consider the radiance coming from two parts:</p>
+<ol>
+<li>
+<p>light source (direct, no need to have RR)</p>
+</li>
+<li>
+<p>other reflectors (indirect, RR)</p>
+</li>
+</ol>
+<p><a class="glightbox" href="../img/Ray49.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray49.png" width="80%" /></a></p>
+<p>One final thing: what if the sample on the light is blocked? </p>
+<ul>
+<li>check when shooting</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-6-1"><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>shade (p, wo):
+</span><span id="__span-6-2"><a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>    # Contribution from the light source.
+</span><span id="__span-6-3"><a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>    Uniformly sample the light at x&#39; (pdf_light = 1 / A)
+</span><span id="__span-6-4"><a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>    Shoot a ray from p to x&#39;
+</span><span id="__span-6-5"><a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>    If the ray is not blocked in the middle:
+</span><span id="__span-6-6"><a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>        L_dir = L i * f_r * cos 0 * cos 0&#39; / |x&#39; - p| ^2 / pdf_light
+</span><span id="__span-6-7"><a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>
+</span><span id="__span-6-8"><a id="__codelineno-6-8" name="__codelineno-6-8" href="#__codelineno-6-8"></a>    # Contribution from other reflectors.
+</span><span id="__span-6-9"><a id="__codelineno-6-9" name="__codelineno-6-9" href="#__codelineno-6-9"></a>    L_indir = 0.0
+</span><span id="__span-6-10"><a id="__codelineno-6-10" name="__codelineno-6-10" href="#__codelineno-6-10"></a>    Test Russian Roulette with probability P_RR
+</span><span id="__span-6-11"><a id="__codelineno-6-11" name="__codelineno-6-11" href="#__codelineno-6-11"></a>    Uniformly sample the hemisphere toward wi (pdf_hemi = 1 / 2pi)
+</span><span id="__span-6-12"><a id="__codelineno-6-12" name="__codelineno-6-12" href="#__codelineno-6-12"></a>    Trace a ray r(p, wi)
+</span><span id="__span-6-13"><a id="__codelineno-6-13" name="__codelineno-6-13" href="#__codelineno-6-13"></a>    If ray r hit a non-emitting object at q
+</span><span id="__span-6-14"><a id="__codelineno-6-14" name="__codelineno-6-14" href="#__codelineno-6-14"></a>        L_indir = shade(q, -wi) * f_r * cos 0 / pdf_hemi / P_RR
+</span><span id="__span-6-15"><a id="__codelineno-6-15" name="__codelineno-6-15" href="#__codelineno-6-15"></a>
+</span><span id="__span-6-16"><a id="__codelineno-6-16" name="__codelineno-6-16" href="#__codelineno-6-16"></a>    Return L dir + L indir
+</span></code></pre></div>
+<p><a class="glightbox" href="../img/Ray50.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Ray50.png" width="80%" /></a></p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Geometry/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Geometry">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Geometry
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../Miscellaneous/" class="md-footer__link md-footer__link--next" aria-label="Next: Miscellaneous">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Miscellaneous
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://b23.tv/HokHR7N" target="_blank" rel="noopener" title="b23.tv" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tianliangtian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

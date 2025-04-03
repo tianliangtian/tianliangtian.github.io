@@ -1,0 +1,2181 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="tianliangtian">
+      
+      
+        <link rel="canonical" href="https://tianliangtian.github.io/Learning/CV/4DGS/">
+      
+      
+        <link rel="prev" href="../ML/">
+      
+      
+        <link rel="next" href="../../DL4CV/Classifier/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>4DGS - tianliangtian's pages</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lora";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#4-dimension-gaussian-splatting" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://tianliangtian.github.io" title="tianliangtian&#39;s pages" class="md-header__button md-logo" aria-label="tianliangtian's pages" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tianliangtian's pages
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4DGS
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Tools/index.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://tianliangtian.github.io" title="tianliangtian&#39;s pages" class="md-nav__button md-logo" aria-label="tianliangtian's pages" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    tianliangtian's pages
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Learning
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Deep Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DeepLearning/NNandDL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network and Deep Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DeepLearning/Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Computer Vision
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Vision
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../ML/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ML4360 - Computer vision
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    4DGS
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    4DGS
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gaussian-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaussian Distribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gaussian Distribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#covariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Covariance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaussian-distribution_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaussian Distribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gaussian Distribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isocontour" class="md-nav__link">
+    <span class="md-ellipsis">
+      Isocontour
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closure-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closure properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decomposition
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volumn-rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volumn Rendering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volumn Rendering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rendering-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      rendering pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splatting-alogorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splatting Alogorithm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-viewing-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Viewing Transformation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-projective-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Projective Transformation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spherical-harmonic-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spherical Harmonic Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structural-similarity-index-measure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structural Similarity Index Measure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structural Similarity Index Measure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structural-dissimilarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structural Dissimilarity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DL4CV
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            DL4CV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/Classifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Classifier
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/NN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/CNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/Training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/OD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Object Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/SS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Segmentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    GAMES101
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            GAMES101
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GAMES101/GAMES101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GAMES101/Rasterization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rasterization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GAMES101/Shading/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shading
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GAMES101/Geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Geometry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../GAMES101/RayTracing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ray Tracing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Miscellaneous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Miscellaneous
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Website-building/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Website building
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Anaconda.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anaconda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Linux/tmux.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#gaussian-distribution" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaussian Distribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gaussian Distribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#covariance" class="md-nav__link">
+    <span class="md-ellipsis">
+      Covariance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#gaussian-distribution_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gaussian Distribution
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gaussian Distribution">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#isocontour" class="md-nav__link">
+    <span class="md-ellipsis">
+      Isocontour
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#closure-properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      Closure properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#decomposition" class="md-nav__link">
+    <span class="md-ellipsis">
+      Decomposition
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#volumn-rendering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Volumn Rendering
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Volumn Rendering">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#rendering-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      rendering pipeline
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#splatting-alogorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Splatting Alogorithm
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-viewing-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Viewing Transformation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#the-projective-transformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Projective Transformation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#spherical-harmonic-functions" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spherical Harmonic Functions
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#structural-similarity-index-measure" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structural Similarity Index Measure
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Structural Similarity Index Measure">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#algorithm" class="md-nav__link">
+    <span class="md-ellipsis">
+      Algorithm
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#structural-dissimilarity" class="md-nav__link">
+    <span class="md-ellipsis">
+      Structural Dissimilarity
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="4-dimension-gaussian-splatting">4 Dimension Gaussian Splatting</h1>
+<h2 id="gaussian-distribution">Gaussian Distribution</h2>
+<h3 id="covariance">Covariance</h3>
+<p>For a given random vector <span class="arithmatex">\(X:\Omega \rightarrow R^{n}\)</span>, its <strong>covariance matrix</strong> <span class="arithmatex">\(\Sigma\)</span> is the <span class="arithmatex">\(n\times n\)</span> square matrix whose extries are given by <span class="arithmatex">\(\Sigma_{ij}=Cov[X_{i},X_{j}]=E[(X_{i}-E[X_{i}])(X_{j}-E[X_{j}])]\)</span></p>
+<div class="arithmatex">\[
+\Sigma=E[(X-E[X])(X-E[X])^{T}] 
+\]</div>
+<p><strong>Proposition:</strong> Suppose that <span class="arithmatex">\(\Sigma\)</span> is the covariance matrix corresponding to some random vector <span class="arithmatex">\(X\)</span>. Then <span class="arithmatex">\(\Sigma\)</span> is symmetric positive semidefinite</p>
+<div class="admonition note">
+<p class="admonition-title">positive semidefinite</p>
+<p>A symmetric matrix <span class="arithmatex">\(A\in S^{n}\)</span> is <strong>positive semidefinite</strong> (PSD) if for all vectors <span class="arithmatex">\(x^{T}Ax\geq 0\)</span></p>
+</div>
+<p><span class="arithmatex">\(\textit{proof}\text{: For any vector }z\in R^{n} \text{, observe that}\)</span></p>
+<div class="arithmatex">\[
+z^{T}\Sigma z= \sum_{i=1}^{n}\sum_{j=1}^{n}\Sigma_{ij}z_{i}z_{j}\\
+=E[\sum_{i=1}^{n}\sum_{j=1}^{n}(X_{i}-E[X_{i}])(X_{j}-E[X_{j}])z_{i}z_{j}]
+\]</div>
+<p><span class="arithmatex">\(\text{Observe that the quantity inside the brackets is of the form}\)</span> </p>
+<div class="arithmatex">\[
+\sum_{i=1}^{n}\sum_{j=1}^{n}x_{i}x_{j}z_{i}z_{j}=(x^{T}z)^{2}\geq 0\\
+\]</div>
+<p><span class="arithmatex">\(\text{, which complete the proof}\)</span></p>
+<h3 id="gaussian-distribution_1">Gaussian Distribution</h3>
+<ul>
+<li><span class="arithmatex">\(X\sim Normal(\mu,\sigma^{2})\)</span>: also known as univariate Gaussian distribution</li>
+</ul>
+<div class="arithmatex">\[
+f(x)=\frac{1}{\sqrt{2\pi}\sigma}e^{-\frac{1}{2\sigma^{2}}(x-\mu)^{2}}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(X\sim \mathcal{N}(\mu,\Sigma)\)</span> For multivariate Gaussian, where mean <span class="arithmatex">\(\mu\in R^{d}\)</span> and covariance matrix <span class="arithmatex">\(\Sigma\)</span> is symmetric positive deﬁnite <span class="arithmatex">\(d\times d\)</span> matrix </li>
+</ul>
+<div class="arithmatex">\[
+f_{X_{1},X_{2},\dots,X_{d}}(x_1,x_2,\dots,x_{d};\mu,\Sigma)=\frac{1}{(2\pi)^{d/2}|\Sigma|^{1/2}}\exp(-\frac{1}{2}(x-\mu)^{T}\Sigma^{-1}(x-\mu))
+\]</div>
+<p><strong>Proposition:</strong> <span class="arithmatex">\(\Sigma=E[(X-\mu)(X-\mu)^{T}]=E[X^{2}]-\mu\mu^{T}\)</span></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>In the definition of multivariate Gaussians, we required that the covariance matrix <span class="arithmatex">\(\Sigma\)</span> be symmetric positive definite. That's because we need <span class="arithmatex">\(\Sigma^{-1}\)</span> exists, which means <span class="arithmatex">\(\Sigma\)</span> is full rank. Since any full rank symmetric positive semidefinite matrix is necessarily symmetric positive definite, it follows that <span class="arithmatex">\(\Sigma\)</span> must be symmetric positive definite.</p>
+</div>
+<h4 id="isocontour">Isocontour</h4>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>For a function <span class="arithmatex">\(f : R^2 → R\)</span>, an isocontour is a set of the form <span class="arithmatex">\(\{x\in R^{2}:f(x)=c\}\)</span> for some <span class="arithmatex">\(c\in R\)</span></p>
+</div>
+<p>Consider the case where <span class="arithmatex">\(d=2\)</span> and <span class="arithmatex">\(\Sigma\)</span> is diagonal. For some constant <span class="arithmatex">\(c\in R\)</span> and all <span class="arithmatex">\(x1,x2\in R\)</span>, we have</p>
+<div class="arithmatex">\[
+\begin{aligned}
+c&amp;=\frac{1}{2\pi \sigma_{1}\sigma_{2}}\exp{(-\frac{1}{2\sigma_{1}^{2}}(x_{1}-\mu_{1})^{2}-\frac{1}{2\sigma_{2}^{2}}(x_{2}-\mu_{2})^{2})} \\
+1&amp;=\frac{(x_{1}-\mu_{1})^{2}}{2\sigma_{1}^{2}\log{\frac{1}{2\pi c\sigma_{1}\sigma_{2}}}}+\frac{(x_{2}-\mu_{2})^{2}}{2\sigma_{2}^{2}\log{\frac{1}{2\pi c\sigma_{1}\sigma_{2}}}}
+\end{aligned}
+\]</div>
+<p>Defining</p>
+<div class="arithmatex">\[
+r_{1}=\sqrt{2\sigma_{1}^{2}\log{(\frac{1}{2\pi c\sigma_{1}\sigma_{2}})}}\\
+r_{2}=\sqrt{2\sigma_{2}^{2}\log{(\frac{1}{2\pi c\sigma_{1}\sigma_{2}})}}\\
+\]</div>
+<p>It follows that</p>
+<div class="arithmatex">\[
+1=\left(\frac{x_{1}-\mu_{1}}{r_{1}}\right)^{2}+\left(\frac{x_{2}-\mu_{2}}{r_{2}}\right)^{2}
+\]</div>
+<p>When <span class="arithmatex">\(\Sigma\)</span> is diagonal, it is the equation of an <strong>axis-aligned ellipse</strong>, while a <strong>rotated ellipses</strong> when not diagonal.</p>
+<p>In <span class="arithmatex">\(d\)</span> dimensional case, the level sets form geometrical structures known as <strong>ellipsoid</strong> in <span class="arithmatex">\(R^{d}\)</span></p>
+<h4 id="closure-properties">Closure properties</h4>
+<p><span class="arithmatex">\(\textbf{Theorem:}\text{ Suppose that }y\sim\mathcal{N}(\mu,\Sigma)\text{ and }z\sim\mathcal{N}(\mu',\Sigma')\text{ are independent }\\
+\text{Gaussian distributed random variables, where }\mu,\mu'\in R^{d}\text{ and }\Sigma,\Sigma'\in S^{d}_{++}\text{. Then, their sum is also Gaussian:}\)</span></p>
+<div class="arithmatex">\[
+y+z\sim \mathcal{N}(\mu+\mu',\Sigma+\Sigma')\\
+\]</div>
+<p><span class="arithmatex">\(\textbf{Theorem:}\text{ Suppose that }\)</span></p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+x_{A} \\
+x_{B}
+\end{bmatrix}
+\sim\mathcal{N}
+\left(
+\begin{bmatrix}
+x_{A} \\
+x_{B}
+\end{bmatrix}
+,
+\begin{bmatrix}
+\Sigma_{AA} &amp; \Sigma_{AB}\\
+\Sigma_{BA} &amp; \Sigma_{BB}
+\end{bmatrix}
+\right)
+\]</div>
+<p><span class="arithmatex">\(\text{where }x_{A}\in R^{n},x_{B}\in R^{d}\text{ and the dimensions of the mean vectors and covariance matrix subblocks are chosen }\\
+\text{to match }x_{A}\text{ and }x_{B}\text{. Then, the marginal densities are Gaussian:}\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+p(x_A)&amp;=\int_{x_{B}\in R^{d}}p(x_{A},x_{B};\mu,\Sigma)dx_{B}\\
+p(x_B)&amp;=\int_{x_{A}\in R^{n}}p(x_{A},x_{B};\mu,\Sigma)dx_{A}\\
+\\
+x_{A}&amp;\sim \mathcal{N}(\mu_{A},\Sigma_{AA})\\
+x_{B}&amp;\sim \mathcal{N}(\mu_{B},\Sigma_{BB})
+\end{aligned}
+\]</div>
+<p><span class="arithmatex">\(\textbf{Theorem:}\text{ Suppose that }\)</span></p>
+<div class="arithmatex">\[
+\begin{bmatrix}
+x_{A}\\
+x_{B}\\
+\end{bmatrix}
+\sim\mathcal{N}
+\begin{pmatrix}
+\begin{bmatrix}
+x_{A}\\
+x_{B}\\
+\end{bmatrix}
+,
+\begin{bmatrix}
+\Sigma_{AA}&amp;\Sigma_{AB}\\
+\Sigma_{BA}&amp;\Sigma_{BB}\\
+\end{bmatrix}
+\end{pmatrix}
+\]</div>
+<p><span class="arithmatex">\(\text{where }x_{A}\in R^{n},x_{B}\in R^{d}\text{ and the dimensions of the mean vectors and covariance matrix subblocks are chosen }\\
+\text{to match }x_{A}\text{ and }x_{B}\text{. Then, the conditional densities are Gaussian:}\)</span></p>
+<div class="arithmatex">\[
+\begin{aligned}
+p(x_{A}|x_{B})&amp;=\frac{p(x_{A},x_{B};\mu,\Sigma)}{\int_{x_{A}\in R^{n}}p(x_{A},x_{B};\mu,\Sigma)dx_{A}}\\
+p(x_B|x_{A})&amp;=\frac{p(x_{A},x_{B};\mu,\Sigma)}{\int_{x_{B}\in R^{d}}p(x_{A},x_{B};\mu,\Sigma)dx_{B}}\\
+\\
+x_{A}|x_{B}\sim \mathcal{N}(\mu_{A}+\Sigma_{AB}&amp;\Sigma_{BB}^{-1}(x_{B}-\mu_{B}),\Sigma_{AA}-\Sigma_{AB}\Sigma_{BB}^{-1}\Sigma_{BA})\\
+x_{B}|x_{A}\sim \mathcal{N}(\mu_{B}+\Sigma_{BA}&amp;\Sigma_{AA}^{-1}(x_{A}-\mu_{A}),\Sigma_{BB}-\Sigma_{BA}\Sigma_{AA}^{-1}\Sigma_{AB})
+\end{aligned}
+\]</div>
+<h4 id="decomposition">Decomposition</h4>
+<p>Given that the covariance matrix is positive definite, it can be diagonalize in the following format:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\Sigma&amp;=U\Lambda U^{T}\\
+&amp;=(U\Lambda^{1/2})(\Lambda^{1/2}U)^{T}\\
+&amp;=AA^{T}
+\end{aligned}
+\]</div>
+<p><span class="arithmatex">\(\Lambda\)</span> here is a diagonal matrix. We can consider it as a scaling matrix <span class="arithmatex">\(S\)</span> and <span class="arithmatex">\(U\)</span> as a rotation matrix <span class="arithmatex">\(R\)</span>.</p>
+<div class="arithmatex">\[
+\Sigma=RSS^{T}T^{T}
+\]</div>
+<p>When optimization <span class="arithmatex">\(\Sigma\)</span>, the gradient descent may not preserve the property of positive definite. We can equivalently optimize <span class="arithmatex">\(R\)</span> and <span class="arithmatex">\(S\)</span> separately, using a <span class="arithmatex">\(3D\)</span> vecter <span class="arithmatex">\(s\)</span> for scaling and a quaternion <span class="arithmatex">\(q\)</span> to represent rotation. Making sure to normalize <span class="arithmatex">\(q\)</span> to obtain a valid unit quaternion.</p>
+<div class="arithmatex">\[
+\mathbf{q}=q_r+q_i\cdot i+q_j\cdot j+q_k\cdot k\\
+~\\
+\mathbf{R(q)}=2
+\begin{pmatrix}
+\frac{1}{2}-(q_{j}^{2}+q_{k}^{2})&amp;(q_{i}q_{j}-q_{r}q_{k})&amp;(q_{i}q_{k}+q_{r}q_{j})\\
+(q_{i}q_{j}+q_{r}q_{k})&amp;\frac{1}{2}-(q_{i}^{2}+q_{k}^{2})&amp;(q_{j}q_{k}-q_{r}q_{i})\\
+(q_{i}q_{k}-q_{r}q_{j})&amp;(q_{j}q_{k}+q_{r}q_{i})&amp;\frac{1}{2}-(q_{i}^{2}+q_{j}^{2})
+\end{pmatrix}
+\]</div>
+<h2 id="volumn-rendering">Volumn Rendering</h2>
+<p><strong>backward mapping algorithm:</strong> shoot rays through pixels on the image plane into the volume data</p>
+<p><strong>forward mapping alogorithm:</strong> map the data onto the image plane</p>
+<h3 id="rendering-pipeline">rendering pipeline</h3>
+<p><a class="glightbox" href="../../../img/Learning/CV/4dgs_pipe.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../../../img/Learning/CV/4dgs_pipe.png" /></a></p>
+<h2 id="splatting-alogorithm">Splatting Alogorithm</h2>
+<p>We denote a point in ray space by a column vector of three coordinates <span class="arithmatex">\(\mathbf{x}=(x_0,x_1,x_2)^{T}\)</span>. The coordinates <span class="arithmatex">\(x_0\)</span> and <span class="arithmatex">\(x_1\)</span> specify a point on the projection plane and <span class="arithmatex">\(x_2\)</span> specifes the Euclidean distance from the center of projection to a point on the viewing ray. Here we use the abbreviation <span class="arithmatex">\(\mathbf{\hat{x}}=(x_0,x_1)^{T}\)</span>.</p>
+<p>The volume rendering equation describes the light intensity <span class="arithmatex">\(I_{\lambda}(\hat{\mathbf{x}})\)</span> at wavelength <span class="arithmatex">\(\lambda\)</span> that reaches the center of projection along the ray <span class="arithmatex">\(\hat{\mathbf{x}}\)</span> with length <span class="arithmatex">\(L\)</span>:</p>
+<div class="arithmatex">\[
+I_{\lambda}(\hat{\mathbf{x}})=\int_{0}^{L}c_{\lambda}(\hat{\mathbf{x}},\xi)g(\hat{\mathbf{x}},\xi)e^{-\int_{0}^{\xi}g(\hat{\mathbf{x}},\mu)d\mu}d\xi
+\]</div>
+<ul>
+<li>
+<p><span class="arithmatex">\(g(\mathbf{x})\)</span> is the extinction function that deﬁnes the rate of light occlusion, and <span class="arithmatex">\(c_{\lambda}(\mathbf{x})\)</span> is an emission coefﬁcient. </p>
+</li>
+<li>
+<p><span class="arithmatex">\(c_{\lambda}(\mathbf{x})g(\mathbf{x})\)</span> describes the light intensity scattered in the direction of the ray <span class="arithmatex">\(\hat{\mathbf{x}}\)</span> at the point <span class="arithmatex">\(x_2\)</span>. </p>
+</li>
+<li>
+<p>The exponential term can be interpreted as an attenuation factor.</p>
+</li>
+</ul>
+<p>Now let's make several assumptions</p>
+<ul>
+<li>
+<p>The volume consists of individual particles that absorb and emit light. Given weight cofficient <span class="arithmatex">\(g_k\)</span> and reconstruction kernels <span class="arithmatex">\(r_{k}(\mathbf{x})\)</span>, we have <span class="arithmatex">\(g(\mathbf{x})=\sum_{k}g_kr_{k}(\mathbf{x})\)</span></p>
+</li>
+<li>
+<p>Local support areas do not overlap along a ray <span class="arithmatex">\(\hat{\mathbf{x}}\)</span>, and the reconstruction kernels are ordered front to back. </p>
+</li>
+<li>
+<p>The emission coefﬁcient is constant in the support of each reconstruction kernel along a ray, hence we use the notation <span class="arithmatex">\(c_{\lambda k}(\hat{\mathbf{x}})=c_{\lambda}(\hat{\mathbf{x}},\xi)\)</span></p>
+</li>
+<li>
+<p>Approximate the exponential function with the ﬁrst two terms of its Taylor expansion, thus <span class="arithmatex">\(e^{x}\approx 1-x\)</span></p>
+</li>
+<li>
+<p>Ignore self-occlusion</p>
+</li>
+</ul>
+<p>Exploiting these assumptions, yielding: </p>
+<div class="arithmatex">\[
+I_{\lambda}(\hat{\mathbf{x}})=\sum_{k}c_{\lambda k}(\hat{\mathbf{x}})g_kr_{k}(\mathbf{x})\prod_{j=0}^{k-1}(1-g_{j}q_{j}(\hat{\mathbf{x}}))
+\]</div>
+<p>where <span class="arithmatex">\(q_{j}(\hat{\mathbf{x}})\)</span> denotes an integrated reconstruction kernel, hence:</p>
+<div class="arithmatex">\[
+q_{j}(\hat{\mathbf{x}})=\int_{\mathbb{R}}r_{k}(\hat{\mathbf{x}},x_{2})dx_{2}
+\]</div>
+<h2 id="the-viewing-transformation">The Viewing Transformation</h2>
+<p>Denote the Gaussian reconstruction kernels in <em>object space</em> by <span class="arithmatex">\(r_{k}''(\mathbf{t})=\mathcal{G}_{\mathbf{V''}}(\mathbf{t}-\mathbf{t_k})\)</span>, where <span class="arithmatex">\(\mathbf{t_k}\)</span> are the voxel positions of center of kernel.</p>
+<p>Denote camera coordinates by a vector <span class="arithmatex">\(\mathbf{u}=(u_0,u_1,u_2)^{T}\)</span>. Object coordinates are transformed to camera coordinates using an afﬁne mapping <span class="arithmatex">\(\mathbf{u}=\varphi(\mathbf{t})=\mathbf{Wt+d}\)</span>, called <em>viewing tranformation</em>.</p>
+<p>Now we can transform the reconstruction kernels <span class="arithmatex">\(\mathcal{G}_{\mathbf{V''}}(\mathbf{t}-\mathbf{t_k})\)</span> to camera space: </p>
+<div class="arithmatex">\[
+\mathcal{G}_{\mathbf{V''}}(\varphi^{-1}(\mathbf{u})-\mathbf{t_k})=\frac{1}{|\mathbf{W}^{-1}|}\mathcal{G}_{\mathbf{V'}_{k}}(\mathbf{u}-\mathbf{u_k})=r_{k}'(\mathbf{u})
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{u_k}=\varphi(\mathbf{t_k})\)</span> is the center of the Gaussian in camera coordinates and <span class="arithmatex">\(\mathbf{V'}_{k}=\mathbf{W}\mathbf{V''}_{k}\mathbf{W}^{T}\)</span> is the variance matrix in camera coordinates.</p>
+<h2 id="the-projective-transformation">The Projective Transformation</h2>
+<p>In camera space, The ray intersecting the center of projection and the point <span class="arithmatex">\((x_0, x_1)\)</span> on the projection plane is called a viewing ray.</p>
+<p>To facilitate analiytical integration of volumn function, we need to transform the camera space to ray space such that the viewing rays are parallel to a coordinate axis. The projective transformation converts camera coordinates to ray coordinates.</p>
+<p>Camera space is deﬁned such that the origin of the camera coordinate system is at the center of projection and the projection plane is the plane <span class="arithmatex">\(u_{2}=1\)</span>. Camera space and ray space are related by the mapping <span class="arithmatex">\(\mathbf{x=m(u)}\)</span>. </p>
+<div class="arithmatex">\[
+\begin{pmatrix}
+x_0\\
+x_1\\
+x_2\\
+\end{pmatrix}
+=\mathbf{m(u)}=
+\begin{pmatrix}
+u_{0}/u_{2}\\
+u_{1}/u_{2}\\
+\Vert(u_{0},u_{1},u_{2})^{T}\Vert\\
+\end{pmatrix}\\
+\begin{pmatrix}
+u_0\\
+u_1\\
+u_2\\
+\end{pmatrix}
+=\mathbf{m^{-1}(u)}=
+\begin{pmatrix}
+x_{0}/l\cdot x_2\\
+x_{1}/l\cdot x_2\\
+1/l\cdot x_2\\
+\end{pmatrix}
+\]</div>
+<p>where <span class="arithmatex">\(l=\Vert(x_{0},x_{1},1)^{T}\Vert\)</span>.</p>
+<p>Unfortunately, these mappings are not affine. The Gaussian after the transformation may not still Gaussian. To solve this problem, we introduce the <em>local affine approximation</em> <span class="arithmatex">\(m_{uk}\)</span> of the projective transformation. It is defined by the first two terms of the Taylor expansion of <span class="arithmatex">\(\mathbf{m}\)</span> at the point <span class="arithmatex">\(\mathbf{u}_k\)</span>:</p>
+<div class="arithmatex">\[
+\mathbf{m_{u_k}(u)=x_k+J_{u_k}\cdot (u-u_k)}\\
+\mathbf{J_{u_k}}={\frac{\partial \mathbf{m}}{\partial \mathbf{u}}}(\mathbf{u}_k)
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{x}_k=\mathbf{m(u_k)}\)</span> is the center of a Gaussian in ray space and the Jacobian <span class="arithmatex">\(\mathbf{J_{u_k}}\)</span> is given by the partial derivatives of <span class="arithmatex">\(\mathbf{m}\)</span> at the point <span class="arithmatex">\(\mathbf{u}_k\)</span>.</p>
+<p>This yields the local affine approximation of reconstruction kernels to ray space:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+r_{k}(\mathbf{x})&amp;=\frac{1}{|\mathbf{W}^{-1}|}\mathcal{G}_{\mathbf{V'}_{k}}(\mathbf{m^{-1}(x)}-\mathbf{u_k})\\
+&amp;=\frac{1}{|\mathbf{W}^{-1}||\mathbf{J}^{-1}|}\mathcal{G}_{\mathbf{V}_{k}}(\mathbf{x}-\mathbf{x_k})
+\end{aligned}
+\]</div>
+<p>where <span class="arithmatex">\(\mathbf{V}_k\)</span> is the variance matrix in ray coordinates:</p>
+<div class="arithmatex">\[
+\begin{aligned}
+\mathbf{V}_{k}&amp;=\mathbf{J}\mathbf{V'}_{k}\mathbf{J}^{T}\\
+&amp;=\mathbf{JW}\mathbf{V''}_{k}\mathbf{W}^{T}\mathbf{J}^{T}
+\end{aligned}
+\]</div>
+<h2 id="spherical-harmonic-functions">Spherical Harmonic Functions</h2>
+<p>Spherical harmonics form an orthogonal basis for functions defined over the sphere, with low degree harmonics encoding smooth (more Lambertian) changes in color and higher degree harmonics encoding higher-frequency (more specular) effects.</p>
+<div class="arithmatex">\[
+f(t)\approx \sum_{l}\sum_{m=-l}^{l}c_{l}^{m}Y_{l}^{m}(\theta,\phi)
+\]</div>
+<ul>
+<li>
+<p><span class="arithmatex">\(l\)</span>: the degree (non-negative integer)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(m\)</span>: the order (integer such that <span class="arithmatex">\(−l\leq m\leq l\)</span>)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(c_{l}^{m}\)</span>: SH coefficients</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+c_{l}^{m}=\int_{\Omega}f(w)Y_{l}^{m}(w)dw
+\]</div>
+<ul>
+<li><span class="arithmatex">\(Y_{l}^{m}\)</span>: SH functions, where <span class="arithmatex">\(P_{l}^{m}\)</span> are the associated Legendre polynomials, <span class="arithmatex">\(\theta\)</span> is the colatitude(0 to <span class="arithmatex">\(\pi\)</span>), and <span class="arithmatex">\(\phi\)</span> is the longitude(0 to <span class="arithmatex">\(2\pi\)</span>)</li>
+</ul>
+<div class="arithmatex">\[
+Y_{l}^{m}=\sqrt{\frac{(2l+1)(l-m)!}{4\pi (l+m)!}}P_{l}^{m}(cos\theta)e^{im\phi}
+\]</div>
+<h2 id="structural-similarity-index-measure">Structural Similarity Index Measure</h2>
+<p>The structural similarity index measure (SSIM) is a method for predicting the perceived quality of digital television and cinematic pictures, as well as other kinds of digital images and videos. It is also used for measuring the similarity between two images. </p>
+<h3 id="algorithm">Algorithm</h3>
+<p>The SSIM index is calculated on various windows of an image. The SSIM formula is based on three comparison measurements between two window <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span> of common size <span class="arithmatex">\(N\times N\)</span> is: luminance (<span class="arithmatex">\(l\)</span>), contrast (<span class="arithmatex">\(c\)</span>) and structure (<span class="arithmatex">\(s\)</span>). The individual comparison functions are:</p>
+<div class="arithmatex">\[
+l(x,y)=\frac{2\mu_{x}\mu_{y}+c_1}{\mu_{x}^{2}+\mu_{y}^{2}+c_1}\\
+c(x,y)=\frac{2\sigma_{x}\sigma_{y}+c_2}{\sigma_{x}^{2}+\sigma_{y}^{2}+c_2}\\
+s(x,y)=\frac{\sigma_{xy}+c_3}{\sigma_{x}\sigma_{y}+c_3}
+\]</div>
+<p>where:</p>
+<ul>
+<li>
+<p><span class="arithmatex">\(\mu_{x}\)</span> the pixel sample mean of <span class="arithmatex">\(x\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\mu_{y}\)</span> the pixel sample mean of <span class="arithmatex">\(y\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\sigma_{x}^{2}\)</span> the variance of <span class="arithmatex">\(x\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\sigma_{y}^{2}\)</span> the variance of <span class="arithmatex">\(x\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(\sigma_{xy}\)</span> the covariance of <span class="arithmatex">\(x\)</span> and <span class="arithmatex">\(y\)</span></p>
+</li>
+<li>
+<p><span class="arithmatex">\(c_{1}=(k_1L)^{2},c_{2}=(k_2L)^2=2c_3\)</span> two variables to stabilize the division with weak denominator</p>
+</li>
+<li>
+<p><span class="arithmatex">\(L\)</span> the dynamic range of the pixel-values (typically is <span class="arithmatex">\(2^{\#bits per pixel}-1\)</span>)</p>
+</li>
+<li>
+<p><span class="arithmatex">\(k_1=0.01\)</span> and <span class="arithmatex">\(k_2=0.03\)</span> by default.</p>
+</li>
+</ul>
+<p>SSIM is then a weighted combination of those comparative measures:</p>
+<div class="arithmatex">\[
+SSIM(x,y)=l(x,y)^{\alpha}\cdot c(x,y)^{\beta} \cdot s(x,y)^{\gamma}
+\]</div>
+<p>Setting the weights <span class="arithmatex">\(\alpha,\beta,\gamma\)</span> to 1, the formula can be reduced to the form below:</p>
+<div class="arithmatex">\[
+SSIM(x,y)=\frac{(2\mu_{x}\mu_{y}+c_1)(2\sigma_{xy}+c_2)}{(\mu_{x}^{2}+\mu_{y}^{2}+c_1)(\sigma_{x}^{2}+\sigma_{y}^{2}+c_2)}
+\]</div>
+<h3 id="structural-dissimilarity">Structural Dissimilarity</h3>
+<p>Structural dissimilarity (DSSIM) may be derived from SSIM, though it does not constitute a distance function as the triangle inequality is not necessarily satisfied.</p>
+<div class="arithmatex">\[
+DSSIM(x,y)=\frac{1-SSIM(x,y)}{2}
+\]</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../ML/" class="md-footer__link md-footer__link--prev" aria-label="Previous: ML4360 - Computer vision">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                ML4360 - Computer vision
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../../DL4CV/Classifier/" class="md-footer__link md-footer__link--next" aria-label="Next: Classifier">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Classifier
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://b23.tv/HokHR7N" target="_blank" rel="noopener" title="b23.tv" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tianliangtian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>

@@ -1,0 +1,2952 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+        <meta name="author" content="tianliangtian">
+      
+      
+        <link rel="canonical" href="https://tianliangtian.github.io/Learning/GAMES101/Shading/">
+      
+      
+        <link rel="prev" href="../Rasterization/">
+      
+      
+        <link rel="next" href="../Geometry/">
+      
+      
+      <link rel="icon" href="../../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Shading - tianliangtian's pages</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lora:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Lora";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+   <link href="../../../assets/stylesheets/glightbox.min.css" rel="stylesheet"/><style>
+    html.glightbox-open { overflow: initial; height: 100%; }
+    .gslide-title { margin-top: 0px; user-select: text; }
+    .gslide-desc { color: #666; user-select: text; }
+    .gslide-image img { background: white; }
+    .gscrollbar-fixer { padding-right: 15px; }
+    .gdesc-inner { font-size: 0.75rem; }
+    body[data-md-color-scheme="slate"] .gdesc-inner { background: var(--md-default-bg-color);}
+    body[data-md-color-scheme="slate"] .gslide-title { color: var(--md-default-fg-color);}
+    body[data-md-color-scheme="slate"] .gslide-desc { color: var(--md-default-fg-color);}</style> <script src="../../../assets/javascripts/glightbox.min.js"></script></head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#shading" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="https://tianliangtian.github.io" title="tianliangtian&#39;s pages" class="md-header__button md-logo" aria-label="tianliangtian's pages" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            tianliangtian's pages
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Shading
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="pink" data-md-color-accent="teal"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="pink" data-md-color-accent="teal"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Learning
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../Tools/index.md" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Tools
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://tianliangtian.github.io" title="tianliangtian&#39;s pages" class="md-nav__button md-logo" aria-label="tianliangtian's pages" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    tianliangtian's pages
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../.." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../../" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    Learning
+    
+  </span>
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_3" id="__nav_2_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Deep Learning
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_3">
+            <span class="md-nav__icon md-icon"></span>
+            Deep Learning
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DeepLearning/NNandDL/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network and Deep Learning
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DeepLearning/Transformer/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Transformer
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_4" id="__nav_2_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Computer Vision
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_4">
+            <span class="md-nav__icon md-icon"></span>
+            Computer Vision
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CV/ML/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    ML4360 - Computer vision
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../CV/4DGS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4DGS
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_2_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_5" id="__nav_2_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    DL4CV
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_5">
+            <span class="md-nav__icon md-icon"></span>
+            DL4CV
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/Classifier/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Classifier
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/NN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Neural Network
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/CNN/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    CNN
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/Training/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Training
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/OD/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Object Detection
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../DL4CV/SS/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Semantic Segmentation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_6" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_6" id="__nav_2_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    GAMES101
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_6_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_6">
+            <span class="md-nav__icon md-icon"></span>
+            GAMES101
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GAMES101/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Introduction
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Rasterization/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Rasterization
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Shading
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Shading
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#blinn-phone-reflectance-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blinn-Phone Reflectance Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blinn-Phone Reflectance Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diffuse-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diffuse Reflection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specular-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specular Reflection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ambient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ambient
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blinn-phong-reflection-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blinn-Phong Reflection Model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shading-frequencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shading Frequencies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shading Frequencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shade-each-triangle-flat-shading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shade each triangle (flat shading)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shade-each-vertex-gouraud-shading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shade each vertex (Gouraud shading)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shade-each-pixel-phong-shading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shade each pixel (Phong shading)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defining-per-vertex-normal-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining Per-Vertex Normal Vectors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graphics-real-time-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphics (real time) pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphics (real time) pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shader-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shader Programs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpolation-across-triangles-barycentric-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolation Across Triangles: Barycentric coordinates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpolation Across Triangles: Barycentric coordinates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#barycentric-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Barycentric coordinates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-barycentric-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using barycentric coordinates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bilinear-interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bilinear Interpolation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#texture-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Texture Mapping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Texture Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applying-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applying Textures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#texture-magnification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Texture Magnification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mipmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mipmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mipmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#computing-mipmap-level-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Computing Mipmap Level \(D\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smooth-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smooth Boundary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anisotropic-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anisotropic Filtering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Map
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spherical-environment-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spherical Environment Map
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cube-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cube Map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bump-normal-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bump &amp; Normal Mapping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bump &amp; Normal Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perturb-the-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perturb The Normal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displacement-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Displacement Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-procedural-noise-solid-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Procedural Noise + Solid Modeling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-precomputed-shading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provide Precomputed Shading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gamma-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gamma Correction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gamma Correction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-is-gamma-correction-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why is Gamma Correction Needed?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../Geometry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Geometry
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../RayTracing/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Ray Tracing
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Miscellaneous/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Miscellaneous
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Tools
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Tools
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/index.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Git/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Git
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Website-building/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Website building
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Anaconda.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Anaconda
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Python/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Python
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+          
+        
+        <input class="md-nav__toggle md-toggle md-toggle--indeterminate" type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Linux
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Linux
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../../Tools/Linux/tmux.md" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    None
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#blinn-phone-reflectance-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blinn-Phone Reflectance Model
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Blinn-Phone Reflectance Model">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#diffuse-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Diffuse Reflection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#specular-reflection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specular Reflection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ambient" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ambient
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#blinn-phong-reflection-model" class="md-nav__link">
+    <span class="md-ellipsis">
+      Blinn-Phong Reflection Model
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#shading-frequencies" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shading Frequencies
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Shading Frequencies">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shade-each-triangle-flat-shading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shade each triangle (flat shading)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shade-each-vertex-gouraud-shading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shade each vertex (Gouraud shading)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shade-each-pixel-phong-shading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shade each pixel (Phong shading)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#defining-per-vertex-normal-vectors" class="md-nav__link">
+    <span class="md-ellipsis">
+      Defining Per-Vertex Normal Vectors
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#graphics-real-time-pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      Graphics (real time) pipeline
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Graphics (real time) pipeline">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#shader-programs" class="md-nav__link">
+    <span class="md-ellipsis">
+      Shader Programs
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#interpolation-across-triangles-barycentric-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Interpolation Across Triangles: Barycentric coordinates
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Interpolation Across Triangles: Barycentric coordinates">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#barycentric-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Barycentric coordinates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#using-barycentric-coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      Using barycentric coordinates
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bilinear-interpolation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bilinear Interpolation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#texture-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Texture Mapping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Texture Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#applying-textures" class="md-nav__link">
+    <span class="md-ellipsis">
+      Applying Textures
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#texture-magnification" class="md-nav__link">
+    <span class="md-ellipsis">
+      Texture Magnification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mipmap" class="md-nav__link">
+    <span class="md-ellipsis">
+      Mipmap
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Mipmap">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#computing-mipmap-level-d" class="md-nav__link">
+    <span class="md-ellipsis">
+      Computing Mipmap Level \(D\)
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#smooth-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      Smooth Boundary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#anisotropic-filtering" class="md-nav__link">
+    <span class="md-ellipsis">
+      Anisotropic Filtering
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#application" class="md-nav__link">
+    <span class="md-ellipsis">
+      Application
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Application">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#environment-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Environment Map
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Environment Map">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#spherical-environment-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Spherical Environment Map
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cube-map" class="md-nav__link">
+    <span class="md-ellipsis">
+      Cube Map
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#bump-normal-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bump &amp; Normal Mapping
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bump &amp; Normal Mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#perturb-the-normal" class="md-nav__link">
+    <span class="md-ellipsis">
+      Perturb The Normal
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#displacement-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      Displacement Mapping
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3d-procedural-noise-solid-modeling" class="md-nav__link">
+    <span class="md-ellipsis">
+      3D Procedural Noise + Solid Modeling
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#provide-precomputed-shading" class="md-nav__link">
+    <span class="md-ellipsis">
+      Provide Precomputed Shading
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gamma-correction" class="md-nav__link">
+    <span class="md-ellipsis">
+      Gamma Correction
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Gamma Correction">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#why-is-gamma-correction-needed" class="md-nav__link">
+    <span class="md-ellipsis">
+      Why is Gamma Correction Needed?
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      Principle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#implementation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Implementation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="shading">Shading</h1>
+<p>Definition: The process of <strong>applying a material</strong> to an object</p>
+<h2 id="blinn-phone-reflectance-model">Blinn-Phone Reflectance Model</h2>
+<p><a class="glightbox" href="../img/Sha1.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha1.png" /></a></p>
+<ul>
+<li>Shading is local, we only care the property of the object itself, while not caring about other objects.</li>
+<li>So no shadows will be generated (<strong>shading</strong> <span class="arithmatex">\(\neq\)</span> <strong>shadow</strong>)</li>
+</ul>
+<p>Compute light reflected toward camera at a specific <strong>shading point</strong>:</p>
+<p>Inputs:</p>
+<ul>
+<li>Viewer direction <span class="arithmatex">\(\mathbf{v}\)</span></li>
+<li>Surface normal <span class="arithmatex">\(\mathbf{n}\)</span></li>
+<li>Light drection <span class="arithmatex">\(\mathbf{l}\)</span></li>
+<li>Surface parameters (color, shininess, ...)</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha2.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha2.png" width="50%" /></a></p>
+<h3 id="diffuse-reflection">Diffuse Reflection</h3>
+<ul>
+<li>Light is scattered uniformly in all directions</li>
+<li>Surface color is the same for all viewing directions</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha3.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha3.png" width="70%" /></a></p>
+<ul>
+<li>
+<p>The light hitting the same surface at different angles will produce varying levels of brightness.</p>
+</li>
+<li>
+<p>How much light(energy) is received? Lambert's cosine law: </p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha4.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha4.png" width="100%" /></a></p>
+<ul>
+<li>
+<p>According to the law of energy conservation, the energy emitted by a point light source is the same at both near and far spheres.</p>
+</li>
+<li>
+<p>So the energy of the light will diminish with the distance between the object and the point light source.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha5.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha5.png" width="100%" /></a></p>
+<p>Lambertian (Diffuse) Shading: </p>
+<div class="arithmatex">\[
+L_d=k_d(I/r^2)\max{(0, \mathbf{n}\cdot\mathbf{l})}
+\]</div>
+<ul>
+<li><span class="arithmatex">\(L_d\)</span> is diffusely reflected light</li>
+<li><span class="arithmatex">\(k_d\)</span> is the diffuse coefficient(color), which represents the color and the proportion of light that is diffusely reflected by the surface.</li>
+<li><span class="arithmatex">\(I/r^2\)</span> is the energy arrived at the shading point</li>
+<li><span class="arithmatex">\(\max{(0, \mathbf{n}\cdot\mathbf{l})}\)</span> represents the energy received by the shading point. We constrain the minimum value to 0 because a negative value indicates that the light is hitting the back of the surface, which is not visible.</li>
+<li>Diffuse reflection is <strong>independent</strong> of view direction</li>
+<li>Produces diffuse appearance</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha6.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha6.png" width="100%" /></a></p>
+<h3 id="specular-reflection">Specular Reflection</h3>
+<ul>
+<li>
+<p>Intensity <strong>depends</strong> on view direction</p>
+</li>
+<li>
+<p>Bright near mirror reflection direction</p>
+<ul>
+<li><span class="arithmatex">\(\mathbf{v}\)</span> close to mirror direction <span class="arithmatex">\(\leftrightarrow\)</span> half vector <span class="arithmatex">\(\mathbf{h}\)</span> near normal</li>
+</ul>
+</li>
+<li>
+<p>Measure "near" by dot product of unit vectors</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align*}
+\mathbf{h}&amp;=\text{bisector}(\mathbf{v}, \mathbf{l})=\frac{\mathbf{v}+\mathbf{l}}{\|\mathbf{v}+\mathbf{l}\|} \\
+L_s&amp;=k_s(I/r^2)\max{(0, \cos{\alpha})^p}\\
+&amp;=k_s(I/r^2)\max{(0, \mathbf{n}\cdot\mathbf{h})^p}
+\end{align*}
+\]</div>
+<p><a class="glightbox" href="../img/Sha7.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha7.png" width="50%" /></a></p>
+<ul>
+<li><span class="arithmatex">\(L_s\)</span> is specularly reflected light</li>
+<li><span class="arithmatex">\(k_s\)</span> is specular coefficient, generally <span class="arithmatex">\((1,1,1)\)</span>(white)</li>
+<li>Increasing <span class="arithmatex">\(p\)</span> narrows the reflection lobe</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha8.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha8.png" width="100%" /></a>
+<a class="glightbox" href="../img/Sha9.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha9.png" width="100%" /></a></p>
+<h3 id="ambient">Ambient</h3>
+<ul>
+<li>Light from environment, does not depend on anything</li>
+<li>Add constant color to account for disregarded illumination and fill in black shadows</li>
+<li>This is approximate and fake!</li>
+</ul>
+<div class="arithmatex">\[
+L_a=k_aI_a
+\]</div>
+<h3 id="blinn-phong-reflection-model">Blinn-Phong Reflection Model</h3>
+<div class="arithmatex">\[
+\begin{align*}
+L&amp;=L_a+L_d+L_s\\
+&amp;=k_aI_a+k_d(I/r^2)\max{(0, \mathbf{n}\cdot\mathbf{l})}+k_s(I/r^2)\max{(0, \mathbf{n}\cdot\mathbf{h})^p}
+\end{align*}
+\]</div>
+<p><a class="glightbox" href="../img/Sha10.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha10.png" width="100%" /></a></p>
+<h2 id="shading-frequencies">Shading Frequencies</h2>
+<p>So far, we have only discussed shading at a specific point.</p>
+<h3 id="shade-each-triangle-flat-shading">Shade each triangle (flat shading)</h3>
+<ul>
+<li>
+<p>Triangle face is flat: one normal vector</p>
+</li>
+<li>
+<p>Shade once per triangle</p>
+</li>
+<li>
+<p>Not good for smooth surfaces</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha11.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha11.png" width="50%" /></a></p>
+<h3 id="shade-each-vertex-gouraud-shading">Shade each vertex (Gouraud shading)</h3>
+<ul>
+<li>
+<p>Each vertex has a normal vector</p>
+</li>
+<li>
+<p><strong>Interpolate</strong> colors from vertices across triangle</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha12.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha12.png" width="50%" /></a></p>
+<h3 id="shade-each-pixel-phong-shading">Shade each pixel (Phong shading)</h3>
+<ul>
+<li>
+<p>Interpolate normal vectors across each triangle</p>
+</li>
+<li>
+<p>Compute full shading model at each pixel</p>
+</li>
+<li>
+<p>Not the Blinn-Phong Reflectance Model</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha13.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha13.png" width="50%" /></a></p>
+<ul>
+<li>Flat shading also produces good results with more faces.
+<a class="glightbox" href="../img/Sha14.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha14.png" width="50%" /></a></li>
+</ul>
+<h2 id="defining-per-vertex-normal-vectors">Defining Per-Vertex Normal Vectors</h2>
+<ul>
+<li>
+<p>Best to get vertex normals from the underlying geometry (e.g. a sphere)</p>
+</li>
+<li>
+<p>Otherwise have infer vertex normals from triangle faces</p>
+<ul>
+<li>Simple scheme: average surrounding face normals</li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[
+N_v=\frac{\sum_iN_i}{\|\sum_iN_i\|}
+\]</div>
+<ul>
+<li><strong>Barycentric interpolation</strong> of vertex normals</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha15.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha15.png" width="50%" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Don't forget to normalize the interpolated directions</p>
+</div>
+<h2 id="graphics-real-time-pipeline">Graphics (real time) pipeline</h2>
+<p><a class="glightbox" href="../img/Sha16.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha16.png" width="100%" /></a></p>
+<h3 id="shader-programs">Shader Programs</h3>
+<ul>
+<li>Program vertex and fragment processing stages</li>
+<li>Describe operation on a single vertex (or fragment)</li>
+</ul>
+<div class="language-text highlight"><span class="filename">fragment shader</span><pre><span></span><code><span id="__span-0-1"><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>uniform sampler2D myTexture;
+</span><span id="__span-0-2"><a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>uniform vec3 lightDir;
+</span><span id="__span-0-3"><a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>varying vec2 uv;
+</span><span id="__span-0-4"><a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>varying vec3 norm;
+</span><span id="__span-0-5"><a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>
+</span><span id="__span-0-6"><a id="__codelineno-0-6" name="__codelineno-0-6" href="#__codelineno-0-6"></a>void diffuseShader()
+</span><span id="__span-0-7"><a id="__codelineno-0-7" name="__codelineno-0-7" href="#__codelineno-0-7"></a>{
+</span><span id="__span-0-8"><a id="__codelineno-0-8" name="__codelineno-0-8" href="#__codelineno-0-8"></a>    vec3 kd;
+</span><span id="__span-0-9"><a id="__codelineno-0-9" name="__codelineno-0-9" href="#__codelineno-0-9"></a>    kd = texture2d(myTexture, uv);
+</span><span id="__span-0-10"><a id="__codelineno-0-10" name="__codelineno-0-10" href="#__codelineno-0-10"></a>    kd *= clamp(dot(-lightDir, norm), 0.0, 1.0);
+</span><span id="__span-0-11"><a id="__codelineno-0-11" name="__codelineno-0-11" href="#__codelineno-0-11"></a>    gl_FragColor = vec4(kd, 1.0);
+</span><span id="__span-0-12"><a id="__codelineno-0-12" name="__codelineno-0-12" href="#__codelineno-0-12"></a>}
+</span></code></pre></div>
+<ul>
+<li>Shader function executes once per fragment.</li>
+<li>Outputs color of surface at the current fragment's screen sample position.</li>
+<li>This shader performs a texture lookup to obtain the surface's material color at this point, then performs a diffuse lighting calculation.</li>
+</ul>
+<h2 id="interpolation-across-triangles-barycentric-coordinates">Interpolation Across Triangles: Barycentric coordinates</h2>
+<ul>
+<li>
+<p>Why do we want to interpolate?</p>
+<ul>
+<li>Specify values at vertices</li>
+<li>Obtain smoothly varying values across triangles</li>
+</ul>
+</li>
+<li>
+<p>What do we want to interpolate?</p>
+<ul>
+<li>Texture coordinates, colors, normal vectors, ...</li>
+</ul>
+</li>
+<li>
+<p>How do we interpolate?</p>
+<ul>
+<li>Barycentric coordinates</li>
+</ul>
+</li>
+</ul>
+<h3 id="barycentric-coordinates">Barycentric coordinates</h3>
+<ul>
+<li>
+<p>Given a triangle with vertex coordinates <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, and <span class="arithmatex">\(C\)</span>, <strong>any point</strong> coplanar with the triangle can be represented as a linear combination of <span class="arithmatex">\(A\)</span>, <span class="arithmatex">\(B\)</span>, and <span class="arithmatex">\(C\)</span>.</p>
+<ul>
+<li>Here <span class="arithmatex">\(A,B\)</span> and <span class="arithmatex">\(C\)</span> are the coordinate of the vertex, i.e. <span class="arithmatex">\(A=(x_A,y_A)\)</span></li>
+</ul>
+</li>
+<li>
+<p>This forms a coordinate system for triangles <span class="arithmatex">\((\alpha, \beta, \gamma)\)</span></p>
+<ul>
+<li><span class="arithmatex">\((x,y)=\alpha A + \beta B + \gamma C\)</span></li>
+<li><span class="arithmatex">\(\alpha + \beta + \gamma = 1\)</span><ul>
+<li>this constrain the points to be in the same plane</li>
+</ul>
+</li>
+<li>All three coordinates are non-negative if <span class="arithmatex">\((x,y)\)</span> is inside the triangle.</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha19.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha19.png" width="50%" /></a></p>
+<ul>
+<li>How can we get the Barycentric coordinate for a point inside the triangle?<ul>
+<li>The coefficient are proportional to areas</li>
+</ul>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{align*}
+\alpha &amp;= \frac{A_A}{A_A+A_B+A_C}\\
+\beta &amp;= \frac{A_B}{A_A+A_B+A_C}\\
+\gamma &amp;= \frac{A_C}{A_A+A_B+A_C}
+\end{align*}
+\]</div>
+<p><a class="glightbox" href="../img/Sha20.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha20.png" width="50%" /></a></p>
+<ul>
+<li>
+<p>What's the barycentric coordinate of the centroid?</p>
+<ul>
+<li><span class="arithmatex">\(\alpha = \beta = \gamma = \frac{1}{3}\)</span></li>
+</ul>
+</li>
+<li>
+<p>You can also get the coordinate using the following formula</p>
+</li>
+</ul>
+<div class="arithmatex">\[
+\begin{aligned}
+ &amp; \alpha=\frac{-(x-x_B)(y_C-y_B)+(y-y_B)(x_C-x_B)}{-(x_A-x_B)(y_C-y_B)+(y_A-y_B)(x_C-x_B)} \\
+ &amp; \beta=\frac{-(x-x_C)(y_A-y_C)+(y-y_C)(x_A-x_C)}{-(x_B-x_C)(y_A-y_C)+(y_B-y_C)(x_A-x_C)} \\
+ &amp; \gamma=1-\alpha-\beta
+\end{aligned}
+\]</div>
+<h3 id="using-barycentric-coordinates">Using barycentric coordinates</h3>
+<ul>
+<li>Linearly interpolate values at vertices</li>
+</ul>
+<div class="arithmatex">\[
+V=\alpha V_A+\beta V_B + \gamma V_C
+\]</div>
+<ul>
+<li><span class="arithmatex">\(V_A, V_B, V_C\)</span> can be positions, texture coordinates, color, normal, depth, material attributes ...</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha21.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha21.png" width="50%" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>However, barycentric coordinates are not invariant under projection! The barycentric coordinates may change after projection. It is better to compute this in 3D space.</p>
+</div>
+<h3 id="bilinear-interpolation">Bilinear Interpolation</h3>
+<ul>
+<li>Define: <span class="arithmatex">\(\text{lerp}(x,v_0,v_1)=v_0+x(v_1-v_0)\)</span></li>
+<li>First interpolate horizontally: <ul>
+<li><span class="arithmatex">\(u_0=\text{lerp}(s,u_{00},u_{10})\)</span></li>
+<li><span class="arithmatex">\(u_1=\text{lerp}(s,u_{01},u_{11})\)</span></li>
+</ul>
+</li>
+<li>The vertical lerp to get the result:<ul>
+<li><span class="arithmatex">\(f(x,y) = \text{lerp}(t,u_{0},u_{1})\)</span></li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha23.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha23.png" width="60%" /></a></p>
+<h2 id="texture-mapping">Texture Mapping</h2>
+<ul>
+<li>
+<p>Surfaces are 2D images lives in 3D world space</p>
+</li>
+<li>
+<p>Every 3D surface point maps to a point in the 2D image (<strong>texture</strong>)</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha17.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha17.png" width="100%" /></a></p>
+<ul>
+<li>Each triangle "copies" a piece of the texture image to the surface</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha18.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha18.png" width="100%" /></a></p>
+<ul>
+<li>Each triangle vertex is assigned a texture coordinate <span class="arithmatex">\((u,v)\)</span>. Generally, both <span class="arithmatex">\(u\)</span> and <span class="arithmatex">\(v\)</span> are in range <span class="arithmatex">\([0,1]\)</span> </li>
+</ul>
+<h3 id="applying-textures">Applying Textures</h3>
+<ul>
+<li>Simple Texture Mapping: Diffuse Color</li>
+</ul>
+<div class="language-text highlight"><pre><span></span><code><span id="__span-1-1"><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>for each rasterized screen sample (x,y):
+</span><span id="__span-1-2"><a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>    (u,v) = evaluate texture coordinate at (x,y)
+</span><span id="__span-1-3"><a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>    texcolor = texture.sample(u,v);
+</span><span id="__span-1-4"><a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>    set sample&#39;s color to texcolor;
+</span></code></pre></div>
+<h3 id="texture-magnification">Texture Magnification</h3>
+<ul>
+<li>
+<p>What if the texture is too small?</p>
+</li>
+<li>
+<p>Generally don't want this: insufficient texture resolution</p>
+</li>
+<li>
+<p><strong>texel</strong>: a pixel on a texture</p>
+</li>
+<li>
+<p>Many texels are mapped to one pixel</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha22.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha22.png" width="100%" /></a></p>
+<ul>
+<li>What if the texture is too big?</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha24.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha24.png" width="100%" /></a></p>
+<ul>
+<li>Why?<ul>
+<li>The near pixel covers a small range of texels, while the far pixel covers a large range.</li>
+<li>Problems arise when we use a single texel to represent a large range.</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha25.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha25.png" width="100%" /></a></p>
+<ul>
+<li>Will supersampling work?<ul>
+<li>Yes, high quality, but costly</li>
+<li>When highly minified, many texels in pixel footprint</li>
+<li>Signal frequency too large in a pixel</li>
+<li>Need even higher sampling frequency</li>
+</ul>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha26.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha26.png" width="100%" /></a></p>
+<ul>
+<li>
+<p>Let's understand this problem in another way</p>
+<ul>
+<li>What if we don't sample?</li>
+<li>Just need to get the average value within a range!</li>
+</ul>
+</li>
+<li>
+<p>Point Query: Given a point, return its value</p>
+</li>
+<li>
+<p>Average Range Query: Given a range, return its average value.</p>
+</li>
+</ul>
+<h3 id="mipmap">Mipmap</h3>
+<ul>
+<li>Allowing fast, approximate and square range queries</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha27.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha27.png" width="100%" /></a></p>
+<ul>
+<li>
+<p>Level 0 is the original image</p>
+</li>
+<li>
+<p>Resolution is quartered with each level increase.</p>
+</li>
+<li>
+<p>Can be precomputed</p>
+</li>
+<li>
+<p>Storage overhead is only one-third of the original storage</p>
+</li>
+</ul>
+<h4 id="computing-mipmap-level-d">Computing Mipmap Level <span class="arithmatex">\(D\)</span></h4>
+<ul>
+<li>Estimate texture footprint using texture coordinates of neigboring screen samples. That is, how many units a texel in texture space will move when a pixel move one unit.</li>
+</ul>
+<div class="arithmatex">\[
+D=\log_2L\quad L=\max\left(\sqrt{\left(\frac{du}{dx}\right)^2+\left(\frac{dv}{dx}\right)^2},\sqrt{\left(\frac{du}{dy}\right)^2+\left(\frac{dv}{dy}\right)^2}\right)
+\]</div>
+<ul>
+<li>
+<p><span class="arithmatex">\(D\)</span> rounds to the nearset integer</p>
+</li>
+<li>
+<p>Query the texel in Level <span class="arithmatex">\(D\)</span></p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha28.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha28.png" width="100%" /></a></p>
+<h4 id="smooth-boundary">Smooth Boundary</h4>
+<ul>
+<li>Problem: The result is not smooth in the boundary of different level</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha29.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha29.png" width="80%" /></a></p>
+<ul>
+<li>How to solve? Using trilinear interpolation</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha30.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha30.png" width="100%" /></a></p>
+<p><a class="glightbox" href="../img/Sha31.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha31.png" width="100%" /></a></p>
+<ul>
+<li>Limitations: Overblur</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha32.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha32.png" width="100%" /></a></p>
+<ul>
+<li>Why? There are irregular pixel footprint in texture.</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha33.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha33.png" width="100%" /></a></p>
+<h4 id="anisotropic-filtering">Anisotropic Filtering</h4>
+<p>Ripmaps and summed area tables
+* Can look up axis-aligned
+rectangular zones
+* Diagonal footprints still a problem</p>
+<p><a class="glightbox" href="../img/Sha34.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha34.png" width="70%" /></a></p>
+<p>EWA filtering
+* Use multiple lookups
+* Weighted average
+* Mipmap hierarchy still helps
+* Can handle irregular footprints</p>
+<p><a class="glightbox" href="../img/Sha35.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha35.png" width="70%" /></a></p>
+<h3 id="application">Application</h3>
+<p>In modern GPUs, texture = memory + range query (filtering)</p>
+<ul>
+<li>General method to bring data to fragment calculations</li>
+</ul>
+<p>Many applications</p>
+<ul>
+<li>Environment lighting</li>
+<li>Store microgeometry</li>
+<li>Procedural textures</li>
+<li>Solid modeling</li>
+<li>Volume rendering</li>
+</ul>
+<h4 id="environment-map">Environment Map</h4>
+<p>We can use texture to represent light from environment</p>
+<p><a class="glightbox" href="../img/Sha36.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha36.png" width="80%" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Actually, the environment light is related to both position and direction, but here we approximate it by assuming the light source is infinitely far away.</p>
+</div>
+<h5 id="spherical-environment-map">Spherical Environment Map</h5>
+<p>Assuming you place a mirror sphere in the middle of the scene, you will be able to observe the reflections of the environment light on its surface, which helps in understanding the light's behavior. </p>
+<ul>
+<li>This inspires us to store the environment light on a sphere, which is called a <strong>Spherical Environment Map</strong>.</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha37.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha37.png" width="80%" /></a></p>
+<ul>
+<li>Problem: The top and bottom parts are prone to distortion</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha38.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha38.png" width="80%" /></a></p>
+<h5 id="cube-map">Cube Map</h5>
+<ul>
+<li>
+<p>Store the environment light on a cube instead of a sphere, which is more uniform in each position.</p>
+</li>
+<li>
+<p>The cube is textured with 6 square texture maps</p>
+</li>
+<li>
+<p>Each direction vector maps to a cube point along it.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha39.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha39.png" width="80%" /></a></p>
+<ul>
+<li>
+<p>Much less distortion</p>
+</li>
+<li>
+<p>When querying a direction, need to first find the corresponding face.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha40.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha40.png" width="80%" /></a></p>
+<h4 id="bump-normal-mapping">Bump &amp; Normal Mapping</h4>
+<p>For a bumpy surface, it is costly to represent it using triangles</p>
+<ul>
+<li>
+<p>Use bump mapping to represent relative height to the underlying surface</p>
+</li>
+<li>
+<p>Fake the detailed geometry</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha41.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha41.png" width="80%" /></a></p>
+<p>Bump mappng adds surface detail without adding more triangles</p>
+<ul>
+<li>
+<p>Perturb surface normal per pixel for shading computation</p>
+</li>
+<li>
+<p>"Height shift" per texel defined by a texture</p>
+</li>
+<li>
+<p>The black line is the original surface while the orange one represents the perturbed surface</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha42.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha42.png" width="80%" /></a></p>
+<h5 id="perturb-the-normal">Perturb The Normal</h5>
+<p>In flatland (2D case), assume the surface normal is <span class="arithmatex">\(n(p)=(0,1)\)</span></p>
+<ul>
+<li>
+<p>Derivative at <span class="arithmatex">\(p\)</span> is <span class="arithmatex">\(dp=c\times [h(p+1)-h(p)]\)</span></p>
+<ul>
+<li><span class="arithmatex">\(c\)</span> is a constant to control the effect of bump mapping</li>
+</ul>
+</li>
+<li>
+<p>Perturbed normal is then <span class="arithmatex">\(n(p)=(-dp,1).normalize()\)</span></p>
+</li>
+</ul>
+<p>In 3D case, assume the original surface normal <span class="arithmatex">\(n(p)=(0,0,1)\)</span></p>
+<ul>
+<li>
+<p>Derivatives at p are </p>
+<ul>
+<li><span class="arithmatex">\(dp/du=c_1\times[h(\mathbf{u}+1)-h(\mathbf{u})]\)</span></li>
+<li><span class="arithmatex">\(dp/dv=c_1\times[h(\mathbf{v}+1)-h(\mathbf{v})]\)</span></li>
+</ul>
+</li>
+<li>
+<p>Perturbed normal is then <span class="arithmatex">\(n(p)=(-dp/du,-dp/dv,1).normalize()\)</span></p>
+</li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Note that this is in <strong>local coordinate</strong> since we constrain the original normal to <span class="arithmatex">\((0,0,1)\)</span>. The result should be transformed to world coordinate later.</p>
+</div>
+<h4 id="displacement-mapping">Displacement Mapping</h4>
+<p>Displacement Mapping is a more advanced approach</p>
+<ul>
+<li>
+<p>Uses the same texture as in bumping mapping</p>
+</li>
+<li>
+<p>Actually moves the vertices</p>
+</li>
+<li>
+<p>More triangle needed to get a good result</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha43.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha43.png" width="80%" /></a></p>
+<h4 id="3d-procedural-noise-solid-modeling">3D Procedural Noise + Solid Modeling</h4>
+<ul>
+<li>
+<p>3D texture: Any point in 3D space has a texture value. The interior of an object also has texture.</p>
+</li>
+<li>
+<p>Define 3D noise function to generate texture</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha44.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha44.png" width="80%" /></a></p>
+<h4 id="provide-precomputed-shading">Provide Precomputed Shading</h4>
+<p>Texture can also store precomputed information</p>
+<ul>
+<li>
+<p>ambient occlusion: store information about which part of the ambient light will be occluded</p>
+</li>
+<li>
+<p>multiply the shading result with the texture map. 0 means occluded.</p>
+</li>
+</ul>
+<p><a class="glightbox" href="../img/Sha45.png" data-type="image" data-width="auto" data-height="auto" data-desc-position="bottom"><img alt="" src="../img/Sha45.png" width="80%" /></a></p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Textures can store various types of information, including but not limited to color. The meaning depends on how you interpret it in the shader.</p>
+</div>
+<h2 id="gamma-correction">Gamma Correction</h2>
+<p>Gamma Correction is an important technique in graphics used to adjust the brightness representation of images on display devices. </p>
+<h3 id="why-is-gamma-correction-needed">Why is Gamma Correction Needed?</h3>
+<ul>
+<li>
+<p>Human Perception</p>
+<ul>
+<li>
+<p>The human eye is more sensitive to changes in brightness in dark areas and less sensitive to changes in bright areas.</p>
+</li>
+<li>
+<p>This perceptual characteristic can be described by a curve approximately following a power function.</p>
+</li>
+</ul>
+</li>
+<li>
+<p>Display Device Characteristics:</p>
+<ul>
+<li>Most display devices (e.g., monitors, TVs) have non-linear brightness output, typically following a curve approximately defined by <span class="arithmatex">\(V_{out}=V^{\gamma}_{in}\)</span> is the display device's gamma value (usually 2.2).</li>
+</ul>
+</li>
+<li>
+<p>Without gamma correction, images may appear too dark or too bright on display devices, failing to accurately reproduce the brightness of the original scene.</p>
+</li>
+</ul>
+<h3 id="principle">Principle</h3>
+<ul>
+<li>
+<p>Gamma Encoding:</p>
+<ul>
+<li>During image saving or transmission, brightness values are gamma-encoded <span class="arithmatex">\(V_{encoded}=V_{linear}^{1/\gamma}\)</span> </li>
+</ul>
+</li>
+<li>
+<p>Gamma Decoding:</p>
+<ul>
+<li>During image display, brightness values are gamma-decoded <span class="arithmatex">\(V_{linear}=V_{encoded}^{\gamma}\)</span> </li>
+</ul>
+</li>
+<li>
+<p>typically using <span class="arithmatex">\(\gamma=2.2\)</span></p>
+</li>
+</ul>
+<h3 id="implementation">Implementation</h3>
+<p>We always perform rendering or image processing in linear space, since brightness values in linear space are proportional to physical light intensity.</p>
+<ul>
+<li>
+<p>If textures are stored in gamma space (e.g., JPEG, PNG formats), perform gamma decoding on texture colors to transform them into linear space in the shader:</p>
+</li>
+<li>
+<p>Perform gamma encoding on the final color for outputing on screen.</p>
+</li>
+</ul>
+<div class="language-glsl highlight"><pre><span></span><code><span id="__span-2-1"><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="kt">vec3</span><span class="w"> </span><span class="n">gammaCorrect</span><span class="p">(</span><span class="kt">vec3</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-2"><a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="kt">vec3</span><span class="p">(</span><span class="mf">1.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">2.2</span><span class="p">));</span>
+</span><span id="__span-2-3"><a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="p">}</span>
+</span><span id="__span-2-4"><a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a>
+</span><span id="__span-2-5"><a id="__codelineno-2-5" name="__codelineno-2-5" href="#__codelineno-2-5"></a><span class="kt">vec3</span><span class="w"> </span><span class="n">gammaDecode</span><span class="p">(</span><span class="kt">vec3</span><span class="w"> </span><span class="n">color</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-6"><a id="__codelineno-2-6" name="__codelineno-2-6" href="#__codelineno-2-6"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">pow</span><span class="p">(</span><span class="n">color</span><span class="p">,</span><span class="w"> </span><span class="kt">vec3</span><span class="p">(</span><span class="mf">2.2</span><span class="p">));</span>
+</span><span id="__span-2-7"><a id="__codelineno-2-7" name="__codelineno-2-7" href="#__codelineno-2-7"></a><span class="p">}</span>
+</span><span id="__span-2-8"><a id="__codelineno-2-8" name="__codelineno-2-8" href="#__codelineno-2-8"></a>
+</span><span id="__span-2-9"><a id="__codelineno-2-9" name="__codelineno-2-9" href="#__codelineno-2-9"></a><span class="kt">void</span><span class="w"> </span><span class="n">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+</span><span id="__span-2-10"><a id="__codelineno-2-10" name="__codelineno-2-10" href="#__codelineno-2-10"></a><span class="w">    </span><span class="kt">vec3</span><span class="w"> </span><span class="n">textureColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">texture2D</span><span class="p">(</span><span class="n">uSampler</span><span class="p">,</span><span class="w"> </span><span class="n">vTexCoord</span><span class="p">).</span><span class="n">rgb</span><span class="p">;</span>
+</span><span id="__span-2-11"><a id="__codelineno-2-11" name="__codelineno-2-11" href="#__codelineno-2-11"></a><span class="w">    </span><span class="kt">vec3</span><span class="w"> </span><span class="n">linearColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gammaDecode</span><span class="p">(</span><span class="n">textureColor</span><span class="p">);</span><span class="w">  </span><span class="c1">// Gamma decoding</span>
+</span><span id="__span-2-12"><a id="__codelineno-2-12" name="__codelineno-2-12" href="#__codelineno-2-12"></a><span class="w">    </span><span class="c1">// Perform lighting calculations in linearColor</span>
+</span><span id="__span-2-13"><a id="__codelineno-2-13" name="__codelineno-2-13" href="#__codelineno-2-13"></a><span class="w">    </span><span class="kt">vec3</span><span class="w"> </span><span class="n">finalColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gammaCorrect</span><span class="p">(</span><span class="n">linearColor</span><span class="p">);</span><span class="w">  </span><span class="c1">// Gamma encoding</span>
+</span><span id="__span-2-14"><a id="__codelineno-2-14" name="__codelineno-2-14" href="#__codelineno-2-14"></a><span class="w">    </span><span class="nb">gl_FragColor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">vec4</span><span class="p">(</span><span class="n">finalColor</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">);</span>
+</span><span id="__span-2-15"><a id="__codelineno-2-15" name="__codelineno-2-15" href="#__codelineno-2-15"></a><span class="p">}</span>
+</span></code></pre></div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="../Rasterization/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Rasterization">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Rasterization
+              </div>
+            </div>
+          </a>
+        
+        
+          
+          <a href="../Geometry/" class="md-footer__link md-footer__link--next" aria-label="Next: Geometry">
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              <div class="md-ellipsis">
+                Geometry
+              </div>
+            </div>
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        <div class="md-social">
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://b23.tv/HokHR7N" target="_blank" rel="noopener" title="b23.tv" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M488.6 104.1c16.7 18.1 24.4 39.7 23.3 65.7v202.4c-.4 26.4-9.2 48.1-26.5 65.1-17.2 17-39.1 25.9-65.5 26.7H92.02c-26.45-.8-48.21-9.8-65.28-27.2C9.682 419.4.767 396.5 0 368.2V169.8c.767-26 9.682-47.6 26.74-65.7C43.81 87.75 65.57 78.77 92.02 78h29.38L96.05 52.19c-5.75-5.73-8.63-13-8.63-21.79 0-8.8 2.88-16.06 8.63-21.797C101.8 2.868 109.1 0 117.9 0q13.2 0 21.9 8.603L213.1 78h88l74.5-69.397C381.7 2.868 389.2 0 398 0q13.2 0 21.9 8.603c5.7 5.737 8.6 12.997 8.6 21.797 0 8.79-2.9 16.06-8.6 21.79L394.6 78h29.3c26.4.77 48 9.75 64.7 26.1m-38.8 69.7c-.4-9.6-3.7-17.4-10.7-23.5-5.2-6.1-14-9.4-22.7-9.8H96.05c-9.59.4-17.45 3.7-23.58 9.8-6.14 6.1-9.4 13.9-9.78 23.5v194.4c0 9.2 3.26 17 9.78 23.5s14.38 9.8 23.58 9.8H416.4c9.2 0 17-3.3 23.3-9.8s9.7-14.3 10.1-23.5zm-264.3 42.7c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2-6.2 6.3-14 9.5-23.6 9.5s-17.5-3.2-23.6-9.5-9.4-14-9.8-23.2v-33.3c.4-9.1 3.8-16.9 10.1-23.2s13.2-9.6 23.3-10c9.2.4 17 3.7 23.3 10m191.5 0c6.3 6.3 9.7 14.1 10.1 23.2V273c-.4 9.2-3.7 16.9-9.8 23.2s-14 9.5-23.6 9.5-17.4-3.2-23.6-9.5c-7-6.3-9.4-14-9.7-23.2v-33.3c.3-9.1 3.7-16.9 10-23.2s14.1-9.6 23.3-10c9.2.4 17 3.7 23.3 10"/></svg>
+    </a>
+  
+    
+    
+    
+    
+      
+      
+    
+    <a href="https://github.com/tianliangtian" target="_blank" rel="noopener" title="github.com" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><!--! Font Awesome Free 6.7.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2024 Fonticons, Inc.--><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8M97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "../../..", "features": ["navigation.tracking", "navigation.tabs", "navigation.expand", "navigation.indexes", "navigation.top", "navigation.footer", "toc.follow", "search.suggest", "search.highlight", "search.share", "header.autohide", "content.code.copy", "content.code.select", "content.code.annotate"], "search": "../../../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../../../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  <script id="init-glightbox">const lightbox = GLightbox({"touchNavigation": true, "loop": false, "zoomable": true, "draggable": true, "openEffect": "zoom", "closeEffect": "zoom", "slideEffect": "slide"});
+document$.subscribe(() => { lightbox.reload() });
+</script></body>
+</html>
